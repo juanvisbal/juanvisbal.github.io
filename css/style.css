@@ -53,38 +53,3 @@ p {
 footer.page-footer {
   margin: 0;
 }
-
-#app-bar {
-  position: fixed;
-  width: 100%;
-  height: 48px;
-  z-index: 998;
-}
-
-#img-logo {
-  padding: 2px;
-}
-
-section {
-  padding-top: 48px;
-}
-
-@media only screen and (max-width : 600px) {
-  #app-bar {
-    position: fixed;
-    height: 98px;
-    z-index: 998;
-  }
-  section {
-    padding-top: 98px;
-  }
-}
-
-/*.footer-copyright {
-   position: fixed;
-   left:0px;
-   bottom:0px;
-   height:50px;
-   width:100%;
-
-}*/
