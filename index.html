@@ -3,255 +3,198 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-  <meta name="theme-color" content="#e8f5e9"/>
+  <meta name="theme-color" content="#e8f5e9"
 
   <link rel="icon"
   type="image/png"
   href="images/js-xxl.png"
-  size=192x192/>
+  size=192x192>
+
   <title>Juan S. Camargo Visbal's Personal Site.</title>
 
   <!-- CSS  -->
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 
 <body>
 
-<header>
-
-  <nav>
-    <ul id="nav-bar" class="side-nav fixed">
-      <li><a href="#!">About me</a></li>
-      <li><a href="#!">Blog</a></li>
-      <li><a href="#!">Projects</a></li>
-      <li><a href="#!">Contact info</a></li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-  </nav>
-
-
-  <!--<div class="navbar-fixed">-->
-    <div class="parallax-container top-nav">
-      <div class="parallax"><img src="images/bg_2.jpg"></div>
-      <div>
-        <!--<h5 class="brand-logo">.JS</h5>-->
-        <div class="section container no-pad-bot" id="index-banner">
-          <br><br><br>
-          <h3 class="header center">Juan Sebastián Camargo Visbal</h3>
-          <div class="row center">
-            <h5 class="header col s12 light">Electronics Engineer & Entrepreneur</h5>
-          </div>
-          <div class="center">
-          </div>
+  <!--Appbar-->
+  <div class="green lighten-2" id="app-bar">
+    <div class="row">
+      <div class="col s12 m4 l4 center">
+        <img src="images/profile.jpg" class="circle responsive-img" id="img-logo">
+      </div>
+      <div class="col s12 m4 l4">
+        <ul class="tabs green lighten-2 white-text">
+          <li class="tab col s4"><a href="#index-banner" class="active">
+            <!--<img src="images/profile.jpg" class="circle responsive-img image-logo">-->HOME</a></li>
+            <li class="tab col s4"><a href="#skills">SKILLS</a></li>
+            <li class="tab col s4"><a href="#work">PROJECTS</a></li>
+          </ul>
         </div>
       </div>
-    </div>
-
-</header>
-  <!--</div>-->
-
-
-  <!--Appbar-->
-  <!-- <div class="green lighten-2" id="app-bar">
-  <div class="row">
-  <div class="col s12 m4 l4 center">
-  <img src="images/profile.jpg" class="circle responsive-img" id="img-logo">
-</div>
-<div class="col s12 m4 l4">
-<ul class="tabs green lighten-2 white-text">
-<li class="tab col s4"><a href="#index-banner" class="active">HOME</a></li>
-<li class="tab col s4"><a href="#skills">SKILLS</a></li>
-<li class="tab col s4"><a href="#work">PROJECTS</a></li>
-</ul>
-</div>
-</div>
-</div> -->
-
-
-  <!--Home-->
-  <!-- <div class="section container no-pad-bot" id="index-banner">
-    <br><br><br>
-    <h3 class="header center">Juan Sebastián Camargo Visbal</h3>
-    <div class="row center">
-      <h5 class="grey-text text-darken-2 header col s12 light">Electronics Engineer & Entrepreneur</h5>
-    </div>
-    <div class="center">
-
-      <a href="mailto:juanscv@outlook.com" rel="external" id="email-link" class="waves-effect waves-light">
-        <img src="images/email-32.png">
-      </a>
-      <a href="skype:juanscv?chat" id="skype-link" class="waves-effect waves-light">
-        <img src="images/skype-32.png">
-      </a>
-      <a href="https://plus.google.com/107936023399730118102/about" rel="external" id="gplus-link" class="waves-effect waves-light">
-        <img src="images/googleplus-32.png">
-      </a>
-      <a href="http://www.instagram.com/juanscv92" rel="external" id="instagram-ink" class="waves-effect waves-light">
-        <img src="images/instagram-32.png">
-      </a>
-      <a href="http://juanscv92.tumblr.com" rel="external" id="tumblr-link" class=" waves-effect waves-light">
-        <img src="images/tumblr-32.png">
-      </a>
-      <a href="http://www.soundlcoud.com/juanscv" rel="external" id="soundcloud-link" class="waves-effect waves-light">
-        <img src="images/soundcloud-32.png">
-      </a>
-      <a href="http://trakt.tv/users/juanscv" rel="external" id="trakt-link" class="waves-effect waves-light">
-        <img src="images/trakt-32.png">
-      </a>
 
     </div>
-  </div> -->
 
+    <section>
 
+      <!--Home-->
+      <div class="section container no-pad-bot" id="index-banner">
+        <br><br><br>
+        <h3 class="header center">Juan Sebastián Camargo Visbal</h3>
+        <div class="row center">
+          <h5 class="grey-text text-darken-2 header col s12 light">Electronics Engineer & Entrepreneur</h5>
+        </div>
+        <div class="center">
+
+          <a href="mailto:juanscv@outlook.com" rel="external" id="email-link" class="waves-effect waves-light">
+            <img src="images/email-32.png">
+          </a>
+          <a href="skype:juanscv?chat" id="skype-link" class="waves-effect waves-light">
+            <img src="images/skype-32.png">
+          </a>
+          <a href="https://plus.google.com/107936023399730118102/about" rel="external" id="gplus-link" class="waves-effect waves-light">
+            <img src="images/googleplus-32.png">
+          </a>
+          <a href="http://www.instagram.com/juanscv92" rel="external" id="instagram-ink" class="waves-effect waves-light">
+            <img src="images/instagram-32.png">
+          </a>
+          <a href="http://juanscv92.tumblr.com" rel="external" id="tumblr-link" class=" waves-effect waves-light">
+            <img src="images/tumblr-32.png">
+          </a>
+          <a href="http://www.soundlcoud.com/juanscv" rel="external" id="soundcloud-link" class="waves-effect waves-light">
+            <img src="images/soundcloud-32.png">
+          </a>
+          <a href="http://trakt.tv/users/juanscv" rel="external" id="trakt-link" class="waves-effect waves-light">
+            <img src="images/trakt-32.png">
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 
   <!--My Skills-->
   <div class="section container" id="skills">
     <h4 class="center">My skills</h4>
-    <ul class="collapsible popout" data-collapsible="accordion">
-      <li>
-        <div class="collapsible-header">
-          <i class="mdi-social-people"></i>
-             <span class="green-text">Social</span>
-
-         </div>
-         <div class="collapsible-body"><p>Collaborative, tasks delegation, communicator, amicable.</p>
-         </div>
-       </li>
-   <li>
-     <div class="collapsible-header">
-       <i class="mdi-file-folder"></i>
-          <span class="green-text">Organization</span>
-
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="card grey lighten-3">
+          <!-- <div class="card-image">
+          <img src="images/Muneris.png">
+        </div> -->
+        <div class="card-content">
+          <span class="card-title green-text">Organization</span>
+          <p>Red social para compartir servicios públicos entre residencias, oficinas, etc.</p>
+        </div>
       </div>
-      <div class="collapsible-body"><p>Highly organized, systematic, resources optimization.</p>
-      </div>
-    </li>
-    <li>
-      <div class="collapsible-header">
-        <i class="mdi-action-group-work"></i>
-           <span class="green-text">Technical</span>
-
-       </div>
-       <div class="collapsible-body"><p>Logistics & planning, avid programmer.</p>
-       </div>
-     </li>
-     <li>
-       <div class="collapsible-header active">
-         <i class="mdi-image-flash-on"></i>
-            <span class="green-text">Programming</span>
-
-        </div>
-        <div class="collapsible-body"><p>Office Suite, MATLAB, VHDL, LaTeX, HTML/CSS/JavaScript, Ruby on Rails, Spice, Java & Android.</p>
-        </div>
-      </li>
-     <li>
-       <div class="collapsible-header">
-         <i class="mdi-image-palette"></i>
-            <span class="green-text">Artistic</span>
-
-        </div>
-        <div class="collapsible-body"><p>Basic video editing and photo manipulation, web design.</p>
-        </div>
-      </li>
-      <li>
-        <div class="collapsible-header">
-          <i class="mdi-navigation-more-horiz"></i>
-             <span class="green-text">Other skills</span>
-
-         </div>
-         <div class="collapsible-body"><p>Adaptable to multiple work environments and situations, good leader, attentive, determined.</p>
-         </div>
-       </li>
-    </ul>
-      </div>
-
-
-
-<!--My Projects-->
-<div class="section container" id="work">
-  <h4 class="center">My projects</h4>
-  <div class="row">
-    <div class="col s12 m6">
+    </div>
+    <div class="col s12 m4">
       <div class="card grey lighten-3">
-        <!-- <div class="card-image">
-        <img src="images/Muneris.png">
-      </div> -->
-      <div class="card-content">
-        <span class="card-title green-text">Muneris</span>
-        <p>Red social para compartir servicios públicos entre residencias, oficinas, etc.</p>
-      </div>
-      <div class="card-action">
-        <a href="https://github.com/juanscv/Muneris">Github</a>
-      </div>
-    </div>
-  </div>
-  <div class="col s12 m6">
-    <div class="card grey lighten-3">
-      <div class="card-content">
-        <span class="card-title green-text">Retro Games</span>
-        <p>A Meteor version of 'Retro Games' by Mary Rose Cook for multiple platforms.</p>
-      </div>
-      <div class="card-action">
-        <a href="https://github.com/juanscv/Muneris">
-          GitHub</a>
-          <a href="http://maryrosecook.com">Mary's site</a>
+        <div class="card-content">
+          <span class="card-title green-text">Technical</span>
+          <p>A meteor version of 'Retro Games' by Mary Rose Cook for multiple platforms.</p>
         </div>
+
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card grey lighten-3">
+        <div class="card-content">
+          <span class="card-title green-text">Artistic</span>
+          <p>A meteor version of 'Retro Games' by Mary Rose Cook for multiple platforms.</p>
+        </div>
+
+      </div>
+    </div>
+    <div class="col s12 m4">
+      <div class="card grey lighten-3">
+        <div class="card-content">
+          <span class="card-title green-text">Other</span>
+          <p>A meteor version of 'Retro Games' by Mary Rose Cook for multiple platforms.</p>
+        </div>
+
       </div>
     </div>
   </div>
-
 </div>
 
 
-<footer class="page-footer white">
 
-  <div class="footer-copyright">
-    <div class="container grey-text">
-      Made with <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+  <!--My Projects-->
+  <div class="section container" id="work">
+    <h4 class="center">My projects</h4>
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card grey lighten-3">
+          <!-- <div class="card-image">
+          <img src="images/Muneris.png">
+        </div> -->
+        <div class="card-content">
+          <span class="card-title green-text">Muneris</span>
+          <p>Red social para compartir servicios públicos entre residencias, oficinas, etc.</p>
+        </div>
+        <div class="card-action">
+          <a href="https://github.com/juanscv/Muneris">Github</a>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="col s12 m6">
+      <div class="card grey lighten-3">
+        <div class="card-content">
+          <span class="card-title green-text">Retro Games</span>
+          <p>A meteor version of 'Retro Games' by Mary Rose Cook for multiple platforms.</p>
+        </div>
+        <div class="card-action">
+          <a href="https://github.com/juanscv/Muneris">
+            GitHub</a>
+            <a href="http://maryrosecook.com">Mary's site</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
-</footer>
+  </section>
+
+  <footer class="page-footer white">
+
+    <div class="footer-copyright">
+      <div class="container grey-text">
+        Made with <a class="brown-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+
+  </footer>
 
 
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-<script src="js/external-links.js"></script>
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="js/external-links.js"></script>
 
-<!-- Google Analytics -->
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  <!-- Google Analytics -->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-ga('create', 'UA-62219838-1', 'auto');
-ga('send', 'pageview');
+  ga('create', 'UA-62219838-1', 'auto');
+  ga('send', 'pageview');
 
-</script>
+  </script>
 
-<!-- ScrollFire-->
-<script type="text/javascript">
-var options = [
-  {selector: '#footer-copyright', offset: 0, callback:
-  var wrap = $("#footer-copyright");
-
-  wrap.on("scroll", function(e) {
-
-    if (this.scrollTop > $elem.height()-50) {
-      wrap.addClass("footer-fixed");
-    } else {
-      wrap.removeClass("footer-fixed");
-    }
-
-  });
-];
-Materialize.scrollFire(options);
-</script>
+  <!-- ScrollFire-->
+  <script type="text/javascript">
+      var options = [
+        {selector: '#footer-copyright', offset: 0, callback: 'Materialize.elementOrParentIsFixed(#footer-copyright)' }
+      ];
+      Materialize.scrollFire(options);
+    </script>
 
 </body>
 </html>
