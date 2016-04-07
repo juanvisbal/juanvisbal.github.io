@@ -33,14 +33,14 @@ hr {
 }
 
 .section {
-  margin-top: 3em;
-  margin-bottom: 5em;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }
 
 .parallax-container {
-  min-height: 40em;
-  height: 107%;
-  top: -9%;
+  margin-top: 0 !important;
+  min-height: 43em;
+  height: 100%;
   color: white;
   color: rgba(255,255,255,.9);
 }
