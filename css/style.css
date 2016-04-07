@@ -39,7 +39,7 @@ hr {
 
 .parallax-container {
   margin-top: 0 !important;
-  min-height: 43em;
+  /*min-height: 43em;*/
   height: 100%;
   color: white;
   color: rgba(255,255,255,.9);
