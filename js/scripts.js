@@ -1,3 +1,4 @@
+// Init
 (function($){
   $(function(){
 
@@ -6,3 +7,6 @@
 
   }); // end of document ready
 })(jQuery); // end of jQuery name space
+
+// External links
+$('a[rel="external"]').attr('target', '_blank');
