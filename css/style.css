@@ -17,7 +17,7 @@ hr {
 
 main {
   background: white;
-  z-index: -3;
+  z-index: -999;
 }
 
 p {
@@ -57,7 +57,8 @@ p {
 }
 
 .page-footer {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .parallax-container {
@@ -66,6 +67,14 @@ p {
   height: 100vh;
   margin: 0;
   padding: 0 !important;
+}
+
+.parallax {
+  z-index: 0 !important;
+}
+
+.parallax-container > .container {
+  z-index: 1;
 }
 
 .portfolio-thumbnail {
