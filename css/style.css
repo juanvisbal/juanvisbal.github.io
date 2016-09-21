@@ -8,10 +8,6 @@ h4 {
   text-transform: capitalize;
 }
 
-p {
-  line-height: 2rem;
-}
-
 hr {
   width: 100%;
   border: 0;
@@ -19,6 +15,7 @@ hr {
   margin: 2em auto;
 }
 
+<<<<<<< HEAD
 .profile-pic {
   height: 3.25em;
   box-sizing: content-box;
@@ -30,25 +27,93 @@ hr {
 
 .button-collapse {
   color: #26a69a;
+=======
+main {
+  background: white;
+  z-index: -3;
+>>>>>>> test
+}
+
+p {
+  line-height: 2rem;
+}
+
+<<<<<<< HEAD
+.section {
+  margin-top: 2em;
+  margin-bottom: 2em;
+=======
+.arrow-container {
+  bottom: -1em;
+  position: absolute;
+}
+
+.arrow-container .fa {
+  color: white;
+}
+
+.button-collapse {
+  color: #26a69a;
 }
 
 .header {
   text-transform: capitalize;
 }
 
-.section {
-  margin-top: 2em;
-  margin-bottom: 2em;
+.devicons,
+.fa {
+  font-size: 2em;
+  /*color: white;*/
+  padding: 1em .2em;
+  color: #444444;
+}
+
+.devicons {
+  font-size: 3em;
+  /*color: white;*/
+  padding: 0.2em 0.1em 1em;
+  color: #444444;
+}
+
+.page-footer {
+  margin: 0;
+>>>>>>> test
 }
 
 .parallax-container {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
   color: white;
   color: rgba(255,255,255,.9);
+  height: 100vh;
+  margin: 0;
+  padding: 0 !important;
 }
 
+<<<<<<< HEAD
+=======
+.portfolio-thumbnail {
+  box-shadow: 0 0 .4em #ccc;
+  height: 8.4375em;
+  margin: .5em .1em;
+  position: relative;
+  width: 15em;
+}
+
+.profile-pic {
+  height: 3.25em;
+  box-sizing: content-box;
+  border: .13em solid #cdd;
+  border-radius: 50%;
+  margin: .5em;
+  width: 3.25em;
+}
+
+.section {
+  background: white;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+>>>>>>> test
 .subheader {
   margin: 2em 0 0;
 }
@@ -120,7 +185,6 @@ hr {
 .uppercase {
   text-transform: uppercase;
 }
-
 
 @media only screen and (max-width : 991px) {
   .parallax-container .section {
