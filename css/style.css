@@ -103,7 +103,7 @@ p {
   margin: 2em 0 0;
 }
 
-.subheader .btn {
+.btn {
   background-color: white;
   background-color: rgba(255,255,255,0.1);
   border: 0;
@@ -116,6 +116,7 @@ p {
   color: #bdbcbc;
   color: rgba(189, 188, 188, 0.1);
   font-size: 1em;
+  text-align: center;
   transition: box-shadow .5s;
 }
 
