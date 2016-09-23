@@ -116,8 +116,6 @@ p {
   color: #bdbcbc;
   color: rgba(189, 188, 188, 0.1);
   font-size: 1em;
-	line-height: 1.5;
-  padding: .3em 1.2em !important;
   transition: box-shadow .5s;
 }
 
