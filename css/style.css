@@ -8,6 +8,10 @@ h4 {
   text-transform: capitalize;
 }
 
+h5 {
+  font-weight: 200;
+}
+
 hr {
   width: 100%;
   border: 0;
@@ -97,10 +101,10 @@ p {
 
 .portfolio-thumbnail {
   box-shadow: 0 0 .4em #ccc;
-  height: 8.4375em;
+  height: auto;
   margin: .5em .1em;
   position: relative;
-  width: 15em;
+  width: 100%;
 }
 
 .profile-pic {
