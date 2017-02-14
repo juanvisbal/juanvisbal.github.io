@@ -1,0 +1,75 @@
+==================================================================
+https://keybase.io/juanscv
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://juanscv.github.io
+  * I am juanscv (https://keybase.io/juanscv) on keybase.
+  * I have a public key with fingerprint 5FE7 CD0C F207 1F61 50C9  1EAA 54D7 3F1D EB65 CD18
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "0120ecf07f8a723ee865643f4e7c96c82ad84e45633103c26562467e53b20bcac0290a",
+            "fingerprint": "5fe7cd0cf2071f6150c91eaa54d73f1deb65cd18",
+            "host": "keybase.io",
+            "key_id": "54d73f1deb65cd18",
+            "kid": "010108726c940d1c797b772b16e27deccf3a13fd59264148c398daad73700f5765910a",
+            "uid": "42188e96306df00207e27b56aaa59619",
+            "username": "juanscv"
+        },
+        "service": {
+            "hostname": "juanscv.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1487085432,
+    "expire_in": 157680000,
+    "prev": "770d2edcd02e9be9155bcd705e31c934777dccbd5ddfc398df4db593cb562177",
+    "seqno": 10,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.62
+Comment: https://keybase.io/crypto
+
+yMNvAnicbZJ9UBRlHMfvAAnvBjhgKEMEZs1QJNz3vQVNplIDJxwKoxfo2H2eZ49F
+usN7gbsMh4hQmNGsaeRFEAQbh6EiBxAazOZIjdFRxwYGKAYtajhjkrckM4ieo/yj
+mXb/2Nnn+X4/+/3+9rkY7K/RabOGt6+bQtfWaK96GpyaV1pjXQcI2QrdRPIBYh9a
+eaBCiOwO0z4VEskESdEkAgopKEZJoBmEjDzHs4zCIgGIPDDSEjSyiOV4hqFIBtB4
+l2Z5AXGMTJMykABJi6REJBKKajEjW5FNtTgwllOwH5JAoUmBUniKI4FIIUniWCgw
+CgWRzHMAUkZszLfafQ4cTpbsKEm14jX8YlqJ9z/6h7nxbRRoHogsCSkgiIIsCLRM
+8YgWIAJAYSSKUSAn0jxLsUbAiEYoSZgmkKTCCTwnUiu5nSs4lqaMRiTyDMlDhSRx
+aoyROV7CkUWeEn1CO7JZpDcRVhc4JYsdFBOliQReLFYB8s3VV+S/giSz6sh3yv90
+KrJZHVZgLcTb+Q5HkT3ZZ3e4i3z6EiSb/iWZZNUC8SyxoxjZ7KrVQiRTWAkcqg+N
+qwikkWMZOpFAriLVhkyqT4EbGUl8+b6DijFSEEhII4h/Ao1EGYkUx8kACiSHGAqI
+DCsIAgRAhhyEyspwFBbKnMgA3JqmBIHwddtvsWI2hjokM2baVbNFcjhtiCjt9+QE
+aLQ6TeAqP98h0+hWGx4ePU1Q6J+BcvWOb3uqlC9ymMNXN+26l7Ywl7exv2+9J3R7
+5InK1s3mk4OzEe1lv4gV8Yee2dW5ONJ47rNsNXhnw8hXJy+dpn+o0d2YGvX0B/R5
+eq0PSvWZ3jq7pWZj+9ua76yXmyOO28oseffyuunwtecWm9K3hteaLmnf7R+Yh/6Z
+jV/PuKqS9tR1vl+KfmwK73rZncdNZDeijI+99AwA5DcLRFxCXFLKid4jt3MPHl3T
+83Th8BaX4crW5oO2gugO3Y3xuxNaz09/RaUNP+ufY0oIG2v+JCv1qWuXP52OXNeX
+0TY4ciuqqnFh5mhIU/P6l+6GOu0bGuDksdTZ/vHXVz2IGK1v+XKT2x02tVy2+P3Y
+3CJpyTYPpfnHBO4uPzY731rxyP22Qbhtf0zXE5kDw62a55Q3sufPTH/gkeZMQ9fP
+f5hyeiYlbunVna7aVKq+4MKpmFvtaUHpLW1LT6Z7d/c4RrfVCm/Vxz+e++hj0fqg
+8OX4Nlr0a51u0dfd/jw4ubRiYkPJ0pbJXkP+pE7fU54169cbO2Hz/n7esHy2Uk3J
+utOxo8V+JKv+j44Xc8cuZPw65C28uTojvTx67vpiVUjNC41n1lpO/ayv2xMQb1g6
+HlyYopLugPcShp+PGnjnZmS1Vu5WLzbd+W1zl/PsYfVKZ7aLH68Mux+bpi2Z1O99
+bd4b+VHL3mrXVLch5G+zcMJU
+=D168
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/juanscv
+
+==================================================================
