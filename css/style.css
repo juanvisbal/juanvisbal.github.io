@@ -1,8 +1,37 @@
-html, body {
-  height: 100%;
+html, a, b, body, div, h1, h2, h3, h4, h5, h6, input, label, p, span, textarea {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
 }
 
-h4 {
+html, body, main {
+  height: 100%;
+  overflow: hidden;
+}
+
+main .col:nth-of-type(2) {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
   padding: .6em;
   text-align: center;
   text-transform: capitalize;
@@ -25,20 +54,23 @@ main {
 }
 
 p {
-  line-height: 2rem;
+  margin-bottom: 20px;
 }
 
+.
+
 .arrow-container {
-  bottom: -1em;
+  bottom: 0;
   position: absolute;
+  text-align: center;
+  width: 100%;
 }
 
 .arrow-container .fa {
   color: white;
 }
 
-.btn.resume {
-  background-color: #dcdcdc;
+.btn {
   border: 0;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
@@ -46,9 +78,17 @@ p {
   -o-border-radius: 30px;
   border-radius: 30px;
   box-shadow: none;
+  display: inline-block;
   font-size: 1em;
+  padding: 8px 20px;
   text-align: center;
-  transition: box-shadow .5s;
+  transition: all .5s;
+}
+
+.btn.resume {
+  background-color: #048456;
+  color: white;
+  font-size: 1em;
 }
 
 .btn.resume:hover {
@@ -79,8 +119,14 @@ p {
 }
 
 .page-footer {
-  margin: 0 !important;
-  padding: 0 !important;
+  background-color: #efefef;
+  color: #a9a9a9;
+  font-weight: 100 !important;
+  padding: 2em 2em 0.5em;
+}
+
+.page-footer h3 {
+  text-transform: capitalize;
 }
 
 .parallax-container {
@@ -89,13 +135,25 @@ p {
   height: 100vh;
   margin: 0;
   padding: 0 !important;
+  position: relative;
 }
 
 .parallax {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
   z-index: 0 !important;
 }
 
-.parallax-container > .container {
+.parallax > img {
+  height: 100%;
+}
+
+.header-container {
+  position: absolute;
+  text-align: center;
+  top: calc(50% - 247px / 2);
+  width: 100%;
   z-index: 1;
 }
 
@@ -117,8 +175,12 @@ p {
 }
 
 .section {
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding: 2em 0;
+}
+
+.section.container {
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .subheader {
@@ -127,26 +189,14 @@ p {
 
 .subheader > .btn {
   background-color: white;
-  background-color: rgba(255,255,255,0.1);
-  border: 0;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-  -ms-border-radius: 30px;
-  -o-border-radius: 30px;
-	border-radius: 30px;
-  box-shadow: none;
-  color: #bdbcbc;
-  color: rgba(189, 188, 188, 0.1);
-  font-size: 1em;
-  text-align: center;
-  transition: box-shadow .5s;
+  background-color: rgba(255,255,255,0.2);
+  color: white;
 }
 
 .subheader > .btn:hover {
   background-color: #cdcdcd;
   background-color: rgba(255, 255, 255, 0.4);
 }
-
 
 .uppercase {
   text-transform: uppercase;
@@ -163,4 +213,28 @@ p {
   .parallax-container .section {
     top: 0;
   }
+}
+
+.row {
+  text-align: center;
+  zoom: 1;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col {
+  float: left;
+  padding: 20px;
+}
+
+.col p {
+  text-align: center;
+}
+
+.l6 {
+  width: 50%;
 }
