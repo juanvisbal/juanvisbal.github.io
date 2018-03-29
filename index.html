@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JS_V</title>
+  <title>Juan Visbal - Providing Web Solutions for Small & Medium Businesses</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#e8f5e9" />
   <link rel="icon" href="images/js-xxl.png" size="192x192">
+  <meta name="title" content="Juan Visbal"/>
+  <meta name="description" content="I'm an engineer and web developer especializing in web solutions for small & medium businesses using the most modern web technologies"/>
 
   <script src="js/lang-detect.js"></script>
 
@@ -23,18 +25,17 @@
       <div class="parallax"><img src="images/bg-2-resized.jpg"></div>
 
       <div class="header-container">
-        <img class="profile-pic" src="images/profile.jpg" alt="profile picture" />
-        <h1>Juan Sebastián Visbal</h1>
-        <h3>Front-end Web Engineer
-          <br><small> Web Solutions for Small & Medium Businesses</small>
-        </h3>
-        <div class="subheader">
-          <a href="mailto:juanscv92@gmail.com" id="contactMe" class="btn waves-effect uppercase" href="#!">Contact me</a>
-        </div>
+        <h1>Juan Visbal</h1>
+        <hr class="hr--xs" />
+        <h2 class="mobile-hidden">Front-end Engineer</h2>
+        <h4>Web Solutions for Small & Medium Businesses</h4>
+
+        <br />
+        <a href="mailto:juanscv92@gmail.com" id="contactMe" class="btn btn--header waves-effect uppercase" href="#!">Contact me</a>
       </div>
 
 
-      <div class="arrow-container">
+      <div class="arrow-container desktop-hide">
         <i class="fas fa-angle-double-down"></i>
       </div>
     </div>
@@ -52,9 +53,11 @@
         <p>
           I'm a hard worker, highly organized, good at delegating and teammwork but also independent. Always eager to learn and obtain experiences.
         </p>
-        <a class="resume btn uppercase waves-effect" href="JSV-Resume.pdf">Download Resumé</a>
-
-
+        <br />
+        <a class="btn btn--resume uppercase waves-effect" href="JSV-Resume.pdf">
+          <i class="fas fa-cloud-download-alt" aria-hidden="true"></i>
+          <span class="icon-fallback">Download</span> My Resume
+         </a>
       </section>
 
       <hr />
@@ -65,39 +68,39 @@
 
         <div class="row">
           <div class="skill col l6">
-            <span class="devicons devicons-responsive"></span>
+            <i class="icon devicons devicons-responsive" aria-hidden="true"></i>
             <span>Responsive</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-git"></span>
+            <i class="icon devicons devicons-git" aria-hidden="true"></i>
             <span>Git</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-html5"></span>
+            <i class="icon devicons devicons-html5" aria-hidden="true"></i>
             <span>HTML5</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-css3"></span>
+            <i class="icon devicons devicons-css3" aria-hidden="true"></i>
             <span>CSS3</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-javascript"></span>
+            <i class="icon devicons devicons-javascript" aria-hidden="true"></i>
             <span>Javascript</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-jquery"></span>
+            <i class="icon devicons devicons-jquery" aria-hidden="true"></i>
             <span>jQuery</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-sass"></span>
+            <i class="icon devicons devicons-sass" aria-hidden="true"></i>
             <span>SASS</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-coffeescript"></span>
+            <i class="icon devicons devicons-coffeescript" aria-hidden="true"></i>
             <span>Coffeescript</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-wordpress"></span>
+            <i class="icon devicons devicons-wordpress" aria-hidden="true"></i>
             <span>Wordpress</span>
           </div>
           <div class="skill col l6 skill--with-img">
@@ -105,11 +108,11 @@
             <span>Shopify</span>
           </div>
           <div class="skill col l6">
-            <span class="devicons devicons-ruby_on_rails"></span>
+            <i class="icon devicons devicons-ruby_on_rails" aria-hidden="true"></i>
             <span>Ruby On Rails</span>
           </div>
           <div class="skill col l6" style="position: relative; top: 6px;">
-            <span class="fab fa-react"></span>
+            <i class="icon fab fa-react" aria-hidden="true"></i>
             <span>ReactJS</span>
           </div>
         </div>
@@ -121,21 +124,30 @@
       <section class="section container">
         <h2>Portfolio</h2>
         <div class="center row row--padded">
-          <div class="col l6">
-            <img class="portfolio-thumbnail" src="images/thumbnail_3.png" alt="Alvarez & Asociados Law Firm" />
+          <div class="col l6 portfolio__item">
+            <img class="portfolio__thumbnail" src="images/thumbnail_3.png" alt="Preview of Alvarez & Asociados" />
             <p><a class="green-text" href="http://alvarezasociados.co">Alvarez & Asociados Law Firm</a></p>
           </div>
-          <div class="col l6">
-            <img class="portfolio-thumbnail" src="images/thumbnail_2.png" alt="Malinche Mexica Restaurant" />
+          <div class="col l6 portfolio__item">
+            <img class="portfolio__thumbnail" src="images/thumbnail_2.png" alt="Preview of Malinche" />
             <p><a class="green-text" href="http://malinche.com.co">Malinche Mexican Restaurant</a></p>
+          </div>
+          <div class="col l6 portfolio__item">
+            <img class="portfolio__thumbnail" src="images/thumbnail_4.png" alt="Preview of MAVI" />
+            <p><a class="green-text" href="http://www.mavicol.org">MAVI Corporation</a></p>
           </div>
         </div>
       </section>
-      <section class="page-footer">
+      <section class="contact-section">
         <!-- Contact me -->
-          <a href="mailto:juanscv92@gmail.com" class="btn uppercase contact-btn">Email me >></a>
+          <a href="mailto:juanscv92@gmail.com" class="btn btn--contact uppercase">
+            <i class="fas fa-envelope"></i> Email me
+          </a>
+          <a href="mailto:juanscv92@gmail.com" class="btn btn--contact uppercase">
+            <i class="fab fa-twitter"></i> Follow me
+          </a>
       </section>
-      <footer class="footer-copyright grey-text">
+      <footer class="footer grey-text">
         All rights reserved © 2018.
       </footer>
   </div>
