@@ -5,26 +5,49 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#e8f5e9" />
-  <link rel="icon" href="images/js-xxl.png" size="192x192">
   <meta name="title" content="Juan Visbal"/>
   <meta name="description" content="I'm an engineer and web developer especializing in web solutions for small & medium businesses using the most modern web technologies"/>
+
+  <!-- For old IEs -->
+  <link rel="shortcut icon" href="images/favicon/favicon.ico" />
+
+  <!-- For new browsers multisize ico  -->
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32" href="images/favicon/favicon.ico">
+
+  <!-- Chrome for Android -->
+  <link rel="icon" sizes="192x192" href="images/favicon/favicon-192.png">
+
+  <!-- For iPhone 6+ downscaled for other devices -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/favicon-180-precomposed.png">
+
+  <!-- For IE10 Metro -->
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <meta name="msapplication-TileImage" content="images/favicon/favicon-144.png">
 
   <script src="js/lang-detect.js"></script>
 
   <!-- CSS  -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/brands.css" integrity="sha384-IiIL1/ODJBRTrDTFk/pW8j0DUI5/z9m1KYsTm/RjZTNV8RHLGZXkUDwgRRbbQ+Jh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/brands.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css">
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <main class="row">
     <div class="col l6 parallax-container" id="index-banner">
-      <div class="parallax"><img src="images/bg-2-resized.jpg"></div>
+      <div class="parallax">
+        <img src="images/bg/bg-duotone-1200x.jpg"
+             srcset="images/bg/bg-duotone-1920x.jpg 1920w,
+                     images/bg/bg-duotone-1000x.jpg 1000w,
+                     images/bg/bg-duotone-800x.jpg 800w
+                     images/bg/bg-duotone-400x.jpg 400w"/>
+      </div>
 
       <div class="header-container">
+        <img src="images/logo.png" alt="JV Logo" width="50" height="50" />
+        <br />
         <h1>Juan Visbal</h1>
         <hr class="hr--xs" />
         <h2 class="mobile-hidden">Front-end Engineer</h2>
@@ -67,51 +90,51 @@
         <h2>Skills</h2>
 
         <div class="row">
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-responsive" aria-hidden="true"></i>
             <span>Responsive</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-git" aria-hidden="true"></i>
             <span>Git</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-html5" aria-hidden="true"></i>
             <span>HTML5</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-css3" aria-hidden="true"></i>
             <span>CSS3</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-javascript" aria-hidden="true"></i>
             <span>Javascript</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-jquery" aria-hidden="true"></i>
             <span>jQuery</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-sass" aria-hidden="true"></i>
             <span>SASS</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-coffeescript" aria-hidden="true"></i>
             <span>Coffeescript</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-wordpress" aria-hidden="true"></i>
             <span>Wordpress</span>
           </div>
-          <div class="skill col l6 skill--with-img">
+          <div class="skill col l6 m6 s12 skill--with-img">
               <img src="images/icon-shopify.png" class="icon icon-shopify" aria-hidden="true"/>
             <span>Shopify</span>
           </div>
-          <div class="skill col l6">
+          <div class="skill col l6 m6 s12">
             <i class="icon devicons devicons-ruby_on_rails" aria-hidden="true"></i>
             <span>Ruby On Rails</span>
           </div>
-          <div class="skill col l6" style="position: relative; top: 6px;">
+          <div class="skill col l6 m6 s12" style="position: relative; top: 6px;">
             <i class="icon fab fa-react" aria-hidden="true"></i>
             <span>ReactJS</span>
           </div>
