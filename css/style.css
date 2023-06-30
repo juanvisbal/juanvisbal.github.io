@@ -183,8 +183,8 @@ p {
 }
 
 .hr--xs {
-	margin-top: 5px;
-	margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
   max-width: 200px;
 }
 
@@ -239,7 +239,7 @@ p {
   margin-right: 5px;
 }
 
-.skill--with-img {
+.skill--with-icon {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -248,15 +248,14 @@ p {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
+	text-align: center;
 }
 
-.skill--with-img .icon {
-  width: 35px;
+.skill--with-icon .icon {
+	font-size: 2.375rem;
   margin-right: 11px;
   padding: 5px 8px;
-  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncA type="table" tableValues="0 0.75" /></feComponentTransfer></filter></svg>#filter');
-  -webkit-filter: opacity(.75);
-  filter: opacity(.75);
+  width: 35px;
 }
 
 @media (max-width: 470px) {
