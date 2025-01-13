@@ -26,14 +26,15 @@ google_analytics_id:
 title: "Juan Visbal"
 
 # Avatar image path
-avatar: "./images/profile-pic--memoji.png"
+avatar: "./images/profile.png"
 
 # Name section text
-name: "@juanvisbalco"
+name: "Juan Visbal"
 
 # Tagline section text
 tagline: >-
-    👋 I'm Juan - a Team Leader at SLTWTR Creative Agency with 10+ years of experience in the software engineering industry. I'm passionate about creating innovative solutions and pushing boundaries in the tech world.
+    👋 I'm Juan - web developer and Shopify Expert from Colombia 🇨🇴
+    With 10+ years of experience in the software engineering industry, currently a Team Leader at SLTWTR Creative Agency. I'm passionate about creating innovative solutions and pushing boundaries in the tech world.
 
 # List of links
 # icon: Use Font Awesome icons (https://fontawesome.com/search?o=r&m=free)
@@ -44,8 +45,8 @@ tagline: >-
 # target: `_blank` opens in a new tab, `_self` opens in the same frame
 links:
   - link:
-      icon: "fa-brands fa-briefcase"
-      text: "SLTWTR Creative Agency <span class='link-button-text'>({{vars.GithubRepoStarsCountPlugin['Juan/ZReviewTender']}} Stars)</span>"
+      icon: "fa-solid fa-briefcase"
+      text: "SLTWTR Creative Agency"
       url: "https://sltwtr.com"
       alt: "SLTWTR is a nimble team of designer-developers that come from the worlds of branding and lifestyle. We offer design and technology services along with digital tools, built specifically for lifestyle-inspired apparel ecommerce."
       title: "SLTWTR is a nimble team of designer-developers that come from the worlds of branding and lifestyle. We offer design and technology services along with digital tools, built specifically for lifestyle-inspired apparel ecommerce."
@@ -65,16 +66,16 @@ socials:
       alt: "Juan's GitHub"
       target: "_blank"
   - social:
-      icon: "fa-solid fa-bluesky"
-      url: "https://bsky.app/profile/@juanvisbal.com"
-      title: "Juan's Bluesky"
-      alt: "Juan's Bluesky"
-      target: "_blank"
-  - social:
       icon: "fa-brands fa-linkedin"
       url: "https://www.linkedin.com/in/juanvisbalco/"
       title: "Juan's LinkedIn"
       alt: "Juan's LinkedIn"
+      target: "_blank"
+  - social:
+      icon: "fa-brands fa-bluesky"
+      url: "https://bsky.app/profile/@juanvisbal.com"
+      title: "Juan's Bluesky"
+      alt: "Juan's Bluesky"
       target: "_blank"
   - social:
       icon: "fa-brands fa-twitter"
@@ -89,22 +90,22 @@ socials:
       alt: "Juan's Instagram"
       target: "_blank"
   - social:
+      icon: "fa-brands fa-letterboxd"
+      url: "http://letterboxd.com/juanvisbal"
+      title: "Juan's Letterboxd"
+      alt: "Juan's Letterboxd"
+      target: "_blank"
+  - social:
       icon: "fa-solid fa-envelope"
       url: "mailto:me@juanvisbal.com"
       title: "Email: me@juanvisbal.com"
       alt: "me@juanvisbal.com"
       target: "_blank"
-  - social:
-      icon: "fa-solid fa-letterboxd"
-      url: "http://letterboxd.com/juanvisbal"
-      title: "Juan's Letterboxd"
-      alt: "Juan's Letterboxd"
-      target: "_blank"
       
 
 # Footer text
 footer: >
-    Hi there! Follow me on GitHub, or stay connected on social media.
+    Feel free to follow me on GitHub, stay connected on social media, or reach out via email. I'm always open to new opportunities and collaborations.
 
 # Footer copyright message
 # Linkyee is a 100% free, open-source project—feel free to modify the copyright message as you like. :)
