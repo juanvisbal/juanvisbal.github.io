@@ -52,7 +52,7 @@ links:
       title: "SLTWTR is a nimble team of designer-developers that come from the worlds of branding and lifestyle. We offer design and technology services along with digital tools, built specifically for lifestyle-inspired apparel ecommerce."
       target: "_blank"
   - link:
-      icon: "fa-solid fa-briefcase"
+      icon: "fa-solid fa-link"
       text: "Bento"
       url: "https://bento.me/juan"
       alt: "Find me around the web with Bento"
