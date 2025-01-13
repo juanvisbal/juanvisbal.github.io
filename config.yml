@@ -32,8 +32,8 @@ avatar: "./images/profile.png"
 name: "Juan Visbal"
 
 # Tagline section text
-tagline: -
-    👋 I'm Juan from Colombia 🇨🇴🏳️‍🌈
+tagline: >-
+    👋 I'm Juan from Colombia 🇨🇴
     10+ years of experience as a software engineer and Shopify Expert, currently a Team Leader at SLTWTR Creative Agency. I'm passionate about sustainable innovation in tech. 
 
 # List of links
@@ -57,6 +57,13 @@ links:
       url: "https://bento.me/juan"
       alt: "Find me around the web with Bento"
       title: "Find me around the web"
+      target: "_blank"
+  - link:
+      icon: "fa-solid fa-file-lines"
+      text: "Resume"
+      url: "https://juanvisbal.com/resume"
+      alt: "Juan's Resume"
+      title: "Juan's Resume"
       target: "_blank"
 
 # List of social media links
@@ -112,7 +119,7 @@ socials:
 
 # Footer text
 footer: >
-    Feel free to connect with me on GitHub, social media, or via email. I'm always open to new opportunities and collaborations.
+    He/They · 🏳️‍🌈 · Bogotá, Colombia
 
 # Footer copyright message
 # Linkyee is a 100% free, open-source project—feel free to modify the copyright message as you like. :)
