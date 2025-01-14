@@ -134,7 +134,7 @@
 
         /* Links */
         a {
-            color: black;
+            color: currentColor;
             text-decoration: underline;
         }
 
@@ -159,8 +159,12 @@
 					}
 
 					.skills-table, .about-table {
-						color: #d9e0e9;
+						background-color: #212d2d;
 					}
+
+					.skills-table td:first-child, .about-table td:first-child {
+            border-right-color: #0d1712;
+        	}
 				}
     </style>
 </head>
