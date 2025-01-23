@@ -63,7 +63,7 @@
       <div class="button-group">
         {% for item in socials %}
           {% assign social = item.social %}
-          <a href="{{ social.url }}" title="{{ social.title }}" target="{{ social.target }}" class="icon-button" alt="{{ social.alt }}">
+          <a href="{{ social.url }}" title="{{ social.title }}" target="{{ social.target }}" class="icon-button" alt="{{ social.alt }}" rel="me">
             <i class="{{ social.icon }}"></i>
           </a>
         {% endfor %}

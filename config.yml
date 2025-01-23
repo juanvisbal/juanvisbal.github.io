@@ -92,18 +92,6 @@ socials:
       alt: "Juan's Bluesky"
       target: "_blank"
   - social:
-      icon: "fa-brands fa-twitter"
-      url: "https://twitter.com/juanvisbalco"
-      title: "Juan's Twitter"
-      alt: "Juan's Twitter"
-      target: "_blank"
-  - social:
-      icon: "fa-brands fa-instagram"
-      url: "https://www.instagram.com/juanvisbalco/"
-      title: "Instagram"
-      alt: "Juan's Instagram"
-      target: "_blank"
-  - social:
       icon: "fa-brands fa-letterboxd"
       url: "http://letterboxd.com/juanvisbal"
       title: "Juan's Letterboxd"
