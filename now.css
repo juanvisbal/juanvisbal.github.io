@@ -61,14 +61,9 @@
   margin-top: 0.4rem;
 }
 
-.now-actions {
-  margin-top: 2rem;
-}
 
-.now-actions .link-button {
-  font-size: 16px;
-  padding: 12px 14px;
-}
+
+
 
 @media (prefers-color-scheme: dark) {
   #now hr {

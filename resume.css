@@ -1,131 +1,46 @@
-/* resume page-specific styles */
-.resume-page {
-  display: block;
-  min-height: auto;
-  text-align: left;
-  background-color: #ffffff;
-  color: #000000;
-  line-height: 1.55;
-  padding: 20px 0 20px 0;
-}
-
-.resume-page .resume {
-  width: 90%;
+/* Resume page-specific styles (minimal, aligned with site structure) */
+.resume-container {
   max-width: 760px;
-  margin: 0 auto;
-}
-
-.resume-page .resume,
-.resume-page .resume * {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-}
-
-/* Keep shared UI components visually consistent with the rest of the site */
-.resume-page .links .link-button,
-.resume-page .footer,
-.resume-page .footer * {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-}
-
-/* Match /now bottom stack spacing */
-.resume-page .now-actions {
-  margin-top: 2rem;
-}
-
-.resume-page .now-actions .link-button {
-  font-size: 16px;
-  padding: 12px 14px;
-}
-
-.resume-page .footer {
   text-align: left;
-  margin-top: 40px;
-  font-size: 14px;
-  color: #777;
 }
 
-.resume-page .copyright {
-  margin-top: 15px;
-  font-size: 12px;
+.resume-container .profile {
+  margin-bottom: 1.5rem;
 }
 
-.resume-page .resume header {
-  margin-bottom: 2rem;
-}
-
-.resume-page .title {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  font-size: 28px;
-  font-weight: 700;
-  margin: 10px 0;
-}
-
-.resume-page .subtitle {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  font-size: 16px;
-  margin-bottom: 0.8rem;
-  color: #555;
-}
-
-.resume-page .summary {
-  color: #555;
-  max-width: 72ch;
-  font-size: 16px;
+#resume-content {
+  text-align: left;
   line-height: 1.6;
 }
 
-.resume-page .resume-actions {
-  margin-top: 1rem;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
+#resume-content > * + * {
+  margin-top: 0.9rem;
 }
 
-.resume-page .resume-actions a {
-  display: inline-block;
-  padding: 0.45rem 0.7rem;
-  border: 1px solid #d9d9d9;
-  border-radius: 8px;
-  text-decoration: none;
-  background: #f0f0f0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  font-size: 0.9rem;
-}
-
-.resume-page .resume-actions a:hover {
-  text-decoration: underline;
-}
-
-.resume-page .resume section + section {
+#resume-content h2 {
+  font-size: 1.1rem;
   margin-top: 2rem;
-}
-
-.resume-page .resume h2 {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  font-size: 1.08rem;
-  margin-bottom: 0.8rem;
-  color: #539373;
-}
-
-.resume-page .role {
-  margin-bottom: 1rem;
-}
-
-.resume-page .role-title {
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-.resume-page .resume ul {
-  padding-left: 1.25rem;
   margin-bottom: 0.75rem;
 }
 
-.resume-page .resume li + li {
+#resume-content .role {
+  margin-bottom: 1rem;
+}
+
+#resume-content .role-title {
+  font-weight: 600;
+}
+
+#resume-content ul {
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+#resume-content li + li {
   margin-top: 0.35rem;
 }
 
-.resume-page .resume table {
+#resume-content table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid #d9d9d9;
@@ -135,91 +50,69 @@
   margin-top: 0.35rem;
 }
 
-.resume-page .resume th,
-.resume-page .resume td {
+#resume-content th,
+#resume-content td {
   text-align: left;
   vertical-align: top;
   padding: 0.75rem 0.8rem;
   border-bottom: 1px solid #d9d9d9;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-.resume-page .resume tr:last-child td {
+#resume-content tr:last-child td {
   border-bottom: 0;
 }
 
-.resume-page .resume th {
+#resume-content th {
   width: 34%;
   font-weight: 600;
   border-right: 1px solid #d9d9d9;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
   background: rgba(0, 0, 0, 0.03);
 }
 
-.resume-page .resume li a,
-.resume-page .footnote a {
+#resume-content p,
+#resume-content li,
+#resume-content td {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+#resume-content a {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.resume-page .resume .resume-actions a,
-.resume-page .resume .links .link-button {
-  text-decoration: none;
-}
-
-.resume-page .footnote {
-  margin-top: 2.5rem;
+#resume-content .footnote {
+  margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid #d9d9d9;
-  color: #555;
+  color: #777;
   font-size: 0.92rem;
 }
 
-.resume-page .footnote p + p {
-  margin-top: 0.45rem;
+.resume-actions {
+  margin-top: 1.25rem;
 }
 
+
+
 @media (prefers-color-scheme: dark) {
-  .resume-page {
-    background-color: #0d1712;
-    color: #ffffff;
-  }
-
-  .resume-page .subtitle,
-  .resume-page .summary,
-  .resume-page .footnote {
-    color: #c9d1d9;
-  }
-
-  .resume-page .resume h2 {
-    color: #d9e0e9;
-  }
-
-  .resume-page .resume table {
+  #resume-content table {
     background: #212d2d;
     border-color: #303c3d;
   }
 
-  .resume-page .resume th,
-  .resume-page .resume td {
+  #resume-content th,
+  #resume-content td {
     border-bottom-color: #303c3d;
   }
 
-  .resume-page .resume th {
+  #resume-content th {
     border-right-color: #303c3d;
     background: rgba(255, 255, 255, 0.04);
   }
 
-  .resume-page .resume-actions a {
-    background: #212d2d;
-    border-color: #303c3d;
-    color: #ffffff;
-  }
-
-  .resume-page .footer {
+  #resume-content .footnote {
     color: #8b949e;
-  }
-
-  .resume-page .footnote {
     border-top-color: #303c3d;
   }
 }

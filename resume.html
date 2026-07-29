@@ -3,36 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juan Visbal · Resume</title>
+  <title>Resume · Juan Visbal</title>
 
   <meta name="author" content="Juan Visbal" />
   <meta name="description" content="Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify." />
-  <meta property="og:title" content="Juan Visbal · Resume" />
+  <meta property="og:title" content="Resume · Juan Visbal" />
   <meta property="og:description" content="Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify." />
-  <meta property="og:site_name" content="Juan Visbal" />
-  <meta property="og:image" content="./images/profile.png" />
   <meta property="og:type" content="article" />
+  <meta property="og:image" content="./images/profile.png" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png" />
-  <link rel="shortcut icon" href="./images/favicons/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" href="./images/favicons/favicon.ico">
+
   <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./pages.css" />
   <link rel="stylesheet" href="./resume.css" />
 </head>
-<body class="resume-page">
-  <main class="resume">
-    <header>
-      <h1 class="title">Juan Visbal</h1>
-      <p class="subtitle">Electronics Engineer · Full-Stack Developer</p>
-      <p class="summary">
+<body>
+  <div class="container resume-container h-card">
+    <div class="profile">
+      <h1 class="name p-name">Juan Visbal</h1>
+      <p class="description p-note">Electronics Engineer · Full-Stack Developer</p>
+    </div>
+
+    <div class="links resume-actions">
+      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="link-button" title="Download PDF version">
+        <i class="fa-solid fa-download"></i> Download PDF
+      </a>
+    </div>
+
+    <div id="resume-content" class="e-content">
+      <p>
         I’m a Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify, former Head of Engineering for an e-commerce SaaS company, and now Team Leader for the Colombian branch of a leading Shopify Partner.
       </p>
-      <p class="resume-actions">
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
-      </p>
-    </header>
 
-    <section>
       <h2>Work Experience</h2>
 
       <article class="role">
@@ -53,9 +58,7 @@
           <li>Mentored engineering interns and participated in expos and conferences.</li>
         </ul>
       </article>
-    </section>
 
-    <section>
       <h2>Skills</h2>
       <table>
         <tr>
@@ -71,9 +74,7 @@
           <td>Office Suite, Notion, Figma, Zeplin, Adobe XD</td>
         </tr>
       </table>
-    </section>
 
-    <section>
       <h2>Education & Training</h2>
       <ul>
         <li>‘Enterprise coaching and PNL’ Seminar — Coomeva (2015)</li>
@@ -81,17 +82,13 @@
         <li>‘Systems & Signals’ Class Monitor — Universidad del Norte (2013)</li>
         <li>High School Degree — International Berckley School (2009)</li>
       </ul>
-    </section>
 
-    <section>
       <h2>Languages</h2>
       <ul>
         <li>Spanish (native)</li>
         <li>English (professional)</li>
       </ul>
-    </section>
 
-    <section>
       <h2>About</h2>
       <table>
         <tr>
@@ -103,9 +100,7 @@
           <td>November 4, 1992</td>
         </tr>
       </table>
-    </section>
 
-    <section>
       <h2>Portfolio</h2>
       <ul>
         <li>SLTWTR — <a href="https://sltwtr.com/blogs/work" target="_blank" rel="noopener noreferrer">sltwtr.com/blogs/work</a></li>
@@ -115,11 +110,12 @@
         <li>Malinche Barranquilla (2016)</li>
         <li>Álvarez & Asociados (2016)</li>
       </ul>
-    </section>
 
-    <footer class="footnote">
-      <p><strong>Note:</strong> You can download a printable PDF version of this resume at <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.</p>
-    </footer>
+      <p class="footnote">
+        <strong>Note:</strong> You can download a printable PDF version of this resume at
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.
+      </p>
+    </div>
 
     <div class="links now-actions">
       <a href="/" class="link-button" title="Back to homepage">
@@ -131,7 +127,7 @@
       He/They · 🏳️‍🌈 · Bogotá, Colombia
       <div class="copyright">© 2026 <a href="https://juanvisbal.com/" class="u-url" rel="me">Juan Visbal</a></div>
     </footer>
-  </main>
+  </div>
 
   <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
 </body>

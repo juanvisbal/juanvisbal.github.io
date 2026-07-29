@@ -1,0 +1,9 @@
+/* Shared utilities for secondary pages like /now and /resume */
+.now-actions {
+  margin-top: 2rem;
+}
+
+.now-actions .link-button {
+  font-size: 16px;
+  padding: 12px 14px;
+}
