@@ -3,6 +3,11 @@ body.content-page {
   display: block;
   min-height: auto;
   text-align: left;
+  padding: 20px 0;
+}
+
+body.content-page .container {
+  margin: 0 auto;
 }
 
 .now-actions {

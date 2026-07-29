@@ -1,6 +1,6 @@
 /* /now page-specific styles */
 .container.now-page {
-  max-width: 760px;
+  max-width: 60ch;
   text-align: left;
 }
 

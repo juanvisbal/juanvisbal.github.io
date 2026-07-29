@@ -91,6 +91,12 @@
 
 .resume-actions {
   margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-start;
+}
+
+.resume-actions .link-button {
+  width: auto;
 }
 
 @media (prefers-color-scheme: dark) {
