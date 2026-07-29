@@ -30,6 +30,10 @@ a {
   max-width: 450px;
 }
 
+.container.now-page {
+  max-width: 760px;
+}
+
 .profile-pic {
   width: 120px;
   height: 120px;
@@ -172,6 +176,60 @@ a {
   }
 
   .link-button-text {
+    color: #8b949e;
+  }
+}
+
+/* /now page */
+#now {
+  margin-top: 1.5rem;
+  text-align: left;
+  line-height: 1.6;
+}
+
+#now h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+
+#now h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.6rem;
+  font-size: 1.1rem;
+}
+
+#now .fa-ul {
+  margin-left: 2.1rem;
+}
+
+#now li {
+  margin-bottom: 0.55rem;
+}
+
+#now a {
+  text-decoration: underline;
+}
+
+#now hr {
+  border: 0;
+  border-top: 1px solid #d9d9d9;
+  margin: 1.5rem 0 1rem;
+}
+
+#now .last-updated {
+  color: #777;
+}
+
+.now-actions {
+  margin-top: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  #now hr {
+    border-top-color: #30363d;
+  }
+
+  #now .last-updated {
     color: #8b949e;
   }
 }
