@@ -32,6 +32,19 @@ a {
 
 .container.now-page {
   max-width: 760px;
+  text-align: left;
+}
+
+.container.now-page .profile {
+  margin-bottom: 1.75rem;
+}
+
+.container.now-page .button-container {
+  justify-content: flex-start;
+}
+
+.container.now-page .footer {
+  text-align: left;
 }
 
 .profile-pic {
@@ -187,23 +200,28 @@ a {
   line-height: 1.6;
 }
 
+#now > * + * {
+  margin-top: 0.9rem;
+}
+
 #now h2 {
   font-size: 1.6rem;
   margin-bottom: 0.75rem;
 }
 
 #now h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 0.6rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
   font-size: 1.1rem;
 }
 
 #now .fa-ul {
   margin-left: 2.1rem;
+  margin-bottom: 1rem;
 }
 
 #now li {
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.8rem;
 }
 
 #now a {
@@ -218,6 +236,7 @@ a {
 
 #now .last-updated {
   color: #777;
+  margin-top: 0.4rem;
 }
 
 .now-actions {
