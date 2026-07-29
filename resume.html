@@ -1,304 +1,305 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Juan Visbal's Resume</title>
-	
-		<meta charset="UTF-8">
-		<meta name="last-modified" content="2025-01-13T18:23:11+0000">
-		<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
-		<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-		<meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
-	
-		<meta property="og:title" content="Juan Visbal's Resume">
-		<meta name="author" content="Juan Visbal's Resume">
-		<meta property="og:locale" content="en">
-		<meta name="description" content="Full-Stack Web Developer with 10 years of experience with Ruby on Rails and Shopify, former Head of Engineering for an e-commerce SaaS company, and now oversee the Colombia team for a leading Shopify Partner.">
-		<meta property="og:description" content="Full-Stack Web Developer with 10 years of experience with Ruby on Rails and Shopify, former Head of Engineering for an e-commerce SaaS company, and now oversee the Colombia team for a leading Shopify Partner.">
-		<meta property="og:site_name" content="Juan Visbal' Resume">
-		<meta property="og:image" content="./images/profile.png">
-		<meta property="og:type" content="article">
-		<meta name="twitter:card" content="summary_large_image">
-		<meta property="twitter:image" content="./images/profile.png">
-		<meta property="twitter:title" content="Juan Visbal's Resume">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Visbal · Resume</title>
 
-		<link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
-		<link rel="manifest" href="./images/favicons/site.webmanifest">
-		<link rel="shortcut icon" href="./images/favicons/favicon.ico">
-		<meta name="apple-mobile-web-app-title" content="Juan Visbal">
-		<meta name="application-name" content="Juan Visbal">
-		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="msapplication-config" content="./images/favicons/browserconfig.xml">
-		<meta name="theme-color" content="#ffffff">
-	</head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-        /* Base styles */
-        body {
-            word-wrap: break-word;
-            color: black;
-            font-family: system-ui, sans-serif;
-        }
+  <meta name="author" content="Juan Visbal" />
+  <meta name="description" content="Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify." />
+  <meta property="og:title" content="Juan Visbal · Resume" />
+  <meta property="og:description" content="Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify." />
+  <meta property="og:site_name" content="Juan Visbal" />
+  <meta property="og:image" content="./images/profile.png" />
+  <meta property="og:type" content="article" />
 
-				header {
-					margin-top: 2rem;
-					margin-left: auto;
-					margin-right: auto;
-					max-width: 60ch;
-				}
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png" />
+  <link rel="shortcut icon" href="./images/favicons/favicon.ico" />
 
-				main {
-					margin-left: auto;
-					margin-right: auto;
-					margin-bottom: 4rem;
-					max-width: 60ch;
-				}
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #000000;
+      --muted: #555;
+      --soft: #f0f0f0;
+      --soft-border: #d9d9d9;
+      --accent: #539373;
+    }
 
-        /* Typography */
-        .title {
-            font-size: 24.0pt;
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-            margin-bottom: 6.0pt;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .heading {
-            font-size: 14.0pt;
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-            margin-bottom: 6.0pt;
-        }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      padding: 2rem 1.25rem 3rem;
+    }
 
-        .body-text {
-            font-size: 14.0pt;
-            font-family: system-ui, sans-serif;
-            margin-bottom: 6.0pt;
-        }
+    .resume {
+      width: min(100%, 780px);
+      margin: 0 auto;
+    }
 
-        /* Section Headers */
-        .section-header {
-            margin-top: 3rem;
-            margin-bottom: 6.0pt;
-            font-size: 14.0pt;
-            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-            color: #539373;
-        }
+    .back-home {
+      display: inline-block;
+      margin-bottom: 1.25rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+      text-decoration: none;
+      color: inherit;
+      border-bottom: 1px solid transparent;
+    }
 
-        /* Lists */
-        .list-item {
-            margin-left: 23.65pt;
-            text-indent: -.25in;
-            line-height: normal;
-            margin-bottom: 6.0pt;
-            font-size: 14.0pt;
-            font-family: system-ui, sans-serif;
-        }
+    .back-home:hover {
+      border-bottom-color: currentColor;
+    }
 
-        .sub-list-item {
-            margin-left: 42.55pt;
-            text-indent: -.25in;
-            line-height: normal;
-            margin-bottom: 6.0pt;
-            font-size: 14.0pt;
-            font-family: system-ui, sans-serif;
-        }
+    header {
+      margin-bottom: 2rem;
+    }
 
-        /* Tables */
-        .skills-table, .about-table {
-            margin-left: .15in;
-            background: #d0efda;
-            border-collapse: collapse;
-            border: none;
-            width: calc(100% - .15in);
-        }
+    .title {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+      font-size: clamp(1.75rem, 3vw, 2.1rem);
+      margin-bottom: 0.45rem;
+    }
 
-        .skills-table td, .about-table td {
-            padding: 7.0pt 9.65pt;
-        }
+    .subtitle {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--muted);
+    }
 
-        .skills-table td:first-child, .about-table td:first-child {
-            width: 122.2pt;
-            border-right: solid black 1.0pt;
-        }
+    .summary {
+      color: var(--muted);
+      max-width: 72ch;
+    }
 
-        .skills-table td:last-child, .about-table td:last-child {
-            width: 390.05pt;
-            background: transparent;
-        }
+    .resume-actions {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
 
-        .about-table td {
-            height: 30.25pt;
-        }
+    .resume-actions a {
+      display: inline-block;
+      padding: 0.45rem 0.7rem;
+      border: 1px solid var(--soft-border);
+      border-radius: 8px;
+      text-decoration: none;
+      background: var(--soft);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+      font-size: 0.9rem;
+    }
 
-        /* Links */
-        a {
-            color: currentColor;
-            text-decoration: underline;
-        }
+    .resume-actions a:hover {
+      text-decoration: underline;
+    }
 
-        /* Bullet Points */
-        .bullet {
-            font-family: "Arial Unicode MS", sans-serif;
-            font-size: 14.0pt;
-        }
+    section + section {
+      margin-top: 2rem;
+    }
 
-        .bullet-spacer {
-            font: 7.0pt "Times New Roman";
-        }
+    h2 {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+      font-size: 1.08rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent);
+    }
 
-				@media (prefers-color-scheme: dark) {
-					body {
-						background-color: #0d1712;
-						color: white;
-					}
+    .role {
+      margin-bottom: 1rem;
+    }
 
-					.section-header {
-						color: #d9e0e9;
-					}
+    .role-title {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
 
-					.skills-table, .about-table {
-						background-color: #212d2d;
-					}
+    ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
 
-					.skills-table td:first-child, .about-table td:first-child {
-            border-right-color: #0d1712;
-        	}
-				}
-    </style>
+    li + li {
+      margin-top: 0.35rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--soft-border);
+      background: var(--soft);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 0.35rem;
+    }
+
+    th,
+    td {
+      text-align: left;
+      vertical-align: top;
+      padding: 0.75rem 0.8rem;
+      border-bottom: 1px solid var(--soft-border);
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    th {
+      width: 34%;
+      font-weight: 600;
+      border-right: 1px solid var(--soft-border);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+      background: rgba(0,0,0,0.03);
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 2px;
+    }
+
+    .footnote {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--soft-border);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footnote p + p {
+      margin-top: 0.45rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0d1712;
+        --fg: #ffffff;
+        --muted: #c9d1d9;
+        --soft: #212d2d;
+        --soft-border: #303c3d;
+        --accent: #d9e0e9;
+      }
+
+      th {
+        background: rgba(255,255,255,0.04);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <main class="resume">
+    <a href="/" class="back-home">← Back to homepage</a>
+
     <header>
-        <p class="title">Juan Visbal</p>
+      <h1 class="title">Juan Visbal</h1>
+      <p class="subtitle">Electronics Engineer · Full-Stack Developer</p>
+      <p class="summary">
+        I’m a Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify, former Head of Engineering for an e-commerce SaaS company, and now Team Leader for the Colombian branch of a leading Shopify Partner.
+      </p>
+      <p class="resume-actions">
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
+        <a href="/">View homepage</a>
+      </p>
+    </header>
 
-        <p class="heading">Electronics Engineer | Full-Stack Developer</p>
+    <section>
+      <h2>Work Experience</h2>
 
-        <p class="body-text">I'm a Full-Stack Web Developer with 10 years of experience with Ruby on Rails and Shopify, former Head of Engineering for an e-commerce SaaS company, and now oversee the Colombia team for a leading Shopify Partner.</p>
+      <article class="role">
+        <p class="role-title">Senior Web Engineer · Team Leader — SLTWTR (2023–present)</p>
+        <ul>
+          <li>Lead the agency’s Colombian branch, bridging product management and engineering while mentoring junior developers.</li>
+          <li>Develop and support Shopify Plus stores with advanced features and integrations.</li>
+          <li>Integrate Shopify Plus stores with third-party providers including Searchspring and Nosto.</li>
+        </ul>
+      </article>
 
-		</header>
+      <article class="role">
+        <p class="role-title">Web Engineer · Head of Engineering — Pasilobus (2016–2023)</p>
+        <ul>
+          <li>Built responsive full-stack web applications for the Shopify App Store.</li>
+          <li>Led engineering efforts and product feature development.</li>
+          <li>Provided technical support for Shopify merchants.</li>
+          <li>Mentored engineering interns and participated in expos and conferences.</li>
+        </ul>
+      </article>
+    </section>
 
-		<main>
-        <h2 class="section-header">Work Experience</h2>
+    <section>
+      <h2>Skills</h2>
+      <table>
+        <tr>
+          <th>Main</th>
+          <td>HTML5, CSS, JavaScript, Ruby, Ruby on Rails, Shopify, Tailwind, Hotwire (Stimulus & Turbo)</td>
+        </tr>
+        <tr>
+          <th>Code</th>
+          <td>SCSS, jQuery, Sidekiq, Redis, RSpec, SQL, Postgres, JSON, Git, GitHub, GitHub Actions, DigitalOcean</td>
+        </tr>
+        <tr>
+          <th>Design & Collaboration</th>
+          <td>Office Suite, Notion, Figma, Zeplin, Adobe XD</td>
+        </tr>
+      </table>
+    </section>
 
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Senior Web Engineer | Team Leader – SLTWTR (2023-present)
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Leader of the agency's Colombian branch, acting as a bridge between product management and the developers, as well as proving mentorship to junior developers.
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Shopify Plus store development and support, working on advanced features and integrations.
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Integrating Shopify Plus stores with third-party providers such as SearchSpring and Nosto.
-        </p>
+    <section>
+      <h2>Education & Training</h2>
+      <ul>
+        <li>‘Enterprise coaching and PNL’ Seminar — Coomeva (2015)</li>
+        <li>Electronics Engineering Degree — Universidad del Norte (2014)</li>
+        <li>‘Systems & Signals’ Class Monitor — Universidad del Norte (2013)</li>
+        <li>High School Degree — International Berckley School (2009)</li>
+      </ul>
+    </section>
 
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Web Engineer | Head of Engineering – Pasilobus (2016-2023)
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Full-stack application development of responsive web apps for the Shopify App Store.
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Lead engineering efforts and product feature development.
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Technical support for Shopify merchants.
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Mentor engineering interns.
-        </p>
-        <p class="sub-list-item">
-            <span class="bullet">·</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Participation in expos and conferences.
-        </p>
+    <section>
+      <h2>Languages</h2>
+      <ul>
+        <li>Spanish (native)</li>
+        <li>English (professional)</li>
+      </ul>
+    </section>
 
-        <h2 class="section-header">Skills</h2>
-        <table class="skills-table">
-            <tr>
-                <td>Main</td>
-                <td>HTML5/CSS/JS, Ruby, Ruby on Rails, Shopify, Tailwind, Hotwire (Stimulus and Turbo)</td>
-            </tr>
-            <tr>
-                <td>Code</td>
-                <td>SCSS, jQuery, Sidekiq, Redis, Rspec, SQL, Postgres, JSON, Git, GitHub, GitHub Actions, Digital Ocean</td>
-            </tr>
-            <tr>
-                <td>Design & Collaboration</td>
-                <td>Office Suite, Notion, Figma, Zeplin, Adobe XD</td>
-            </tr>
-        </table>
+    <section>
+      <h2>About</h2>
+      <table>
+        <tr>
+          <th>Nationality</th>
+          <td>Colombian</td>
+        </tr>
+        <tr>
+          <th>Date of Birth</th>
+          <td>November 4, 1992</td>
+        </tr>
+      </table>
+    </section>
 
-        <h2 class="section-header">Education & Training</h2>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            'Enterprise coaching and PNL' Seminar – Coomeva (2015)
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Electronics Engineering Degree – Universidad del Norte (2014)
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            'Systems & Signals' class monitor – Universidad del Norte (2013)
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            High-school Degree – International Berckley School (2009)
-        </p>
+    <section>
+      <h2>Portfolio</h2>
+      <ul>
+        <li>SLTWTR — <a href="https://sltwtr.com/blogs/work" target="_blank" rel="noopener noreferrer">sltwtr.com/blogs/work</a></li>
+        <li>Pasilobus Apps — <a href="https://apps.shopify.com/partners/pasilobus" target="_blank" rel="noopener noreferrer">apps.shopify.com/partners/pasilobus</a></li>
+        <li>MAVI (2017) — <a href="https://mavicol.org/" target="_blank" rel="noopener noreferrer">mavicol.org</a></li>
+        <li>Pierrot Theater Academy (2015)</li>
+        <li>Malinche Barranquilla (2016)</li>
+        <li>Álvarez & Asociados (2016)</li>
+      </ul>
+    </section>
 
-        <h2 class="section-header">Language</h2>
-        <p class="body-text">Spanish as a main language</p>
-        <p class="body-text">English as a second language</p>
-
-        <h2 class="section-header">About</h2>
-        <table class="about-table">
-            <tr>
-                <td>Nationality</td>
-                <td>Colombian</td>
-            </tr>
-            <tr>
-                <td>Date of Birth</td>
-                <td>November 4th, 1992</td>
-            </tr>
-        </table>
-
-        <h2 class="section-header">Portfolio</h2>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            SLTWTR – <a href="https://sltwtr.com/blogs/work">sltwtr.com</a>
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Pasilobus Apps – <a href="https://apps.shopify.com/partners/pasilobus">apps.shopify.com/partners/pasilobus</a>
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            MAVI (2017) – <a href="http://mavicol.org/">mavicol.org</a>
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Pierrot Theater Academy (2015)
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Malinche Barranquilla (2016)
-        </p>
-        <p class="list-item">
-            <span class="bullet">◌</span><span class="bullet-spacer">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            Álvarez & Asociados (2016)
-        </p>
-		</main>
+    <footer class="footnote">
+      <p><strong>Note:</strong> You can download a printable PDF version of this resume at <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.</p>
+      <p><a href="/">Back to juanvisbal.com</a></p>
+    </footer>
+  </main>
 </body>
 </html>
