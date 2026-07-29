@@ -65,6 +65,11 @@
   margin-top: 2rem;
 }
 
+.now-actions .link-button {
+  font-size: 16px;
+  padding: 12px 14px;
+}
+
 @media (prefers-color-scheme: dark) {
   #now hr {
     border-top-color: #30363d;

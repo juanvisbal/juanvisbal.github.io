@@ -27,6 +27,28 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 }
 
+/* Match /now bottom stack spacing */
+.resume-page .now-actions {
+  margin-top: 2rem;
+}
+
+.resume-page .now-actions .link-button {
+  font-size: 16px;
+  padding: 12px 14px;
+}
+
+.resume-page .footer {
+  text-align: left;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #777;
+}
+
+.resume-page .copyright {
+  margin-top: 15px;
+  font-size: 12px;
+}
+
 .resume-page .resume header {
   margin-bottom: 2rem;
 }
