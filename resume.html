@@ -46,18 +46,7 @@
       margin: 0 auto;
     }
 
-    .back-home {
-      display: inline-block;
-      margin-bottom: 1.25rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      text-decoration: none;
-      color: inherit;
-      border-bottom: 1px solid transparent;
-    }
 
-    .back-home:hover {
-      border-bottom-color: currentColor;
-    }
 
     header {
       margin-bottom: 2rem;
@@ -101,6 +90,42 @@
 
     .resume-actions a:hover {
       text-decoration: underline;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 1.5rem;
+    }
+
+    .link-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: #f0f0f0;
+      color: black;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .link-button:hover {
+      background-color: #e0e0e0;
+    }
+
+    .footer {
+      margin-top: 2.5rem;
+      font-size: 14px;
+      color: #777;
+    }
+
+    .copyright {
+      margin-top: 10px;
+      font-size: 12px;
     }
 
     section + section {
@@ -192,13 +217,24 @@
       th {
         background: rgba(255,255,255,0.04);
       }
+
+      .link-button {
+        background-color: #212d2d;
+        color: white;
+      }
+
+      .link-button:hover {
+        background-color: #303c3d;
+      }
+
+      .footer {
+        color: #8b949e;
+      }
     }
   </style>
 </head>
 <body>
   <main class="resume">
-    <a href="/" class="back-home">← Back to homepage</a>
-
     <header>
       <h1 class="title">Juan Visbal</h1>
       <p class="subtitle">Electronics Engineer · Full-Stack Developer</p>
@@ -207,7 +243,6 @@
       </p>
       <p class="resume-actions">
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">Download PDF</a>
-        <a href="/">View homepage</a>
       </p>
     </header>
 
@@ -298,7 +333,15 @@
 
     <footer class="footnote">
       <p><strong>Note:</strong> You can download a printable PDF version of this resume at <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.</p>
-      <p><a href="/">Back to juanvisbal.com</a></p>
+    </footer>
+
+    <div class="links">
+      <a href="/" class="link-button" title="Back to homepage">Back Home</a>
+    </div>
+
+    <footer class="footer">
+      He/They · 🏳️‍🌈 · Bogotá, Colombia
+      <div class="copyright">© 2026 <a href="https://juanvisbal.com/">Juan Visbal</a>. Powered by <a href="https://github.com/juanvisbalco/linkyee" target="_blank" rel="noopener noreferrer">linkyee</a></div>
     </footer>
   </main>
 </body>
