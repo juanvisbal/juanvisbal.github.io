@@ -1,4 +1,15 @@
-/* Resume page-specific styles (minimal, aligned with site structure) */
+/* Resume page-specific styles (class-independent) */
+
+body {
+  display: block;
+  min-height: auto;
+  text-align: left;
+  background-color: #ffffff;
+  color: #000000;
+  line-height: 1.55;
+  padding: 20px 0 20px 0;
+}
+
 .resume-container {
   max-width: 760px;
   text-align: left;
@@ -6,6 +17,12 @@
 
 .resume-container .profile {
   margin-bottom: 1.5rem;
+}
+
+/* Keep resume body text readable while preserving site header/footer/button style */
+#resume-content,
+#resume-content * {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 #resume-content {
@@ -56,7 +73,6 @@
   vertical-align: top;
   padding: 0.75rem 0.8rem;
   border-bottom: 1px solid #d9d9d9;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 #resume-content tr:last-child td {
@@ -68,12 +84,6 @@
   font-weight: 600;
   border-right: 1px solid #d9d9d9;
   background: rgba(0, 0, 0, 0.03);
-}
-
-#resume-content p,
-#resume-content li,
-#resume-content td {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 #resume-content a {
@@ -93,9 +103,12 @@
   margin-top: 1.25rem;
 }
 
-
-
 @media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0d1712;
+    color: #ffffff;
+  }
+
   #resume-content table {
     background: #212d2d;
     border-color: #303c3d;
