@@ -16,6 +16,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png" />
   <link rel="shortcut icon" href="./images/favicons/favicon.ico" />
+  <link rel="stylesheet" href="./styles.css" />
 
   <style>
     :root {
@@ -34,9 +35,11 @@
     }
 
     body {
+      display: block;
+      min-height: auto;
+      text-align: left;
       background: var(--bg);
       color: var(--fg);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.55;
       padding: 2rem 1.25rem 3rem;
     }
@@ -44,6 +47,11 @@
     .resume {
       width: min(100%, 780px);
       margin: 0 auto;
+    }
+
+    .resume,
+    .resume * {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
     }
 
 
@@ -54,20 +62,23 @@
 
     .title {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      font-size: clamp(1.75rem, 3vw, 2.1rem);
-      margin-bottom: 0.45rem;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 10px 0;
     }
 
     .subtitle {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
+      font-size: 16px;
+      margin-bottom: 0.8rem;
       color: var(--muted);
     }
 
     .summary {
       color: var(--muted);
       max-width: 72ch;
+      font-size: 16px;
+      line-height: 1.6;
     }
 
     .resume-actions {
@@ -93,39 +104,7 @@
     }
 
     .links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
       margin-top: 1.5rem;
-    }
-
-    .link-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background-color: #f0f0f0;
-      color: black;
-      padding: 12px 15px;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 500;
-      text-decoration: none;
-      width: fit-content;
-    }
-
-    .link-button:hover {
-      background-color: #e0e0e0;
-    }
-
-    .footer {
-      margin-top: 2.5rem;
-      font-size: 14px;
-      color: #777;
-    }
-
-    .copyright {
-      margin-top: 10px;
-      font-size: 12px;
     }
 
     section + section {
@@ -189,7 +168,17 @@
 
     a {
       color: inherit;
+    }
+
+    .resume li a,
+    .resume .footnote a {
+      text-decoration: underline;
       text-underline-offset: 2px;
+    }
+
+    .resume .resume-actions a,
+    .resume .links .link-button {
+      text-decoration: none;
     }
 
     .footnote {
@@ -218,18 +207,7 @@
         background: rgba(255,255,255,0.04);
       }
 
-      .link-button {
-        background-color: #212d2d;
-        color: white;
-      }
 
-      .link-button:hover {
-        background-color: #303c3d;
-      }
-
-      .footer {
-        color: #8b949e;
-      }
     }
   </style>
 </head>
@@ -341,7 +319,7 @@
 
     <footer class="footer">
       He/They · 🏳️‍🌈 · Bogotá, Colombia
-      <div class="copyright">© 2026 <a href="https://juanvisbal.com/">Juan Visbal</a>. Powered by <a href="https://github.com/juanvisbalco/linkyee" target="_blank" rel="noopener noreferrer">linkyee</a></div>
+      <div class="copyright">© 2026 <a href="https://juanvisbal.com/" class="u-url" rel="me">Juan Visbal</a></div>
     </footer>
   </main>
 </body>
