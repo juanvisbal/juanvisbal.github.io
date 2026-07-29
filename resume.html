@@ -17,208 +17,9 @@
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png" />
   <link rel="shortcut icon" href="./images/favicons/favicon.ico" />
   <link rel="stylesheet" href="./styles.css" />
-
-  <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #000000;
-      --muted: #555;
-      --soft: #f0f0f0;
-      --soft-border: #d9d9d9;
-      --accent: #539373;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      display: block;
-      min-height: auto;
-      text-align: left;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.55;
-      padding: 2rem 1.25rem 3rem;
-    }
-
-    .resume {
-      width: min(100%, 780px);
-      margin: 0 auto;
-    }
-
-    .resume,
-    .resume * {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    /* Keep shared UI components visually consistent with the rest of the site */
-    .resume .links .link-button,
-    .resume .footer,
-    .resume .footer * {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-    }
-
-
-
-    header {
-      margin-bottom: 2rem;
-    }
-
-    .title {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      font-size: 28px;
-      font-weight: 700;
-      margin: 10px 0;
-    }
-
-    .subtitle {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      font-size: 16px;
-      margin-bottom: 0.8rem;
-      color: var(--muted);
-    }
-
-    .summary {
-      color: var(--muted);
-      max-width: 72ch;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .resume-actions {
-      margin-top: 1rem;
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
-
-    .resume-actions a {
-      display: inline-block;
-      padding: 0.45rem 0.7rem;
-      border: 1px solid var(--soft-border);
-      border-radius: 8px;
-      text-decoration: none;
-      background: var(--soft);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      font-size: 0.9rem;
-    }
-
-    .resume-actions a:hover {
-      text-decoration: underline;
-    }
-
-    .links {
-      margin-top: 1.5rem;
-    }
-
-    section + section {
-      margin-top: 2rem;
-    }
-
-    h2 {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      font-size: 1.08rem;
-      margin-bottom: 0.8rem;
-      color: var(--accent);
-    }
-
-    .role {
-      margin-bottom: 1rem;
-    }
-
-    .role-title {
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    ul {
-      padding-left: 1.25rem;
-      margin-bottom: 0.75rem;
-    }
-
-    li + li {
-      margin-top: 0.35rem;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid var(--soft-border);
-      background: var(--soft);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-top: 0.35rem;
-    }
-
-    th,
-    td {
-      text-align: left;
-      vertical-align: top;
-      padding: 0.75rem 0.8rem;
-      border-bottom: 1px solid var(--soft-border);
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    th {
-      width: 34%;
-      font-weight: 600;
-      border-right: 1px solid var(--soft-border);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-      background: rgba(0,0,0,0.03);
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .resume li a,
-    .resume .footnote a {
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .resume .resume-actions a,
-    .resume .links .link-button {
-      text-decoration: none;
-    }
-
-    .footnote {
-      margin-top: 2.5rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--soft-border);
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .footnote p + p {
-      margin-top: 0.45rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0d1712;
-        --fg: #ffffff;
-        --muted: #c9d1d9;
-        --soft: #212d2d;
-        --soft-border: #303c3d;
-        --accent: #d9e0e9;
-      }
-
-      th {
-        background: rgba(255,255,255,0.04);
-      }
-
-
-    }
-  </style>
+  <link rel="stylesheet" href="./resume.css" />
 </head>
-<body>
+<body class="resume-page">
   <main class="resume">
     <header>
       <h1 class="title">Juan Visbal</h1>
@@ -320,8 +121,10 @@
       <p><strong>Note:</strong> You can download a printable PDF version of this resume at <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.</p>
     </footer>
 
-    <div class="links">
-      <a href="/" class="link-button" title="Back to homepage">Back Home</a>
+    <div class="links now-actions">
+      <a href="/" class="link-button" title="Back to homepage">
+        <i class="fa-solid fa-house"></i> Back Home
+      </a>
     </div>
 
     <footer class="footer">
@@ -329,5 +132,7 @@
       <div class="copyright">© 2026 <a href="https://juanvisbal.com/" class="u-url" rel="me">Juan Visbal</a></div>
     </footer>
   </main>
+
+  <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
 </body>
 </html>
