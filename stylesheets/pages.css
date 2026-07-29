@@ -1,4 +1,10 @@
 /* Shared utilities for secondary pages like /now and /resume */
+body.content-page {
+  display: block;
+  min-height: auto;
+  text-align: left;
+}
+
 .now-actions {
   margin-top: 2rem;
 }

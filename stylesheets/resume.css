@@ -1,17 +1,7 @@
 /* Resume page-specific styles (class-independent) */
 
-body {
-  display: block;
-  min-height: auto;
-  text-align: left;
-  background-color: #ffffff;
-  color: #000000;
-  line-height: 1.55;
-  padding: 20px 0 20px 0;
-}
-
 .resume-container {
-  max-width: 760px;
+  max-width: 60ch;
   text-align: left;
 }
 
@@ -104,11 +94,6 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #0d1712;
-    color: #ffffff;
-  }
-
   #resume-content table {
     background: #212d2d;
     border-color: #303c3d;
