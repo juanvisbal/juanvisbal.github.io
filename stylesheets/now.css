@@ -33,20 +33,9 @@
   line-height: 1.5;
 }
 
-#now h2 {
-  font-size: 1.45rem;
-  margin-bottom: 0.25rem;
-}
-
 #now a {
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-#now .last-updated {
-  color: #777;
-  font-size: 0.95rem;
-  margin: 0;
 }
 
 .now-grid {
@@ -103,10 +92,7 @@
     background: rgba(255, 255, 255, 0.03);
   }
 
-  #now .last-updated,
   #now .now-note {
     color: #8b949e;
   }
-
-
 }

@@ -30,11 +30,90 @@ a {
   max-width: 450px;
 }
 
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.92rem;
+  color: #555;
+}
 
+.site-nav__crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.site-nav__home {
+  font-weight: 600;
+}
+
+.site-nav__current {
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.site-nav__menu {
+  position: relative;
+}
+
+.site-nav__menu summary {
+  list-style: none;
+  cursor: pointer;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  color: #595959;
+}
+
+.site-nav__menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-nav__menu[open] summary,
+.site-nav__menu summary:hover {
+  background: #e0e0e0;
+  color: #2f2f2f;
+}
+
+.site-nav__menu ul {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.4rem);
+  list-style: none;
+  margin: 0;
+  padding: 0.35rem;
+  min-width: 10rem;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.site-nav__menu li a {
+  display: block;
+  padding: 0.4rem 0.55rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.site-nav__menu li a:hover {
+  background: #f0f0f0;
+}
 
 .profile-pic {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 15px;
@@ -175,6 +254,35 @@ a {
 
   .description {
     color: #c9d1d9;
+  }
+
+  .site-nav {
+    color: #c9d1d9;
+  }
+
+  .site-nav__current {
+    color: #8b949e;
+  }
+
+  .site-nav__menu summary {
+    background: #212d2d;
+    color: #c9d1d9;
+  }
+
+  .site-nav__menu[open] summary,
+  .site-nav__menu summary:hover {
+    background: #303c3d;
+    color: #ffffff;
+  }
+
+  .site-nav__menu ul {
+    background: #0d1712;
+    border-color: #303c3d;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  .site-nav__menu li a:hover {
+    background: #212d2d;
   }
 
   .link-button {

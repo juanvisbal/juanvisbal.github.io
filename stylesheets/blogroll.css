@@ -26,11 +26,6 @@
   margin-top: 0.9rem;
 }
 
-#blogroll h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.75rem;
-}
-
 #blogroll h3 {
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
@@ -63,20 +58,12 @@
   font-size: 0.95rem;
 }
 
-#blogroll .last-updated {
-  color: #777;
-  margin-top: 0.4rem;
-}
-
 @media (prefers-color-scheme: dark) {
   .blogroll-list li {
     border-bottom-color: #30363d;
   }
 
-  .blogroll-list span,
-  #blogroll .last-updated {
+  .blogroll-list span {
     color: #8b949e;
   }
-
-
 }

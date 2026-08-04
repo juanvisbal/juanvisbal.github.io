@@ -23,6 +23,23 @@
 </head>
 <body class="content-page">
   <div class="container resume-container h-card">
+    <nav class="site-nav" aria-label="Site navigation">
+      <div class="site-nav__crumb">
+        <a href="/" class="site-nav__home">Juan Visbal</a>
+        <span aria-hidden="true">/</span>
+        <span class="site-nav__current">Resume</span>
+      </div>
+      <details class="site-nav__menu">
+        <summary aria-label="Open site navigation"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/now.html">Now</a></li>
+          <li><a href="/resume.html">Resume</a></li>
+          <li><a href="/blogroll.html">Blogroll</a></li>
+        </ul>
+      </details>
+    </nav>
+
     <div class="profile">
       <h1 class="name p-name">Juan Visbal</h1>
       <p class="description p-note">Electronics Engineer · Full-Stack Developer</p>
@@ -34,7 +51,7 @@
       </a>
     </div>
 
-    <div id="resume-content" class="e-content">
+    <main id="resume-content" class="e-content">
       <p>
         I’m a Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify, former Head of Engineering for an e-commerce SaaS company, and now Team Leader for the Colombian branch of a leading Shopify Partner.
       </p>
@@ -118,7 +135,7 @@
         <strong>Note:</strong> You can download a printable PDF version of this resume at
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.
       </p>
-    </div>
+    </main>
 
     <div class="links now-actions">
       <a href="/" class="link-button" title="Back to homepage">

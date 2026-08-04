@@ -25,16 +25,35 @@
   <div class="container now-page h-card">
     <div class="profile">
       <img src="./images/profile.png" alt="Profile Picture" class="profile-pic u-photo" />
-      <h1 class="name p-name">Juan Visbal</h1>
-      <p class="description p-note">This is what I’m focused on now.</p>
+      <nav class="site-nav" aria-label="Site navigation">
+        <h1 class="name p-name site-nav__title">
+          <a href="/" class="site-nav__home">Juan Visbal</a>
+          <span aria-hidden="true">/</span>
+          <span class="site-nav__current">Now</span>
+        </h1>
+        <details class="site-nav__menu">
+          <summary aria-label="Open site navigation"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/now.html">Now</a></li>
+            <li><a href="/resume.html">Resume</a></li>
+            <li><a href="/blogroll.html">Blogroll</a></li>
+          </ul>
+        </details>
+      </nav>
     </div>
 
-    <div id="now" class="e-content">
-      <h2>Now</h2>
-      <p>
-        This is a <a class="u-url" rel="me" href="https://nownownow.com/about">now page</a>, and if you have your own site, you should make one too.
-      </p>
-      <p class="last-updated">Updated 2026-08-04.</p>
+    <main id="now" class="e-content">
+      <header>
+        <h2>Now</h2>
+        <p class="last-updated">Updated 2026-08-04.</p>
+        <div class="description">
+          <p class="p-note">What I’m focused on now.</p>
+          <p>
+            This is a <a class="u-url" rel="me" href="https://nownownow.com/about">now page</a>, and if you have your own site, you should make one too.
+          </p>
+        </div>
+      </header>
 
       <div class="now-grid">
         <section class="now-section">
@@ -91,7 +110,7 @@
       </div>
 
       <hr class="section-separator">
-    </div>
+    </main>
 
     <div class="links now-actions">
       <a href="/" class="link-button" title="Back to homepage">
