@@ -1,11 +1,22 @@
 /* /now page-specific styles */
 .container.now-page {
-  max-width: 60ch;
+  max-width: 72ch;
   text-align: left;
 }
 
 .container.now-page .profile {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.1rem;
+}
+
+.container.now-page .profile-pic {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 0.75rem;
+}
+
+.container.now-page .description {
+  margin-bottom: 0;
+  font-size: 0.98rem;
 }
 
 .container.now-page .button-container {
@@ -17,60 +28,85 @@
 }
 
 #now {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   text-align: left;
-  line-height: 1.6;
-}
-
-#now > * + * {
-  margin-top: 0.9rem;
+  line-height: 1.5;
 }
 
 #now h2 {
-  font-size: 1.6rem;
-  margin-bottom: 0.75rem;
-}
-
-#now h3 {
-  margin-top: 2rem;
-  margin-bottom: 0.75rem;
-  font-size: 1.1rem;
-}
-
-#now .fa-ul {
-  margin-left: 2.1rem;
-  margin-bottom: 1rem;
-}
-
-#now li {
-  margin-bottom: 0.8rem;
+  font-size: 1.45rem;
+  margin-bottom: 0.25rem;
 }
 
 #now a {
   text-decoration: underline;
-}
-
-#now hr {
-  border: 0;
-  border-top: 1px solid #d9d9d9;
-  margin: 1.5rem 0 1rem;
+  text-underline-offset: 2px;
 }
 
 #now .last-updated {
   color: #777;
-  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  margin: 0;
 }
 
+.now-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem 1.1rem;
+  margin-top: 0.6rem;
+}
 
+.now-section {
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  background: rgba(0, 0, 0, 0.02);
+}
 
+.now-section h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.98rem;
+}
 
+.now-section h3 .fa-solid {
+  margin-right: 0.4rem;
+  font-size: 0.95em;
+}
+
+.now-section ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.now-section li {
+  margin: 0.45rem 0;
+}
+
+#now .now-note {
+  margin-top: 0.9rem;
+  color: #777;
+}
+
+@media (min-width: 760px) {
+  .now-grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .now-section--wide {
+    grid-column: 1 / -1;
+  }
+}
 
 @media (prefers-color-scheme: dark) {
-  #now hr {
-    border-top-color: #30363d;
+  .now-section {
+    border-color: #30363d;
+    background: rgba(255, 255, 255, 0.03);
   }
 
-  #now .last-updated {
+  #now .last-updated,
+  #now .now-note {
     color: #8b949e;
   }
+
+
 }

@@ -15,6 +15,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
   <link rel="shortcut icon" href="./images/favicons/favicon.ico">
+  <link rel="human-json" href="/human.json" />
 
   <link rel="stylesheet" href="./stylesheets/styles.css" />
   <link rel="stylesheet" href="./stylesheets/pages.css" />
@@ -29,61 +30,66 @@
     </div>
 
     <div id="now" class="e-content">
-      <h2>/now</h2>
+      <h2>Now</h2>
+      <p class="last-updated">Updated 2026-08-04.</p>
 
-      <h3>What I’m reading</h3>
-      <ul class="fa-ul">
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-book"></i></span>
-          <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Wuthering_Heights">Wuthering Heights</a> by
-          <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Emily_Bront%C3%AB">Emily Brontë</a>
-        </li>
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-book"></i></span>
-          <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Frankenstein">Frankenstein</a> by
-          <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Mary_Shelley">Mary E. Shelley</a>
-        </li>
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-book"></i></span>
-          <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Absolute_Batman">Absolute Batman</a>
-        </li>
-      </ul>
+      <div class="now-grid">
+        <section class="now-section">
+          <h3><i class="fa-solid fa-book"></i> Reading</h3>
+          <ul>
+            <li>
+              <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Wuthering_Heights">Wuthering Heights</a> by
+              <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Emily_Bront%C3%AB">Emily Brontë</a>
+            </li>
+            <li>
+              <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Frankenstein">Frankenstein</a> by
+              <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Mary_Shelley">Mary E. Shelley</a>
+            </li>
+            <li>
+              <a class="u-url" rel="me" href="https://www.eosworldwide.com/what-the-heck-is-eos">What the Heck Is EOS?</a> by
+              Gino Wickman and Tom Bouwer
+            </li>
+            <li>
+              <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/The_Memory_Librarian:_And_Other_Stories_of_Dirty_Computer">The Memory Librarian</a> by
+              <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Janelle_Mon%C3%A1e">Janelle Monáe</a>
+            </li>
+            <li>
+              <a class="u-url" rel="me" href="https://www.dc.com/comics/absolute-batman-2024">Absolute Batman</a>
+            </li>
+            <li>
+              <a class="u-url" rel="me" href="https://www.dc.com/comics/absolute-wonder-woman-2024">Absolute Wonder Woman</a>
+            </li>
+          </ul>
+        </section>
 
-      <h3>What I’m watching</h3>
-      <ul class="fa-ul">
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-tv"></i></span>
-          <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Daemons_of_the_Shadow_Realm">Daemons of the Shadow Realm</a>
-        </li>
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-tv"></i></span>
-          <a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Damages_(TV_series)">Damages</a>
-        </li>
-      </ul>
+        <section class="now-section">
+          <h3><i class="fa-solid fa-film"></i> Watching</h3>
+          <ul>
+            <li><a class="u-url" rel="me" href="https://letterboxd.com/film/the-odyssey-2026/">Nolan's The Odyssey</a></li>
+            <li><a class="u-url" rel="me" href="https://letterboxd.com/film/spider-man-brand-new-day/">Spider-Man: Brand New Day</a></li>
+            <li><a class="u-url" rel="me" href="https://letterboxd.com/film/rains-over-babel/">Llueve sobre Babel</a></li>
+            <li><a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/The_X-Files">The X-Files</a></li>
+            <li><a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/The_Comeback_(TV_series)">The Comeback</a></li>
+            <li><a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Silo_(TV_series)">Silo</a></li>
+            <li><a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/My_Adventures_with_Superman">My Adventures with Superman</a></li>
+            <li><a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Daemons_of_the_Shadow_Realm">Daemons of the Shadow Realm</a></li>
+            <li><a class="u-url" rel="me" href="https://en.wikipedia.org/wiki/Damages_(TV_series)">Damages</a></li>
+          </ul>
+        </section>
 
-      <h3>What I’m enjoying</h3>
-      <ul class="fa-ul">
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-heart"></i></span>
-          Time with my boyfriend.
-        </li>
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-language"></i></span>
-          Learning Japanese.
-        </li>
-        <li>
-          <span class="fa-li"><i class="fa-solid fa-computer"></i></span>
-          Setting up my workspace.
-        </li>
-      </ul>
+        <section class="now-section now-section--wide">
+          <h3><i class="fa-solid fa-heart"></i> Enjoying</h3>
+          <ul>
+            <li>Time with my boyfriend.</li>
+            <li>Learning Japanese.</li>
+            <li>Setting up my workspace.</li>
+          </ul>
+        </section>
+      </div>
 
-      <hr>
+      <hr class="section-separator">
 
-      <p class="last-updated">
-        <i class="fa-solid fa-fw fa-clock"></i> Last updated 2026-07-10.
-      </p>
-
-      <p>
+      <p class="now-note">
         <small>
           This is a <a class="u-url" rel="me" href="https://nownownow.com/about">now page</a>, and if you have your own site, you should make one too.
         </small>
