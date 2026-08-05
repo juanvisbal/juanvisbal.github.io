@@ -25,10 +25,10 @@ body.content-page .e-content > header .last-updated {
   margin-bottom: 0.7rem;
 }
 
-body.content-page .e-content > header .description {
-  color: #000;
+body.content-page main.e-content > header .description {
   font-size: 0.98rem;
   margin-bottom: 0.55rem;
+  color: #000;
 }
 
 .now-actions {
@@ -41,7 +41,8 @@ body.content-page .e-content > header .description {
 }
 
 @media (prefers-color-scheme: dark) {
-  body.content-page main.e-content > header .last-updated {
+  body.content-page main.e-content > header .last-updated,
+  body.content-page main.e-content > header .description {
     color: #8b949e;
   }
 }
