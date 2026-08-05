@@ -29,16 +29,21 @@ body.content-page main.e-content > header h2 {
   margin-bottom: 0.3rem;
 }
 
-body.content-page main.e-content > header .last-updated {
+body.content-page main.e-content > .content-footnote {
   color: #777;
   font-size: 0.95rem;
-  margin-bottom: 0.7rem;
+  margin: 1rem 0 0;
 }
 
 body.content-page main.e-content > header .description {
   font-size: 0.98rem;
   margin-bottom: 0.55rem;
   color: #000;
+}
+
+body.content-page main.e-content > header .description .p-note {
+  margin-bottom: 10px;
+  color: #555;
 }
 
 body.content-page main.e-content h3 {
@@ -64,7 +69,8 @@ body.content-page main.e-content h3 {
 
 @media (prefers-color-scheme: dark) {
   body.content-page main.e-content > header .last-updated,
-  body.content-page main.e-content > header .description {
+  body.content-page main.e-content > header .description,
+  body.content-page main.e-content > header .description .p-note {
     color: #8b949e;
   }
 }
