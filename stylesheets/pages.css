@@ -1,4 +1,4 @@
-/* Shared utilities for secondary pages like /now and /resume */
+/* Shared utilities for secondary content pages (/now, /blogroll, /resume) */
 body.content-page {
   display: block;
   min-height: auto;
@@ -10,16 +10,26 @@ body.content-page .container {
   margin: 0 auto;
 }
 
-body.content-page .e-content > header {
+body.content-page .profile-pic {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 0.75rem;
+}
+
+body.content-page .footer {
+  text-align: left;
+}
+
+body.content-page main.e-content > header {
   margin-bottom: 1.35rem;
 }
 
-body.content-page .e-content > header h2 {
+body.content-page main.e-content > header h2 {
   font-size: 1.5rem;
   margin-bottom: 0.3rem;
 }
 
-body.content-page .e-content > header .last-updated {
+body.content-page main.e-content > header .last-updated {
   color: #777;
   font-size: 0.95rem;
   margin-bottom: 0.7rem;
@@ -31,13 +41,25 @@ body.content-page main.e-content > header .description {
   color: #000;
 }
 
-.now-actions {
+body.content-page main.e-content h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+}
+
+.page-actions {
   margin-top: 2rem;
 }
 
-.now-actions .link-button {
-  font-size: 16px;
+.page-actions .link-button {
+  font-size: 1rem;
   padding: 12px 14px;
+}
+
+@media (max-width: 760px) {
+  body.content-page .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

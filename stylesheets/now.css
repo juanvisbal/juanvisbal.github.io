@@ -8,23 +8,11 @@
   margin-bottom: 1.1rem;
 }
 
-.container.now-page .profile-pic {
-  width: 96px;
-  height: 96px;
-  margin-bottom: 0.75rem;
-}
+
 
 .container.now-page .description {
   margin-bottom: 0;
   font-size: 0.98rem;
-}
-
-.container.now-page .button-container {
-  justify-content: flex-start;
-}
-
-.container.now-page .footer {
-  text-align: left;
 }
 
 #now {
@@ -52,14 +40,11 @@
   background: rgba(0, 0, 0, 0.02);
 }
 
-.now-section h3 {
-  margin: 0 0 0.35rem;
-  font-size: 0.98rem;
-}
+
 
 .now-section h3 .fa-solid {
   margin-right: 0.4rem;
-  font-size: 0.95em;
+  font-size: 0.95rem;
 }
 
 .now-section ul {
@@ -75,6 +60,8 @@
   margin-top: 0.9rem;
   color: #777;
 }
+
+
 
 @media (min-width: 760px) {
   .now-grid {
