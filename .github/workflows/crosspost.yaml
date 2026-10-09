@@ -1,0 +1,52 @@
+# Cross-posts new blog posts to Bluesky and Mastodon (tools/crosspost.py), then commits
+# the links to those copies back into the posts' front matter (used by the comments box).
+# Secrets: BLUESKY_APP_PASSWORD, MASTODON_TOKEN.
+name: Cross-post new blog posts
+on:
+  push:
+    branches: [main]
+    paths: ["content/blog/**"]
+  workflow_dispatch:
+    inputs:
+      check_login:
+        description: "Only check that both logins work (posts nothing)"
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: crosspost
+  cancel-in-progress: false
+jobs:
+  crosspost:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install Pillow
+        run: |
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet pillow
+
+      - name: Cross-post
+        env:
+          BLUESKY_HANDLE: juanvisbal.com
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          MASTODON_INSTANCE: social.lol
+          MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          SITE_URL: https://juanvisbal.com
+          CHECK_LOGIN: ${{ inputs.check_login && '1' || '0' }}
+        run: .venv/bin/python tools/crosspost.py
+
+      # Runs even if one network failed, so the successful posts are recorded
+      # and not posted again next time.
+      - name: Save links to the copies
+        if: success() || failure()
+        run: |
+          git add content/blog
+          if git diff --cached --quiet; then exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -m "Record Bluesky/Mastodon copies of new posts"
+          git pull --rebase --quiet
+          git push
