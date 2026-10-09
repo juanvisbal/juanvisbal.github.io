@@ -27,6 +27,11 @@
   padding: 0;
 }
 
+/* Otherwise the empty count still takes a flex gap and pushes the heart off-centre. */
+.interactions .heart-count:empty {
+  display: none;
+}
+
 .interactions .heart-button:hover {
   background: var(--surface-hover);
 }
