@@ -6,7 +6,7 @@
   {{- with $bsky }} data-bluesky-post="{{ .url }}" data-bluesky-link="{{ .link }}"{{ end }}
   {{- with $masto }} data-mastodon-api="https://{{ .hostname }}/api/v1/statuses/{{ .id }}" data-mastodon-link="https://{{ .hostname }}/@{{ .username }}/{{ .id }}"{{ end }}>
   <button type="button" class="heart-button" aria-pressed="false" hidden>
-    <span aria-hidden="true">❤️</span> <span class="heart-count"></span><span class="visually-hidden"> hearts. Send a heart</span>
+    <span aria-hidden="true">❤️</span><span class="heart-count"></span><span class="heart-label visually-hidden">Send a heart</span>
   </button>
   {{- if or $bsky $masto }}
   <h3 class="comments-title">Comments</h3>

@@ -8,39 +8,66 @@
   const MAX_DEPTH = 3;
 
   // ---------- Hearts ----------
+  // Click to heart, click again to unheart. The browser keeps a random visitor id
+  // (localStorage) that the server uses to find this browser's heart when unhearting.
 
   const heartButton = root.querySelector(".heart-button");
   const heartCount = root.querySelector(".heart-count");
+  const heartLabel = root.querySelector(".heart-label");
   const heartUrl = root.dataset.heart;
   const storageKey = "hearted:" + heartUrl;
 
-  const hasHearted = () => {
-    try { return localStorage.getItem(storageKey) === "1"; } catch { return false; }
+  const store = {
+    get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
+    set: (k, v) => { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch { /* private mode */ } },
   };
-  const rememberHeart = () => {
-    try { localStorage.setItem(storageKey, "1"); } catch { /* private mode */ }
+  const visitorId = () => {
+    let id = store.get("openheart-visitor");
+    if (!id) {
+      id = crypto.randomUUID();
+      store.set("openheart-visitor", id);
+    }
+    return id;
+  };
+  const hearted = () => store.get(storageKey) === "1";
+
+  let count = 0;
+  let busy = false;
+  const renderHeart = () => {
+    heartCount.textContent = count > 0 ? String(count) : "";
+    heartButton.setAttribute("aria-pressed", hearted() ? "true" : "false");
+    heartLabel.textContent = hearted() ? "Remove your heart" : "Send a heart";
+    heartButton.hidden = false;
   };
 
-  const showHearts = (count) => {
-    heartCount.textContent = count > 0 ? String(count) : "";
-    heartButton.setAttribute("aria-pressed", hasHearted() ? "true" : "false");
-    heartButton.disabled = hasHearted();
-    heartButton.hidden = false;
+  const send = async (method, body) => {
+    const r = await fetch(heartUrl, { method, body, headers: { "Content-Type": "text/plain;charset=UTF-8" } });
+    const data = await r.json().catch(() => ({}));
+    return { status: r.status, count: Number(data[HEART]) || 0 };
   };
 
   if (heartButton && heartUrl) {
     fetch(heartUrl, { headers: { Accept: "application/json" } })
       .then((r) => (r.ok ? r.json() : {}))
-      .then((counts) => showHearts(Number(counts[HEART]) || 0))
+      .then((counts) => { count = Number(counts[HEART]) || 0; renderHeart(); })
       .catch(() => {});
 
-    heartButton.addEventListener("click", () => {
-      if (hasHearted()) return;
-      const current = Number(heartCount.textContent) || 0;
-      rememberHeart();
-      showHearts(current + 1);
-      fetch(heartUrl, { method: "POST", body: HEART, headers: { "Content-Type": "text/plain;charset=UTF-8" } })
-        .catch(() => {});
+    heartButton.addEventListener("click", async () => {
+      if (busy) return;
+      busy = true;
+      const unheart = hearted();
+      // Optimistic update; corrected by the server's count below.
+      store.set(storageKey, unheart ? null : "1");
+      count = Math.max(count + (unheart ? -1 : 1), 0);
+      renderHeart();
+      try {
+        const r = unheart ? await send("DELETE", visitorId()) : await send("POST", HEART + "\n" + visitorId());
+        // 409 = already hearted from this browser; 429 = daily limit from this network.
+        if (!unheart && r.status === 429) store.set(storageKey, null);
+        count = r.count;
+      } catch { /* offline: keep the optimistic state */ }
+      busy = false;
+      renderHeart();
     });
   }
 
