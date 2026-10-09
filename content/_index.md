@@ -1,5 +1,7 @@
 ---
 title: Juan Visbal
+# Micro.blog's About page (blog.juanvisbal.com/about/ now redirects to /blog/about/)
+aliases: ["/blog/about/"]
 # <meta name="description"> (the visible bio is `bio` below)
 description: "👋 I'm Juan from Colombia 🇨🇴 10+ years of experience as a software engineer and Shopify Expert, currently a Team Leader at SLTWTR Creative Agency. I'm passionate about sustainable innovation in tech. "
 lastmod: 2025-01-23T18:55:47+00:00
