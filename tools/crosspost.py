@@ -49,12 +49,22 @@ def request(method, url, *, headers=None, data=None, json_body=None, timeout=60)
         data = json.dumps(json_body).encode()
         headers["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=data, method=method, headers=headers)
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            body = r.read()
-            return r.status, (json.loads(body) if body else {})
-    except urllib.error.HTTPError as e:
-        raise RuntimeError(f"{method} {url} -> {e.code}: {e.read().decode(errors='replace')[:500]}") from None
+    for attempt in range(1, 5):
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                body = r.read()
+                return r.status, (json.loads(body) if body else {})
+        except urllib.error.HTTPError as e:
+            raise RuntimeError(f"{method} {url} -> {e.code}: {e.read().decode(errors='replace')[:500]}") from None
+        except urllib.error.URLError as e:
+            # Retry only if the connection itself failed (e.g. "Network is unreachable"):
+            # the request never reached the server, so retrying can't post twice.
+            # A timeout on a non-GET might have been delivered, so don't retry that.
+            timed_out = isinstance(e.reason, TimeoutError)
+            if attempt == 4 or (timed_out and method != "GET"):
+                raise
+            print(f"  network error ({e.reason}); retrying in {attempt * 10}s")
+            time.sleep(attempt * 10)
 
 
 def multipart(fields, files):
