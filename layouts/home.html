@@ -1,9 +1,8 @@
-{{- $blog := site.GetPage "/blog" -}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  {{ partial "site/theme-head.html" . }}
+  {{ partial "site/head-common.html" . }}
   <title>{{ site.Title }}</title>
   <meta name="last-modified" content="{{ .Lastmod.UTC.Format "2006-01-02T15:04:05-0700" }}">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
@@ -21,34 +20,24 @@
   <meta name="description" content="{{ .Description }}" />
   <meta property="og:description" content="{{ .Description }}" />
   <meta property="og:site_name" content="{{ site.Title }}" />
-  <meta property="og:image" content="./images/profile.png" />
+  <meta property="og:image" content="{{ "images/profile.png" | absURL }}" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="./images/profile.png" />
+  <meta property="twitter:image" content="{{ "images/profile.png" | absURL }}" />
   <meta property="twitter:title" content="{{ site.Title }}" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="./images/favicons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
-  <link rel="manifest" href="./images/favicons/site.webmanifest">
-  <link rel="shortcut icon" href="./images/favicons/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
+  <link rel="manifest" href="/images/favicons/site.webmanifest">
   <meta name="apple-mobile-web-app-title" content="{{ site.Title }}">
   <meta name="application-name" content="{{ site.Title }}">
   <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="msapplication-config" content="./images/favicons/browserconfig.xml">
+  <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-
-  {{ with $blog.OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" title="{{ site.Params.blog.title }} RSS" href="{{ .Permalink }}" />{{ end }}
-  {{ with $blog.OutputFormats.Get "json" }}<link rel="alternate" type="application/feed+json" title="{{ site.Params.blog.title }} JSON Feed" href="{{ .Permalink }}" />{{ end }}
-  <link rel="human-json" href="/human.json" />
-  {{ with .OutputFormats.Get "markdown" }}<link rel="alternate" type="text/markdown" title="Markdown version" href="{{ .RelPermalink }}" />{{ end }}
-
-  <link rel="stylesheet" href="/stylesheets/styles.css" />
 </head>
 <body>
   <div class="container h-card">
     <div class="profile">
-      <img src="./images/profile.png" alt="Profile Picture" class="profile-pic u-photo" />
+      <img src="/images/profile.png" alt="Profile Picture" class="profile-pic u-photo" />
       <h1 class="name p-name">{{ site.Title }}</h1>
       <p class="description p-note">{{ .Params.bio }}</p>
     </div>
@@ -86,8 +75,8 @@
 
     {{ partial "site/footer.html" . }}
   </div>
-  <script src="fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+  {{ partial "site/scripts.html" . }}
 
-  <script src="./scripts.js"></script>
+  <script src="/scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,4 @@
+{{- /* <link> for assets/stylesheets/<name>, fingerprinted so browsers never mix old CSS with new pages. */ -}}
+{{- with resources.Get (printf "stylesheets/%s" .) | fingerprint -}}
+<link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" />
+{{- end -}}

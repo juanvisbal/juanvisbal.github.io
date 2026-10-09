@@ -1,6 +1,6 @@
 # {{ .Title }}
 
-What I’m focused on now.
+{{ .Params.note }}
 
 This is a [now page](https://nownownow.com/about), and if you have your own site, you should make one too.
 {{ range .Params.sections }}

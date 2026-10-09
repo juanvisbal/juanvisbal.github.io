@@ -1,12 +1,6 @@
 {{ define "main" }}
     <main id="blog-archive" class="h-feed">
-      <header>
-        <h2 class="p-name">{{ .Title }}</h2>
-        <div class="description">
-          <p class="p-note">Every post, newest first.</p>
-          {{ partial "blog/subnav.html" . }}
-        </div>
-      </header>
+      {{ partial "site/page-header.html" (dict "page" . "subnav" true "pname" true) }}
       <ul class="archive-list">
         {{- range where site.RegularPages "Layout" "post" }}
         <li class="h-entry">

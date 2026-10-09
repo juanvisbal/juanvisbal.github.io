@@ -119,11 +119,19 @@
     const r = await fetch(api);
     if (!r.ok) throw new Error("Bluesky " + r.status);
     const { thread } = await r.json();
+    const ownerDid = uri.split("/")[2]; // at://<did>/app.bsky.feed.post/<rkey>
     const out = [];
     const walk = (node, depth) => {
       for (const reply of node.replies || []) {
         if (reply.$type !== "app.bsky.feed.defs#threadViewPost") continue;
         const p = reply.post;
+        // Authors who opted out of being shown to logged-out viewers (as bsky.app does),
+        // except the blog's own author.
+        const optedOut = (p.author.labels || []).some((l) => l.val === "!no-unauthenticated");
+        if (optedOut && p.author.did !== ownerDid) {
+          walk(reply, depth);
+          continue;
+        }
         const rkey = p.uri.split("/").pop();
         out.push({
           network: "Bluesky",

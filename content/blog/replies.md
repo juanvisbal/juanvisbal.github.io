@@ -1,4 +1,5 @@
 ---
+note: "Replies I posted on Bluesky and Micro.blog, kept from the Micro.blog export."
 title: "Replies"
 menu: blog
 weight: 5

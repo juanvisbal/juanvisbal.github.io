@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  {{ partial "site/theme-head.html" . }}
+  {{ partial "site/head-common.html" . }}
   <title>{{ $title }} · {{ site.Title }}</title>
 
   <meta name="author" content="{{ site.Title }}" />
@@ -15,25 +15,13 @@
   <meta property="og:description" content="{{ $description }}" />
   <meta property="og:type" content="article" />
   <meta property="og:image" content="{{ (index (.Params.images | default (slice "/images/profile.png")) 0) | absURL }}" />
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
-  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
-  <link rel="human-json" href="/human.json" />
-  {{- with .OutputFormats.Get "opml" }}
-  <link rel="alternate" type="text/x-opml" title="{{ site.Title }} {{ $.Title }} OPML" href="{{ .RelPermalink }}" />
-  {{- end }}
-  {{- with .OutputFormats.Get "markdown" }}
-  <link rel="alternate" type="text/markdown" title="Markdown version" href="{{ .RelPermalink }}" />
-  {{- end }}
   {{- if $blog }}
   {{ partial "blog/head.html" . }}
   {{- end }}
 
-  <link rel="stylesheet" href="/stylesheets/styles.css" />
-  <link rel="stylesheet" href="/stylesheets/pages.css" />
+  {{ partial "site/css.html" "pages.css" }}
   {{- with .Params.stylesheet }}
-  <link rel="stylesheet" href="/stylesheets/{{ . }}" />
+  {{ partial "site/css.html" . }}
   {{- end }}
 </head>
 <body class="content-page">
@@ -65,6 +53,6 @@
     {{ partial "site/footer.html" . }}
   </div>
 
-  <script src="/fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+  {{ partial "site/scripts.html" . }}
 </body>
 </html>

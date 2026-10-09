@@ -13,20 +13,21 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 | Resume | `content/resume.md` | `/resume.html`, `/resume.md` |
 | Blogroll | Replace `assets/blogroll.opml` with a NetNewsWire export; bump `lastmod` in `content/blogroll.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml` |
 | Site nav | `[[menus.main]]` in `hugo.toml` | nav menus, `/llms.txt` page list |
-| Static files (CSS, images, PDF, `human.json`, `CNAME`) | `static/` | copied as-is |
+| CSS and JS | `assets/stylesheets/`, `assets/js/` | fingerprinted URLs (`layouts/_partials/site/css.html`, `js.html`), so browsers never use a stale copy |
+| Static files (images, PDF, `human.json`, `CNAME`) | `static/` | copied as-is |
 
 ## Blog
 
 - New post: `hugo new content blog/YYYY/MM/DD/<slug>.md`, write below the front matter, push.
 - Images: `static/blog/uploads/YYYY/`, referenced as `/blog/uploads/...`.
 - Feeds: `/blog/feed.xml` and `/blog/feed.json`. Imported posts keep their Micro.blog `guid`, so readers don't show them again.
-- Design: the blog uses the main site's layout (`layouts/baseof.html`) and stylesheets, plus `static/stylesheets/blog.css`. Templates in `layouts/blog/` apply only to `/blog/`. The feed templates started from Minimism (MIT, see `layouts/blog/LICENSE-minimism`).
+- Design: the blog uses the main site's layout (`layouts/baseof.html`) and stylesheets, plus `assets/stylesheets/blog.css`. Templates in `layouts/blog/` apply only to `/blog/`. The feed templates started from Minimism (MIT, see `layouts/blog/LICENSE-minimism`).
 - Replies: `data/blog/replies_*.json` (Micro.blog export) at `/blog/replies/`.
 - `tools/import_microblog.py`: the one-off export cleanup.
 
 ## Hearts and comments
 
-- Under each post: a ❤️ button and comments merged from the post's Bluesky and Mastodon copies (`layouts/_partials/blog/interactions.html`, `static/blog/assets/js/interactions.js`). Comments load in the browser from the public Bluesky and Mastodon APIs, using the `bluesky`/`mastodon` front matter of each post.
+- Under each post: a ❤️ button and comments merged from the post's Bluesky and Mastodon copies (`layouts/_partials/blog/interactions.html`, `assets/js/interactions.js`). Comments load in the browser from the public Bluesky and Mastodon APIs, using the `bluesky`/`mastodon` front matter of each post. Bluesky accounts that opted out of being shown to logged-out viewers (`!no-unauthenticated`) are skipped, except your own.
 - Hearts: `functions/openheart/[[path]].js`, a Cloudflare Pages Function implementing [Open Heart](https://openheart.fyi), backed by the D1 database `juanvisbal-hearts` (bound as `HEARTS`; schema in `migrations/`). One heart per visitor per post per day; only a hash of IP + post + day is stored.
 
 ## Cross-posting
@@ -35,4 +36,8 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 
 ## Light/dark theme
 
-Colours are tokens in `static/stylesheets/tokens.css` (`light-dark()`, with a system-preference fallback). The footer button (`layouts/_partials/site/theme-toggle.html`, `static/theme.js`) toggles between following the system and the opposite theme, stored in `localStorage`; an inline script in `<head>` applies it before the page renders.
+Colours are tokens in `assets/stylesheets/tokens.css` (`light-dark()`, with a system-preference fallback). The footer button (`layouts/_partials/site/theme-toggle.html`, `assets/js/theme.js`) toggles between following the system and the opposite theme, stored in `localStorage`; an inline script in `<head>` applies it before the page renders.
+
+## Shared layout pieces
+
+`layouts/_partials/site/`: `head-common.html` (theme setup, favicons, feeds, stylesheet), `nav.html` (breadcrumb + menu), `page-header.html` (title, `note` from front matter, optional intro/subnav), `footer.html` (with the theme toggle), `scripts.html`, `css.html`/`js.html` (fingerprinted assets).

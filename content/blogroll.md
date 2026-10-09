@@ -1,4 +1,5 @@
 ---
+note: "A list of blogs, newsletters, and publications I follow."
 title: Blogroll
 layout: blogroll
 outputs: [HTML, markdown, opml]

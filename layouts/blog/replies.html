@@ -1,12 +1,6 @@
 {{ define "main" }}
     <main id="blog-replies">
-      <header>
-        <h2>{{ .Title }}</h2>
-        <div class="description">
-          <p class="p-note">Replies I posted on Bluesky and Micro.blog, kept from the Micro.blog export.</p>
-          {{ partial "blog/subnav.html" . }}
-        </div>
-      </header>
+      {{ partial "site/page-header.html" (dict "page" . "subnav" true) }}
       {{- $items := slice }}
       {{- range $k, $feed := hugo.Data.blog }}{{ if hasPrefix $k "replies_" }}{{ $items = $items | append $feed.items }}{{ end }}{{ end }}
       <ol class="post-list">

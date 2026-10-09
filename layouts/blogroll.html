@@ -1,15 +1,7 @@
 {{ define "main" }}
     <main id="blogroll" class="e-content">
-      <header>
-        <h2>{{ .Title }}</h2>
-        <div class="description">
-          <p class="p-note">A list of blogs, newsletters, and publications I follow.</p>
-          <p>
-            Inspired by old-school blogrolls. You can subscribe to this same list via
-            <a href="{{ (.OutputFormats.Get "opml").RelPermalink }}">OPML export</a>.
-          </p>
-        </div>
-      </header>
+      {{ partial "site/page-header.html" (dict "page" . "intro" (printf `Inspired by old-school blogrolls. You can subscribe to this same list via
+            <a href="%s">OPML export</a>.` (.OutputFormats.Get "opml").RelPermalink | safeHTML)) }}
 
       <h3 class="content-roll-title">Roll</h3>
       <ul class="blogroll-list">

@@ -1,4 +1,5 @@
 ---
+note: "Every post, newest first."
 title: "Archive"
 menu: blog
 weight: 3

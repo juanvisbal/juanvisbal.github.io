@@ -1,4 +1,5 @@
 ---
+note: "Photos from posts."
 title: "Photos"
 menu: blog
 weight: 4

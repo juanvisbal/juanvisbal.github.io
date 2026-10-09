@@ -1,6 +1,6 @@
 # {{ .Title }}
 
-A list of blogs, newsletters, and publications I follow.
+{{ .Params.note }}
 
 Inspired by old-school blogrolls. You can subscribe to this same list via [OPML export]({{ (.OutputFormats.Get "opml").Permalink }}).
 

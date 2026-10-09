@@ -1,10 +1,5 @@
 {{ define "main" }}
     <main id="not-found" class="e-content">
-      <header>
-        <h2>Page not found</h2>
-        <div class="description">
-          <p>There's nothing at this address. Try the <a href="/">home page</a> or the <a href="/blog/archive/">blog archive</a>.</p>
-        </div>
-      </header>
+      {{ partial "site/page-header.html" (dict "page" . "title" "Page not found" "intro" (`There's nothing at this address. Try the <a href="/">home page</a> or the <a href="/blog/archive/">blog archive</a>.` | safeHTML)) }}
     </main>
 {{ end }}

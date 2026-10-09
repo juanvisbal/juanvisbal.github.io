@@ -1,4 +1,5 @@
 ---
+note: "What I’m focused on now."
 title: Now
 layout: now
 outputs: [HTML, markdown]

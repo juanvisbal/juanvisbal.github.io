@@ -1,14 +1,6 @@
 {{ define "main" }}
     <main id="now" class="e-content">
-      <header>
-        <h2>{{ .Title }}</h2>
-        <div class="description">
-          <p class="p-note">What I’m focused on now.</p>
-          <p>
-            This is a <a class="u-url" rel="me" href="https://nownownow.com/about">now page</a>, and if you have your own site, you should make one too.
-          </p>
-        </div>
-      </header>
+      {{ partial "site/page-header.html" (dict "page" . "intro" (`This is a <a class="u-url" rel="me" href="https://nownownow.com/about">now page</a>, and if you have your own site, you should make one too.` | safeHTML)) }}
 
       <div class="now-grid">
         {{- range .Params.sections }}

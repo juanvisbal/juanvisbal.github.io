@@ -1,0 +1,4 @@
+{{- /* Deferred <script> for assets/js/<name>, fingerprinted like site/css.html. */ -}}
+{{- with resources.Get (printf "js/%s" .) | fingerprint -}}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{- end -}}
