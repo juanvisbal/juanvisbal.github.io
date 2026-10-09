@@ -30,7 +30,6 @@ wide: [Enjoying]
 
 - [The X-Files](https://en.wikipedia.org/wiki/The_X-Files)
 - [The Comeback](https://en.wikipedia.org/wiki/The_Comeback_(TV_series))
-- [Daemons of the Shadow Realm](https://en.wikipedia.org/wiki/Daemons_of_the_Shadow_Realm)
 - [Damages](https://en.wikipedia.org/wiki/Damages_(TV_series))
 - [Resident Evil](https://letterboxd.com/film/resident-evil-2026/)
 - [The Apothecary Diaries](https://en.wikipedia.org/wiki/The_Apothecary_Diaries)
