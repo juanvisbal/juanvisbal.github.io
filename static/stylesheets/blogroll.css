@@ -38,7 +38,7 @@
 .blogroll-list li {
   margin: 0;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid var(--border);
 }
 
 .blogroll-list li:last-child {
@@ -46,16 +46,6 @@
 }
 
 .blogroll-list span {
-  color: #777;
+  color: var(--text-subtle);
   font-size: 0.95rem;
-}
-
-@media (prefers-color-scheme: dark) {
-  .blogroll-list li {
-    border-bottom-color: #30363d;
-  }
-
-  .blogroll-list span {
-    color: #8b949e;
-  }
 }

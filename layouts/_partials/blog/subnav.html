@@ -1,0 +1,3 @@
+<p class="blog-subnav">
+            {{- range $i, $p := slice "/blog/archive" "/blog/photos" "/blog/replies" }}{{ with site.GetPage $p }}{{ if $i }} · {{ end }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ end }}{{ end -}}
+          </p>

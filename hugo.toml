@@ -13,6 +13,14 @@ rssLimit = 25
 [markup.goldmark.renderer]
   unsafe = true
 
+# Every /blog/ page: main-site layout plus the blog stylesheet.
+[[cascade]]
+  [cascade.params]
+    stylesheet = "blog.css"
+    container_class = "blog-page"
+  [cascade.target]
+    path = "{/blog,/blog/**}"
+
 # Blog posts: content/blog/YYYY/MM/DD/<slug>.md, served at /blog/YYYY/MM/DD/<slug>.html.
 [[cascade]]
   layout = "post"
@@ -64,35 +72,30 @@ rssLimit = 25
     url = "/"
     weight = 1
   [[menus.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+  [[menus.main]]
     name = "Now"
     url = "/now.html"
-    weight = 2
+    weight = 3
   [[menus.main]]
     name = "Resume"
     url = "/resume.html"
-    weight = 3
+    weight = 4
   [[menus.main]]
     name = "Blogroll"
     url = "/blogroll.html"
-    weight = 4
-  [[menus.blog]]
-    name = "About me"
-    url = "/"
-    weight = 1
+    weight = 5
 
 [params]
-  description = ""
-  paginate_home = false
-  paginate_categories = false
-  alpine_accent_text_color = "#28a942"
-  alpine_accent_background_color = "#ffffff"
-  alpine_hover_background_color = "#e5ffed"
   # rel="me" links on blog pages (the main site's home page has its own in the layout)
   me = ["https://juanvisbal.com/", "https://bsky.app/profile/juanvisbal.com", "https://social.lol/@juan"]
   bluesky_publication = "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/site.standard.publication/3mnijwuss6v2n"
 
   [params.blog]
-    title = "Juanse's Blog"
+    # Feed title; the section itself is just "Blog" (content/blog/_index.md)
+    title = "Juan Visbal · Blog"
 
   [params.author]
     name = "Juanse Visbal"

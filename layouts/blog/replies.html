@@ -1,29 +1,22 @@
 {{ define "main" }}
-	<div class="profile">
-		<section id="wrapper">
-			<header>
-				<h1 class="p-name">{{ .Title }}</h1>
-			</header>
-		</section>
-	</div>
-
-	{{/* Replies exported from Micro.blog (data/replies_*.json, JSON Feed). They live on Bluesky/Micro.blog; each links back to the original. */}}
-	{{ $items := slice }}
-	{{ range $k, $feed := hugo.Data.blog }}
-		{{ if hasPrefix $k "replies_" }}{{ $items = $items | append $feed.items }}{{ end }}
-	{{ end }}
-	<ul id="post-list">
-	{{ range sort $items "date_published" "desc" }}
-		{{ $date := time .date_published }}
-		<li>
-			<div class="e-content">{{ .content_html | safeHTML }}</div>
-			<a href="{{ .url }}">
-				<aside class="dates">
-					<time datetime="{{ $date.Format "2006-01-02T15:04:05-07:00" }}">→ {{ (time.In "America/Bogota" $date).Format "3:04 PM, Jan 2, 2006" }}</time>
-				</aside>
-			</a>
-		</li>
-		<span class="separator"><span class="divider"></span></span>
-	{{ end }}
-	</ul>
+    <main id="blog-replies">
+      <header>
+        <h2>{{ .Title }}</h2>
+        <div class="description">
+          <p class="p-note">Replies I posted on Bluesky and Micro.blog, kept from the Micro.blog export.</p>
+          {{ partial "blog/subnav.html" . }}
+        </div>
+      </header>
+      {{- $items := slice }}
+      {{- range $k, $feed := hugo.Data.blog }}{{ if hasPrefix $k "replies_" }}{{ $items = $items | append $feed.items }}{{ end }}{{ end }}
+      <ol class="post-list">
+        {{- range sort $items "date_published" "desc" }}
+        {{- $date := time .date_published }}
+        <li>
+          <div class="post-body">{{ .content_html | safeHTML }}</div>
+          <p class="post-date"><a href="{{ .url }}"><time datetime="{{ $date.Format "2006-01-02T15:04:05-07:00" }}">→ {{ (time.In "America/Bogota" $date).Format "Jan 2, 2006 · 3:04 PM" }}</time></a></p>
+        </li>
+        {{- end }}
+      </ol>
+    </main>
 {{ end }}

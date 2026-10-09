@@ -1,0 +1,115 @@
+/* /blog/ pages (layouts/blog/*). Colours come from tokens.css. */
+.container.blog-page {
+  max-width: 66ch;
+  text-align: left;
+}
+
+.container.blog-page .profile {
+  margin-bottom: 1.5rem;
+}
+
+.blog-page main {
+  line-height: 1.6;
+}
+
+.blog-page main a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-subnav {
+  color: var(--text-subtle);
+}
+
+/* Posts (list and single) */
+.post-list {
+  list-style: none;
+}
+
+.post-list > li {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-list > li:first-child {
+  padding-top: 0.25rem;
+}
+
+.post-list > li:last-child {
+  border-bottom: 0;
+}
+
+.blog-page .p-name {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-body > * + * {
+  margin-top: 0.75rem;
+}
+
+.post-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.post-body blockquote {
+  padding-left: 1rem;
+  border-left: 3px solid var(--border);
+  color: var(--text-muted);
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.25rem;
+}
+
+.post-date {
+  margin-top: 0.6rem;
+  font-size: 0.875rem;
+  color: var(--text-subtle);
+}
+
+.blog-page main .post-date a {
+  text-decoration: none;
+}
+
+.blog-page main .post-date a:hover {
+  color: var(--text);
+}
+
+/* Archive */
+.archive-list {
+  list-style: none;
+}
+
+.archive-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.archive-list li:last-child {
+  border-bottom: 0;
+}
+
+.archive-list time {
+  color: var(--text-subtle);
+  margin-right: 0.5rem;
+}
+
+/* Photos */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.75rem;
+}
+
+.photo-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+}

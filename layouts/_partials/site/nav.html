@@ -1,8 +1,13 @@
+{{- $blog := site.GetPage "/blog" -}}
 <nav class="site-nav" aria-label="Site navigation">
         <h1 class="name p-name site-nav__title">
           <a href="/" class="site-nav__home">{{ site.Title }}</a>
           <span aria-hidden="true">/</span>
+          {{- if and (eq .Section "blog") (not .IsSection) }}
+          <a href="{{ $blog.RelPermalink }}" class="site-nav__current">{{ $blog.Title }}</a>
+          {{- else }}
           <span class="site-nav__current">{{ .Title }}</span>
+          {{- end }}
         </h1>
         <details class="site-nav__menu">
           <summary aria-label="Open site navigation"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>

@@ -1,28 +1,19 @@
 {{ define "main" }}
+    <main id="blog" class="h-feed">
+      <header>
+        <h2 class="p-name">{{ .Title }}</h2>
+        <div class="description">
+          <p class="p-note">{{ .Description }}</p>
+          {{ partial "blog/subnav.html" . }}
+        </div>
+      </header>
 
-<ul id="post-list" class="h-feed">
-
-{{ if or .IsHome .Site.Params.paginate_categories }}
-	{{ $paginator := .Paginate (where site.RegularPages "Layout" "post") }}
-	{{ $list := $paginator.Pages }}
-	{{ range $list  }}
-		{{ partial "blog/post-item.html" . }}
-	{{ end }}
-{{ else }}
-	{{ $list := where site.RegularPages "Layout" "post" }}
-	{{ range $list  }}
-		{{ partial "blog/post-item.html" . }}
-	{{ end }}
-{{ end }}
-
-</ul>
-
-{{ if .IsHome }}
-	{{ if .Site.Params.paginate_home }}
-		{{ partial "blog/pagination" . }}
-	{{ end }}
-{{ else if .Site.Params.paginate_categories }}
-	{{ partial "blog/pagination" . }}
-{{ end }}
-
+      <ol class="post-list">
+        {{- range where site.RegularPages "Layout" "post" }}
+        <li class="h-entry">
+          {{ partial "blog/entry.html" (dict "page" . "list" true) }}
+        </li>
+        {{- end }}
+      </ol>
+    </main>
 {{ end }}

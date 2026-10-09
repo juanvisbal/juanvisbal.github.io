@@ -8,7 +8,7 @@ Personal website. Every page has a Markdown version at the same path with a `.md
 ## Pages
 
 - [Home]({{ (.OutputFormats.Get "markdown").Permalink }}): Bio and links.
-{{- range site.Menus.main }}{{ with site.GetPage .URL }}{{ if not .IsHome }}
+{{- range site.Menus.main }}{{ with site.GetPage .URL }}{{ if and (not .IsHome) (.OutputFormats.Get "markdown") }}
 - [{{ .Title }}]({{ (.OutputFormats.Get "markdown").Permalink }}): {{ .Params.llms }}
 {{- end }}{{ end }}{{ end }}
 

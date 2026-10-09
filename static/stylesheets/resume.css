@@ -50,8 +50,8 @@
 #resume-content table {
   width: 100%;
   border-collapse: collapse;
-  border: 1px solid #d9d9d9;
-  background: #f0f0f0;
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
   border-radius: 8px;
   overflow: hidden;
   margin-top: 0.35rem;
@@ -62,7 +62,7 @@
   text-align: left;
   vertical-align: top;
   padding: 0.75rem 0.8rem;
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid var(--border-strong);
 }
 
 #resume-content tr:last-child td {
@@ -72,8 +72,8 @@
 #resume-content th {
   width: 34%;
   font-weight: 600;
-  border-right: 1px solid #d9d9d9;
-  background: rgba(0, 0, 0, 0.03);
+  border-right: 1px solid var(--border-strong);
+  background: var(--table-head);
 }
 
 #resume-content a {
@@ -83,7 +83,7 @@
 
 #resume-content .footnote {
   margin-top: 0;
-  color: #777;
+  color: var(--text-subtle);
   font-size: 0.92rem;
 }
 
@@ -95,25 +95,4 @@
 
 .resume-actions .link-button {
   width: auto;
-}
-
-@media (prefers-color-scheme: dark) {
-  #resume-content table {
-    background: #212d2d;
-    border-color: #303c3d;
-  }
-
-  #resume-content th,
-  #resume-content td {
-    border-bottom-color: #303c3d;
-  }
-
-  #resume-content th {
-    border-right-color: #303c3d;
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  #resume-content .footnote {
-    color: #8b949e;
-  }
 }

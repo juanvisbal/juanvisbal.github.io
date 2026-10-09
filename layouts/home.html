@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  {{ partial "site/theme-head.html" . }}
   <title>{{ site.Title }}</title>
   <meta name="last-modified" content="{{ .Lastmod.UTC.Format "2006-01-02T15:04:05-0700" }}">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
@@ -42,7 +43,7 @@
   <link rel="human-json" href="/human.json" />
   {{ with .OutputFormats.Get "markdown" }}<link rel="alternate" type="text/markdown" title="Markdown version" href="{{ .RelPermalink }}" />{{ end }}
 
-  <link rel="stylesheet" href="./stylesheets/styles.css" />
+  <link rel="stylesheet" href="/stylesheets/styles.css" />
 </head>
 <body>
   <div class="container h-card">

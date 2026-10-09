@@ -1,0 +1,86 @@
+/* Colour tokens for the whole site (main pages and /blog/).
+   Light/dark follows the system, unless the footer toggle stored an override:
+   static/scripts/theme.js sets <meta name="color-scheme"> to "light" or "dark",
+   and the :has() rules below map that to color-scheme, which light-dark() follows.
+   Browsers without light-dark() fall back to the system preference only. */
+:root {
+  --bg-light: #fbfefc;               --bg-dark: #0b120f;
+  --text-light: #000;                --text-dark: #fff;
+  --text-muted-light: #555;          --text-muted-dark: #c9d1d9;
+  --text-subtle-light: #777;         --text-subtle-dark: #8b949e;
+  --surface-light: #f0f0f0;          --surface-dark: #212d2d;
+  --surface-hover-light: #e0e0e0;    --surface-hover-dark: #303c3d;
+  --border-light: #d9d9d9;           --border-dark: #30363d;
+  --border-strong-light: #d9d9d9;    --border-strong-dark: #303c3d;
+  --menu-bg-light: #fff;             --menu-bg-dark: #0d1712;
+  --menu-shadow-light: rgba(0, 0, 0, 0.08);   --menu-shadow-dark: rgba(0, 0, 0, 0.35);
+  --panel-light: rgba(0, 0, 0, 0.02);         --panel-dark: rgba(255, 255, 255, 0.03);
+  --table-head-light: rgba(0, 0, 0, 0.03);    --table-head-dark: rgba(255, 255, 255, 0.04);
+  --header-text-light: #000;         --header-text-dark: #8b949e;
+  --note-light: #555;                --note-dark: #8b949e;
+
+  --bg: var(--bg-light);
+  --text: var(--text-light);
+  --text-muted: var(--text-muted-light);
+  --text-subtle: var(--text-subtle-light);
+  --surface: var(--surface-light);
+  --surface-hover: var(--surface-hover-light);
+  --border: var(--border-light);
+  --border-strong: var(--border-strong-light);
+  --menu-bg: var(--menu-bg-light);
+  --menu-shadow: var(--menu-shadow-light);
+  --panel: var(--panel-light);
+  --table-head: var(--table-head-light);
+  --header-text: var(--header-text-light);
+  --note: var(--note-light);
+
+  color-scheme: light dark;
+}
+
+/* Fallback for browsers without light-dark(): follow the system preference. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg-dark);
+    --text: var(--text-dark);
+    --text-muted: var(--text-muted-dark);
+    --text-subtle: var(--text-subtle-dark);
+    --surface: var(--surface-dark);
+    --surface-hover: var(--surface-hover-dark);
+    --border: var(--border-dark);
+    --border-strong: var(--border-strong-dark);
+    --menu-bg: var(--menu-bg-dark);
+    --menu-shadow: var(--menu-shadow-dark);
+    --panel: var(--panel-dark);
+    --table-head: var(--table-head-dark);
+    --header-text: var(--header-text-dark);
+    --note: var(--note-dark);
+  }
+}
+
+@supports (color: light-dark(white, black)) {
+  :root {
+    --bg: light-dark(var(--bg-light), var(--bg-dark));
+    --text: light-dark(var(--text-light), var(--text-dark));
+    --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
+    --text-subtle: light-dark(var(--text-subtle-light), var(--text-subtle-dark));
+    --surface: light-dark(var(--surface-light), var(--surface-dark));
+    --surface-hover: light-dark(var(--surface-hover-light), var(--surface-hover-dark));
+    --border: light-dark(var(--border-light), var(--border-dark));
+    --border-strong: light-dark(var(--border-strong-light), var(--border-strong-dark));
+    --menu-bg: light-dark(var(--menu-bg-light), var(--menu-bg-dark));
+    --menu-shadow: light-dark(var(--menu-shadow-light), var(--menu-shadow-dark));
+    --panel: light-dark(var(--panel-light), var(--panel-dark));
+    --table-head: light-dark(var(--table-head-light), var(--table-head-dark));
+    --header-text: light-dark(var(--header-text-light), var(--header-text-dark));
+    --note: light-dark(var(--note-light), var(--note-dark));
+  }
+}
+
+/* The toggle's override (via <meta name="color-scheme">). */
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  color-scheme: dark;
+}
+
+:root:has(> head > meta[name="color-scheme"][content="light"]) {
+  color-scheme: light;
+}

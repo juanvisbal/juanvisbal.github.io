@@ -2,47 +2,39 @@
 .interactions {
   margin: 2rem 0 1.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--border);
 }
 
 .interactions .heart-button {
   font: inherit;
   padding: 0.35rem 0.8rem;
-  border: 1px solid var(--color-control-border);
+  border: 1px solid var(--border-strong);
   border-radius: 999px;
-  background: var(--color-control-bg);
-  color: var(--color-control-text);
+  background: var(--surface);
+  color: var(--text);
   cursor: pointer;
 }
 
 .interactions .heart-button:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: var(--surface-hover);
 }
 
 .interactions .heart-button:disabled {
   cursor: default;
-  border-color: var(--accent-text);
+  border-color: var(--text-subtle);
 }
 
-.interactions .visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
 
 .interactions .comments-title {
   margin: 1.5rem 0 0.25rem;
-  color: var(--color-text-strong);
+  color: var(--text);
 }
 
 .interactions .comments-reply,
 .interactions .comments-status,
 .interactions .comment-footer,
 .interactions .comment-handle {
-  color: var(--color-text-muted);
+  color: var(--text-subtle);
   font-size: 0.9em;
 }
 

@@ -1,9 +1,0 @@
-<style>
-/* Hugo/Micro.blog defaults apply only before the user picks an accent in the browser */
-:root:not([data-accent]) {
-	--accent-text: {{ .Site.Params.alpine_accent_text_color | default "#f29c38" }};
-	--accent-hover: {{ .Site.Params.alpine_hover_background_color | default "#fffee4" }};
-	--accent-link-bg: color-mix(in srgb, {{ .Site.Params.alpine_accent_text_color | default "#f29c38" }} 22%, transparent);
-	--accent-link-bg-hover: color-mix(in srgb, {{ .Site.Params.alpine_accent_text_color | default "#f29c38" }} 35%, transparent);
-}
-</style>

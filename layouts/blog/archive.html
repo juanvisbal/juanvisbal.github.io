@@ -1,18 +1,19 @@
 {{ define "main" }}
-
-	{{ $list := (where site.RegularPages "Layout" "post") }}
-	<div class="h-feed">
-		{{ range $list }}
-	
-			<p class="h-entry">
-				<a href="{{ .Permalink }}" class="u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">{{ .Date.Format "2006-01-02" }}</time></a>:
-				{{ if .Title }}
-					<span class="p-name"><b>{{ .Title }}</b></span> 
-				{{ end }}
-				<span class="p-summary">{{ .Summary | plainify | htmlUnescape | truncate 100 }}</span>
-			</p>
-			
-		{{ end }}
-	</div>
-
+    <main id="blog-archive" class="h-feed">
+      <header>
+        <h2 class="p-name">{{ .Title }}</h2>
+        <div class="description">
+          <p class="p-note">Every post, newest first.</p>
+          {{ partial "blog/subnav.html" . }}
+        </div>
+      </header>
+      <ul class="archive-list">
+        {{- range where site.RegularPages "Layout" "post" }}
+        <li class="h-entry">
+          <a href="{{ .RelPermalink }}" class="u-url"><time class="dt-published" datetime="{{ .Date.Format "2006-01-02T15:04:05-07:00" }}">{{ .Date.Format "2006-01-02" }}</time></a>
+          {{ with .Title }}<span class="p-name">{{ . }}</span>{{ else }}<span class="p-summary">{{ .Summary | plainify | htmlUnescape | truncate 100 }}</span>{{ end }}
+        </li>
+        {{- end }}
+      </ul>
+    </main>
 {{ end }}

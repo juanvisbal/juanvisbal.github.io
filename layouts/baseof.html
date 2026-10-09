@@ -1,20 +1,24 @@
+{{- $blog := eq .Section "blog" -}}
+{{- $title := .Title | default (.Summary | plainify | htmlUnescape | truncate 60) -}}
+{{- $description := .Description | default (.Summary | plainify | htmlUnescape | truncate 160) -}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ .Title }} · {{ site.Title }}</title>
+  {{ partial "site/theme-head.html" . }}
+  <title>{{ $title }} · {{ site.Title }}</title>
 
   <meta name="author" content="{{ site.Title }}" />
-  <meta name="description" content="{{ .Description }}" />
-  <meta property="og:title" content="{{ .Title }} · {{ site.Title }}" />
-  <meta property="og:description" content="{{ .Description }}" />
+  <meta name="description" content="{{ $description }}" />
+  <meta property="og:title" content="{{ $title }} · {{ site.Title }}" />
+  <meta property="og:description" content="{{ $description }}" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="./images/profile.png" />
+  <meta property="og:image" content="{{ (index (.Params.images | default (slice "/images/profile.png")) 0) | absURL }}" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
-  <link rel="shortcut icon" href="./images/favicons/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" href="/images/favicons/favicon.ico">
   <link rel="human-json" href="/human.json" />
   {{- with .OutputFormats.Get "opml" }}
   <link rel="alternate" type="text/x-opml" title="{{ site.Title }} {{ $.Title }} OPML" href="{{ .RelPermalink }}" />
@@ -22,18 +26,22 @@
   {{- with .OutputFormats.Get "markdown" }}
   <link rel="alternate" type="text/markdown" title="Markdown version" href="{{ .RelPermalink }}" />
   {{- end }}
+  {{- if $blog }}
+  {{ partial "blog/head.html" . }}
+  {{- end }}
 
-  <link rel="stylesheet" href="./stylesheets/styles.css" />
-  <link rel="stylesheet" href="./stylesheets/pages.css" />
+  <link rel="stylesheet" href="/stylesheets/styles.css" />
+  <link rel="stylesheet" href="/stylesheets/pages.css" />
   {{- with .Params.stylesheet }}
-  <link rel="stylesheet" href="./stylesheets/{{ . }}" />
+  <link rel="stylesheet" href="/stylesheets/{{ . }}" />
   {{- end }}
 </head>
 <body class="content-page">
-  <div class="container {{ with .Params.container_class }}{{ . }}{{ else }}{{ with .File }}{{ .ContentBaseName }}-page{{ end }}{{ end }} h-card">
+  {{- /* Blog pages carry their own h-entry/h-feed markup; the page-wide h-card is for the main pages. */}}
+  <div class="container {{ with .Params.container_class }}{{ . }}{{ else }}{{ with .File }}{{ .ContentBaseName }}-page{{ end }}{{ end }}{{ if not $blog }} h-card{{ end }}">
     <div class="profile">
       {{- if not .Params.hide_photo }}
-      <img src="./images/profile.png" alt="Profile Picture" class="profile-pic u-photo" />
+      <img src="/images/profile.png" alt="Profile Picture" class="profile-pic{{ if not $blog }} u-photo{{ end }}" />
       {{- end }}
       {{ partial "site/nav.html" . }}
       {{- block "profile_note" . }}{{ end }}
@@ -43,14 +51,20 @@
     <hr class="section-separator">
     {{- end }}
     <div class="links page-actions">
+      {{- if and $blog (not .IsSection) }}
+      <a href="/blog/" class="link-button" title="All blog posts">
+        <i class="fa-solid fa-comment"></i> All Posts
+      </a>
+      {{- else }}
       <a href="/" class="link-button" title="Back to homepage">
         <i class="fa-solid fa-house"></i> Back Home
       </a>
+      {{- end }}
     </div>
 
     {{ partial "site/footer.html" . }}
   </div>
 
-  <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+  <script src="/fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
 </body>
 </html>

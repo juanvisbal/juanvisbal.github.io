@@ -1,6 +1,6 @@
 <rss xmlns:source="http://source.scripting.com/" version="2.0">
   <channel>
-    <title>{{ if eq  .Title  site.Params.blog.title }}{{ site.Params.blog.title }}{{ else }}{{ with .Title }}{{.}} on {{ end }}{{ site.Params.blog.title }}{{ end }}</title>
+    <title>{{ site.Params.blog.title }}</title>
     <link>{{ .Permalink }}</link>
     <description></description>
     {{ with .Site.Language.Locale }}

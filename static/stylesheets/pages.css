@@ -20,33 +20,33 @@ body.content-page .footer {
   text-align: left;
 }
 
-body.content-page main.e-content > header {
+body.content-page main > header {
   margin-bottom: 1.35rem;
 }
 
-body.content-page main.e-content > header h2 {
+body.content-page main > header h2 {
   font-size: 1.5rem;
   margin-bottom: 0.3rem;
 }
 
-body.content-page main.e-content > .content-footnote {
-  color: #777;
+body.content-page main > .content-footnote {
+  color: var(--text-subtle);
   font-size: 0.95rem;
   margin: 1rem 0 0;
 }
 
-body.content-page main.e-content > header .description {
+body.content-page main > header .description {
   font-size: 0.98rem;
   margin-bottom: 0.55rem;
-  color: #000;
+  color: var(--header-text);
 }
 
-body.content-page main.e-content > header .description .p-note {
+body.content-page main > header .description .p-note {
   margin-bottom: 10px;
-  color: #555;
+  color: var(--note);
 }
 
-body.content-page main.e-content h3 {
+body.content-page main h3 {
   margin: 0 0 0.75rem;
   font-size: 1.1rem;
 }
@@ -64,13 +64,5 @@ body.content-page main.e-content h3 {
   body.content-page .profile-pic {
     width: 80px;
     height: 80px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  body.content-page main.e-content > header .last-updated,
-  body.content-page main.e-content > header .description,
-  body.content-page main.e-content > header .description .p-note {
-    color: #8b949e;
   }
 }
