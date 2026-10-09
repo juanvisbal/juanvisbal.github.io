@@ -35,21 +35,12 @@
       {{- block "profile_note" . }}{{ end }}
     </div>
     {{ block "main" . }}{{ end }}
-    {{- if not .Params.hide_separator }}
-    <hr class="section-separator">
+    {{- if and $blog (not .IsSection) }}
+    <p class="back-link"><a href="/blog/">← All posts</a></p>
+    {{- else }}
+    <p class="back-link"><a href="/">← Home</a></p>
     {{- end }}
-    <div class="links page-actions">
-      {{- if and $blog (not .IsSection) }}
-      <a href="/blog/" class="link-button" title="All blog posts">
-        <i class="fa-solid fa-comment"></i> All Posts
-      </a>
-      {{- else }}
-      <a href="/" class="link-button" title="Back to homepage">
-        <i class="fa-solid fa-house"></i> Back Home
-      </a>
-      {{- end }}
-    </div>
-
+    <hr class="section-separator">
     {{ partial "site/footer.html" . }}
   </div>
 

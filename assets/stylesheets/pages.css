@@ -16,9 +16,6 @@ body.content-page .profile-pic {
   margin-bottom: 0.75rem;
 }
 
-body.content-page .footer {
-  text-align: left;
-}
 
 body.content-page main > header {
   margin-bottom: 1.35rem;
@@ -51,14 +48,6 @@ body.content-page main h3 {
   font-size: 1.1rem;
 }
 
-.page-actions {
-  margin-top: 2rem;
-}
-
-.page-actions .link-button {
-  font-size: 1rem;
-  padding: 12px 14px;
-}
 
 @media (max-width: 760px) {
   body.content-page .profile-pic {

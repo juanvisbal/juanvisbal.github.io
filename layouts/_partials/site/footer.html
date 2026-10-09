@@ -1,6 +1,8 @@
+{{- $blog := site.GetPage "/blog" -}}
 <footer class="footer">
-      He/They · 🏳️‍🌈 · Bogotá, Colombia
-      <div class="copyright">© {{ now.Year }} <a href="{{ site.BaseURL }}" class="u-url" rel="me">{{ site.Title }}</a>{{ if .IsHome }}. Powered by <a href="https://github.com/juanvisbalco/linkyee" target="_blank" rel="noopener noreferrer">linkyee</a>{{ end }}
-        {{- if eq .Section "blog" }}{{ with site.GetPage "/blog" }} · <a href="{{ (.OutputFormats.Get "rss").RelPermalink }}">RSS</a> · <a href="{{ (.OutputFormats.Get "json").RelPermalink }}">JSON Feed</a>{{ end }}{{ end }}</div>
-      {{ partial "site/theme-toggle.html" . }}
+      <p class="footer__meta">© {{ now.Year }} <a href="{{ site.BaseURL }}" class="u-url" rel="me">{{ site.Title }}</a> · He/They · 🏳️‍🌈 · Bogotá, Colombia{{ if .IsHome }} · Powered by <a href="https://github.com/juanvisbalco/linkyee" target="_blank" rel="noopener noreferrer">linkyee</a>{{ end }}</p>
+      <p class="footer__actions">
+        <a href="{{ ($blog.OutputFormats.Get "rss").RelPermalink }}">RSS</a> · <a href="{{ ($blog.OutputFormats.Get "json").RelPermalink }}">JSON Feed</a>
+        {{ partial "site/theme-toggle.html" . }}
+      </p>
     </footer>

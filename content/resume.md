@@ -7,7 +7,6 @@ llms: Work experience, skills, and education.
 stylesheet: resume.css
 container_class: resume-container
 hide_photo: true
-hide_separator: true
 note: Electronics Engineer · Full-Stack Developer
 summary: "I’m a Full-Stack Web Developer with 10+ years of experience in Ruby on Rails and Shopify, former Head of Engineering for an e-commerce SaaS company, and now Team Leader for the Colombian branch of a leading Shopify Partner."
 roles:

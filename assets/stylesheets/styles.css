@@ -178,9 +178,42 @@ a {
 }
 
 .footer {
-  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
   font-size: 0.875rem;
   color: var(--text-subtle);
+}
+
+/* Home page: centred under the social icons */
+body:not(.content-page) .footer {
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.footer__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer a:hover {
+  color: var(--text);
+}
+
+.back-link {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.back-link a {
+  color: var(--text-subtle);
+}
+
+.back-link a:hover {
+  color: var(--text);
 }
 
 .button-container {
@@ -226,11 +259,6 @@ a {
   color: var(--text-subtle);
 }
 
-.copyright {
-  margin-top: 15px;
-  font-size: 0.75rem;
-}
-
 .section-separator {
   border: 0;
   border-top: 1px solid var(--border);
@@ -245,7 +273,6 @@ a {
 
 /* Light/dark toggle in the footer (layouts/_partials/site/theme-toggle.html, /theme.js) */
 .theme-toggle {
-  margin-top: 12px;
   width: 2rem;
   height: 2rem;
   border: 0;
