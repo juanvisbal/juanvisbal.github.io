@@ -33,3 +33,6 @@ build/
 /resources/
 .hugo_build.lock
 .venv/
+
+# Python
+__pycache__/
