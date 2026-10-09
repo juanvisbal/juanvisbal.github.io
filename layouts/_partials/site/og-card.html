@@ -7,7 +7,8 @@
 {{- if not $p.IsHome }}{{ $crumb = printf "%s / %s" site.Title (cond $blog "Blog" $p.Title) }}{{ end -}}
 {{- $bold := and $blog $p.Title (not $p.IsSection) (eq $p.Layout "post") -}}
 {{- $text := "" -}}
-{{- if $p.IsHome }}{{ $text = $p.Params.bio -}}
+{{- if $p.Params.card_text }}{{ $text = $p.Params.card_text -}}
+{{- else if $p.IsHome }}{{ $text = $p.Params.bio -}}
 {{- else if eq $p.Layout "post" }}{{ $text = $p.Title | default ($p.Summary | plainify | htmlUnescape) -}}
 {{- else }}{{ $text = $p.Params.note | default $p.Description | default $p.Title }}{{ end -}}
 {{- /* The font has no emoji: keep Latin text and common punctuation only. */ -}}

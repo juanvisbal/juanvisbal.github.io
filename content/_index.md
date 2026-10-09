@@ -6,6 +6,8 @@ aliases: ["/blog/about/"]
 description: "👋 I'm Juan from Colombia 🇨🇴, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR. I'm passionate about sustainable innovation in tech."
 lastmod: 2025-01-23T18:55:47+00:00
 bio: "👋 I'm Juan from Colombia 🇨🇴, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR. I'm passionate about sustainable innovation in tech."
+# Text on the link-preview card (layouts/_partials/site/og-card.html); any page can set card_text.
+card_text: "I'm Juan from Colombia, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR."
 links:
   - name: Blog
     url: /blog/
