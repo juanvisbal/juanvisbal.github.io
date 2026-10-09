@@ -427,14 +427,26 @@ def main():
         print("Nothing to cross-post.")
         return
 
-    if DRY_RUN:  # no logins; post() prints and returns before using the session
-        bsky, masto = object.__new__(Bluesky), object.__new__(Mastodon)
-    else:
-        bsky = Bluesky(os.environ["BLUESKY_HANDLE"], os.environ["BLUESKY_APP_PASSWORD"])
-        masto = Mastodon(os.environ["MASTODON_INSTANCE"], os.environ["MASTODON_TOKEN"])
-
+    # Log in only to the networks this run needs, each on its own: if one is
+    # unreachable, the other still gets its posts.
     failures = 0
-    for at_uri in deletions:
+    needs_bsky = bool(deletions) or any(not p.has_block("bluesky") for p in pending)
+    needs_masto = any(not p.has_block("mastodon") for p in pending)
+
+    def login(cls, *env):
+        if DRY_RUN:  # no logins; post() prints and returns before using the session
+            return object.__new__(cls)
+        try:
+            return cls(*(os.environ[k] for k in env))
+        except Exception as e:
+            nonlocal failures
+            failures += 1
+            print(f"  {cls.__name__} login failed, skipping it this run: {e}", file=sys.stderr)
+            return None
+
+    bsky = login(Bluesky, "BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD") if needs_bsky else None
+    masto = login(Mastodon, "MASTODON_INSTANCE", "MASTODON_TOKEN") if needs_masto else None
+    for at_uri in deletions if bsky else []:
         if DRY_RUN:
             print(f"would delete {at_uri}")
             continue
@@ -449,7 +461,7 @@ def main():
         if not DRY_RUN:
             wait_until_live(post.permalink(site))
         for key, client in (("bluesky", bsky), ("mastodon", masto)):
-            if post.has_block(key):
+            if post.has_block(key) or client is None:
                 continue
             try:
                 block = client.post(post, site)
