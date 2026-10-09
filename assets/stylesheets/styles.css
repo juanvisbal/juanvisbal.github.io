@@ -199,6 +199,10 @@ body:not(.content-page) .footer {
   gap: 0.5rem;
 }
 
+.footer__actions .theme-toggle {
+  margin-left: 0.5rem;
+}
+
 .footer a:hover {
   color: var(--text);
 }
