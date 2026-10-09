@@ -14,8 +14,10 @@
   <meta property="og:title" content="{{ $title }} · {{ site.Title }}" />
   <meta property="og:description" content="{{ $description }}" />
   <meta property="og:type" content="article" />
-  {{- $ogImage := "/images/profile.png" }}{{ if $blog }}{{ with partial "blog/first-image.html" . }}{{ $ogImage = . }}{{ end }}{{ end }}
+  {{- $ogImage := "" }}{{ if $blog }}{{ $ogImage = partial "blog/first-image.html" . }}{{ end }}
+  {{- if not $ogImage }}{{ $ogImage = partial "site/og-card.html" . }}{{ end }}
   <meta property="og:image" content="{{ $ogImage | absURL }}" />
+  <meta name="twitter:card" content="summary_large_image" />
   {{- if $blog }}
   {{ partial "blog/head.html" . }}
   {{- end }}

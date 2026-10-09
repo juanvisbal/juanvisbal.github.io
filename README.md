@@ -41,3 +41,7 @@ Colours are tokens in `assets/stylesheets/tokens.css` (`light-dark()`, with a sy
 ## Shared layout pieces
 
 `layouts/_partials/site/`: `head-common.html` (theme setup, favicons, feeds, stylesheet), `nav.html` (breadcrumb + menu), `page-header.html` (title, `note` from front matter, optional intro/subnav), `footer.html` (with the theme toggle), `scripts.html`, `css.html`/`js.html` (fingerprinted assets).
+
+## Link preview cards
+
+Pages and posts without a photo get a generated 1200×630 card (`layouts/_partials/site/og-card.html`): `assets/og/base.png` (background + Memoji) with the page title or post text in JetBrains Mono (`assets/fonts/`, SIL Open Font License). Posts with a photo use the photo.

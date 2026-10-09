@@ -12,6 +12,10 @@ on:
         description: "Only check that both logins work (posts nothing)"
         type: boolean
         default: false
+      bluesky_delete:
+        description: "Bluesky posts to delete first (at:// URIs, space-separated), e.g. to re-post them"
+        type: string
+        default: ""
 permissions:
   contents: write
 concurrency:
@@ -37,6 +41,7 @@ jobs:
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
           SITE_URL: https://juanvisbal.com
           CHECK_LOGIN: ${{ inputs.check_login && '1' || '0' }}
+          BLUESKY_DELETE: ${{ inputs.bluesky_delete }}
         run: .venv/bin/python tools/crosspost.py
 
       # Runs even if one network failed, so the successful posts are recorded

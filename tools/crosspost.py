@@ -12,6 +12,8 @@ Environment:
   SITE_URL                               https://juanvisbal.com
   DRY_RUN=1                              print what would be posted; change nothing
   CHECK_LOGIN=1                          only log in to both networks and print the accounts
+  BLUESKY_DELETE="at://… at://…"         delete these Bluesky posts (yours only) before posting,
+                                         e.g. to re-post them with a link card
 
 Text rules: Mastodon gets the full post (social.lol allows 10,000 characters). Bluesky
 gets the full text if it fits in 300 characters; otherwise a shortened version plus the
@@ -231,6 +233,14 @@ class Bluesky:
                        headers={"Authorization": f"Bearer {self.jwt}", "Content-Type": ctype}, data=data)[1]["blob"]
         return {"alt": alt, "image": blob, "aspectRatio": {"width": size[0], "height": size[1]}}
 
+    def delete(self, at_uri):
+        m = re.match(r"^at://([^/]+)/app\.bsky\.feed\.post/([A-Za-z0-9]+)$", at_uri)
+        if not m or m.group(1) != self.did:
+            raise RuntimeError(f"not one of your posts: {at_uri}")
+        request("POST", f"{self.pds}/xrpc/com.atproto.repo.deleteRecord",
+                headers={"Authorization": f"Bearer {self.jwt}"},
+                json_body={"repo": self.did, "collection": "app.bsky.feed.post", "rkey": m.group(2)})
+
     def link_card(self, uri):
         """app.bsky.embed.external for uri, or None if the page can't be read."""
         try:
@@ -411,7 +421,9 @@ def main():
             continue
         if not post.has_block("bluesky") or not post.has_block("mastodon"):
             pending.append(post)
-    if not pending:
+    pending.sort(key=lambda p: p.date)  # oldest first, so feeds keep the blog's order
+    deletions = os.environ.get("BLUESKY_DELETE", "").split()
+    if not pending and not deletions:
         print("Nothing to cross-post.")
         return
 
@@ -422,6 +434,16 @@ def main():
         masto = Mastodon(os.environ["MASTODON_INSTANCE"], os.environ["MASTODON_TOKEN"])
 
     failures = 0
+    for at_uri in deletions:
+        if DRY_RUN:
+            print(f"would delete {at_uri}")
+            continue
+        try:
+            bsky.delete(at_uri)
+            print(f"deleted {at_uri}")
+        except Exception as e:
+            failures += 1
+            print(f"  delete {at_uri} failed: {e}", file=sys.stderr)
     for post in pending:
         print(f"{post.path} -> {post.permalink(site)}")
         if not DRY_RUN:

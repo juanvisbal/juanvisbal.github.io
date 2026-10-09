@@ -1,0 +1,40 @@
+{{- /* 1200×630 link-preview card for pages and posts without their own photo.
+   assets/og/base.png (background + Memoji) + text in JetBrains Mono (assets/fonts, SIL OFL).
+   Returns the card's permalink. */ -}}
+{{- $p := . -}}
+{{- $blog := eq $p.Section "blog" -}}
+{{- $crumb := site.Title -}}
+{{- if not $p.IsHome }}{{ $crumb = printf "%s / %s" site.Title (cond $blog "Blog" $p.Title) }}{{ end -}}
+{{- $bold := and $blog $p.Title (not $p.IsSection) (eq $p.Layout "post") -}}
+{{- $text := "" -}}
+{{- if $p.IsHome }}{{ $text = $p.Params.bio -}}
+{{- else if eq $p.Layout "post" }}{{ $text = $p.Title | default ($p.Summary | plainify | htmlUnescape) -}}
+{{- else }}{{ $text = $p.Params.note | default $p.Description | default $p.Title }}{{ end -}}
+{{- /* The font has no emoji: keep Latin text and common punctuation only. */ -}}
+{{- $text = replaceRE `[^\x{0020}-\x{024F}\x{2010}-\x{2027}\x{2030}-\x{205E}\x{20AC}]` "" $text | replaceRE `\s+` " " | replaceRE ` ([,.;:!?])` "$1" | strings.TrimSpace -}}
+{{- $size := cond $bold 56 46 -}}
+{{- $maxChars := div 1056 (mul $size 0.6) | int -}}
+{{- $maxLines := 4 -}}
+{{- /* Greedy word wrap (monospace: every character is 0.6em wide). */ -}}
+{{- $lines := slice -}}
+{{- $line := "" -}}
+{{- range split $text " " -}}
+  {{- $try := cond (eq $line "") . (printf "%s %s" $line .) -}}
+  {{- if le (strings.RuneCount $try) $maxChars }}{{ $line = $try }}{{ else }}{{ $lines = $lines | append $line }}{{ $line = . }}{{ end -}}
+{{- end -}}
+{{- if $line }}{{ $lines = $lines | append $line }}{{ end -}}
+{{- if gt (len $lines) $maxLines -}}
+  {{- $last := index $lines (sub $maxLines 1) -}}
+  {{- $last = printf "%s…" (strings.TrimRight " .,;:" (substr $last 0 (sub $maxChars 1))) -}}
+  {{- $lines = (first (sub $maxLines 1) $lines) | append $last -}}
+{{- end -}}
+{{- $bodyFont := resources.Get (cond $bold "fonts/JetBrainsMono-Bold.ttf" "fonts/JetBrainsMono-Regular.ttf") -}}
+{{- $boldFont := resources.Get "fonts/JetBrainsMono-Bold.ttf" -}}
+{{- $regular := resources.Get "fonts/JetBrainsMono-Regular.ttf" -}}
+{{- $filters := slice
+  (images.Text $crumb (dict "font" $boldFont "size" 40 "color" "#000000" "x" 224 "y" 100))
+  (images.Text (delimit $lines "\n") (dict "font" $bodyFont "size" $size "color" "#000000" "x" 72 "y" 232 "linespacing" (cond $bold 16 14)))
+  (images.Text (strings.TrimPrefix "https://" (strings.TrimSuffix "/" site.BaseURL)) (dict "font" $regular "size" 30 "color" "#6b6b6b" "x" 72 "y" 548))
+-}}
+{{- $card := (resources.Get "og/base.png") | images.Filter $filters -}}
+{{- return $card.Permalink -}}

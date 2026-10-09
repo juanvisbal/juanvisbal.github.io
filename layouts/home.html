@@ -20,10 +20,10 @@
   <meta name="description" content="{{ .Description }}" />
   <meta property="og:description" content="{{ .Description }}" />
   <meta property="og:site_name" content="{{ site.Title }}" />
-  <meta property="og:image" content="{{ "images/profile.png" | absURL }}" />
+  <meta property="og:image" content="{{ partial "site/og-card.html" . }}" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="{{ "images/profile.png" | absURL }}" />
+  <meta property="twitter:image" content="{{ partial "site/og-card.html" . }}" />
   <meta property="twitter:title" content="{{ site.Title }}" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png">
