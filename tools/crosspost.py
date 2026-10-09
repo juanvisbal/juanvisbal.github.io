@@ -18,6 +18,7 @@ gets the full text if it fits in 300 characters; otherwise a shortened version p
 link. Titled posts get "Title + link" on both. Up to 4 images are attached, with alt text.
 """
 import datetime as dt
+import html
 import io
 import json
 import os
@@ -27,6 +28,7 @@ import sys
 import time
 import unicodedata
 import urllib.error
+import urllib.parse
 import urllib.request
 import uuid
 
@@ -182,6 +184,36 @@ def graphemes(text):
     return sum(1 for ch in text if not (unicodedata.combining(ch) or ch in "‍︎️"))
 
 
+# ---------------------------------------------------------------- Link cards
+
+def link_preview(url):
+    """Title, description and image URL from a page's Open Graph / <title> / description tags."""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "text/html"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        page = r.read(600_000).decode(r.headers.get_content_charset() or "utf-8", errors="replace")
+        final_url = r.geturl()
+
+    def meta(*names):
+        for name in names:
+            for pattern in (rf'<meta[^>]+(?:property|name)=["\']{name}["\'][^>]*content=["\']([^"\']*)',
+                            rf'<meta[^>]+content=["\']([^"\']*)["\'][^>]*(?:property|name)=["\']{name}["\']'):
+                m = re.search(pattern, page, re.I)
+                if m and m.group(1).strip():
+                    return html.unescape(m.group(1).strip())
+        return ""
+
+    title = meta("og:title", "twitter:title")
+    if not title:
+        m = re.search(r"<title[^>]*>(.*?)</title>", page, re.I | re.S)
+        title = html.unescape(m.group(1).strip()) if m else url
+    image = meta("og:image", "twitter:image")
+    return {
+        "title": title[:300],
+        "description": meta("og:description", "description", "twitter:description")[:1000],
+        "image": urllib.parse.urljoin(final_url, image) if image else "",
+    }
+
+
 # ---------------------------------------------------------------- Bluesky
 
 class Bluesky:
@@ -198,6 +230,29 @@ class Bluesky:
         blob = request("POST", f"{self.pds}/xrpc/com.atproto.repo.uploadBlob",
                        headers={"Authorization": f"Bearer {self.jwt}", "Content-Type": ctype}, data=data)[1]["blob"]
         return {"alt": alt, "image": blob, "aspectRatio": {"width": size[0], "height": size[1]}}
+
+    def link_card(self, uri):
+        """app.bsky.embed.external for uri, or None if the page can't be read."""
+        try:
+            info = link_preview(uri)
+        except Exception as e:
+            print(f"  no link card for {uri}: {e}")
+            return None
+        external = {"uri": uri, "title": info["title"], "description": info["description"]}
+        if info["image"]:
+            try:
+                req = urllib.request.Request(info["image"], headers={"User-Agent": USER_AGENT})
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    raw = r.read(20_000_000)
+                tmp = pathlib.Path("/tmp/crosspost-card")
+                tmp.write_bytes(raw)
+                data, ctype, _ = shrink(tmp, BLUESKY_IMAGE_MAX)
+                external["thumb"] = request("POST", f"{self.pds}/xrpc/com.atproto.repo.uploadBlob",
+                                            headers={"Authorization": f"Bearer {self.jwt}", "Content-Type": ctype},
+                                            data=data)[1]["blob"]
+            except Exception as e:
+                print(f"  link card for {uri} without image: {e}")
+        return {"$type": "app.bsky.embed.external", "external": external}
 
     def post(self, post, site):
         link = post.permalink(site)
@@ -235,9 +290,20 @@ class Bluesky:
         images = post.images()
         if DRY_RUN:
             print(f"  Bluesky ({graphemes(text)} chars, {len(images)} images):\n    " + text.replace("\n", "\n    "))
+            if not images and facets:
+                uri = facets[0]["features"][0]["uri"]
+                try:
+                    print(f"    link card for {uri}: {link_preview(uri)}")
+                except Exception as e:
+                    print(f"    link card for {uri}: none ({e})")
             return None
         if images:
             record["embed"] = {"$type": "app.bsky.embed.images", "images": [self.upload(p, a) for p, a in images]}
+        elif facets:
+            # Bluesky doesn't build link previews itself: attach a card for the first link.
+            card = self.link_card(facets[0]["features"][0]["uri"])
+            if card:
+                record["embed"] = card
         res = request("POST", f"{self.pds}/xrpc/com.atproto.repo.createRecord",
                       headers={"Authorization": f"Bearer {self.jwt}"},
                       json_body={"repo": self.did, "collection": "app.bsky.feed.post", "record": record})[1]
