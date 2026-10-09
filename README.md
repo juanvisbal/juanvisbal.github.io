@@ -9,7 +9,7 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 | To change | Edit | Generated |
 |---|---|---|
 | Home links, bio, socials | `content/_index.md` | `/`, `/index.md` |
-| Now | `content/now.md` (lists in front matter; bump `lastmod`) | `/now.html`, `/now.md` |
+| Now | `content/now.md`: plain Markdown, one `## Heading` + list per card (icons in front matter); bump `lastmod` | `/now.html`, `/now.md` |
 | Resume | `content/resume.md` | `/resume.html`, `/resume.md` |
 | Blogroll | Replace `assets/blogroll.opml` with a NetNewsWire export; bump `lastmod` in `content/blogroll.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml` |
 | Site nav | `[[menus.main]]` in `hugo.toml` | nav menus, `/llms.txt` page list |
