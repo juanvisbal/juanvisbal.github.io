@@ -58,6 +58,26 @@ a {
   text-overflow: ellipsis;
 }
 
+/* Breadcrumb ("Juan Visbal / Now"): one line at every width. The size scales down on
+   phones so the longest crumb fits a 320px screen; anything longer ends in "…". */
+.site-nav .site-nav__title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6em; /* one monospace space between the parts */
+  min-width: 0;
+  white-space: nowrap;
+  font-size: clamp(1.1rem, 5.6vw, 1.75rem);
+}
+
+.site-nav .site-nav__title > * {
+  flex-shrink: 0;
+}
+
+.site-nav .site-nav__title > .site-nav__current {
+  flex-shrink: 1;
+  min-width: 0;
+}
+
 .site-nav__menu {
   position: relative;
 }

@@ -6,7 +6,7 @@
           {{- if and (eq .Section "blog") (not .IsSection) }}
           <a href="{{ $blog.RelPermalink }}" class="site-nav__current">{{ $blog.Title }}</a>
           {{- else }}
-          <span class="site-nav__current">{{ .Title }}</span>
+          <span class="site-nav__current">{{ if eq .Kind "404" }}404{{ else }}{{ .Title }}{{ end }}</span>
           {{- end }}
         </h1>
         <details class="site-nav__menu">

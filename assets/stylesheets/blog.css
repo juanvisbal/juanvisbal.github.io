@@ -11,7 +11,7 @@
 }
 
 .blog-subnav {
-  color: var(--text-subtle);
+  color: var(--header-text);
 }
 
 /* Posts (list and single) */
@@ -32,7 +32,8 @@
   border-bottom: 0;
 }
 
-.blog-page main .p-name {
+.blog-page main article .p-name,
+.blog-page .post-list .p-name {
   font-size: 1.15rem;
   margin-bottom: 0.5rem;
 }
@@ -89,6 +90,7 @@
 
 .archive-list time {
   color: var(--text-subtle);
+  font-size: 0.875rem;
   margin-right: 0.5rem;
 }
 
