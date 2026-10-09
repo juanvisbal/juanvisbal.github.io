@@ -7,7 +7,7 @@
             {{ $p.Content }}
           </div>
           <p class="post-date">
-            <a class="u-url" href="{{ $p.Permalink }}"><time class="dt-published" datetime="{{ $p.Date.Format "2006-01-02T15:04:05-07:00" }}">→ {{ $p.Date.Format "Jan 2, 2006 · 3:04 PM" }}</time></a>
+            <a class="u-url" href="{{ $p.Permalink }}">{{ partial "site/post-date.html" (dict "date" $p.Date "class" "dt-published") }}</a>
           </p>
           <a class="p-author h-card" href="{{ site.Params.author.url }}" hidden>{{ site.Title }}</a>
           {{- with $p.Params.bluesky }}

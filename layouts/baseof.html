@@ -28,15 +28,17 @@
   {{- end }}
 </head>
 <body class="content-page">
+  <a class="skip-link" href="#content">Skip to content</a>
   {{- /* Blog pages carry their own h-entry/h-feed markup; the page-wide h-card is for the main pages. */}}
   <div class="container {{ with .Params.container_class }}{{ . }}{{ else }}{{ with .File }}{{ .ContentBaseName }}-page{{ end }}{{ end }}{{ if not $blog }} h-card{{ end }}">
     <header class="profile">
       {{- if not .Params.hide_photo }}
-      <img src="/images/profile.png" alt="Profile Picture" class="profile-pic{{ if not $blog }} u-photo{{ end }}" />
+      <img src="/images/profile.png" alt="" class="profile-pic{{ if not $blog }} u-photo{{ end }}" />
       {{- end }}
       {{ partial "site/nav.html" . }}
       {{- block "profile_note" . }}{{ end }}
     </header>
+    <div id="content" tabindex="-1"></div>
     {{ block "main" . }}{{ end }}
     {{- if and $blog (not .IsSection) }}
     <nav class="back-link" aria-label="Back"><a href="/blog/">← All posts</a></nav>

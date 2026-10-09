@@ -14,8 +14,8 @@
     {{- with $bsky }} <a href="{{ .link }}">Bluesky</a>{{ end }}
     {{- if and $bsky $masto }} or{{ end }}
     {{- with $masto }} <a href="https://{{ .hostname }}/@{{ .username }}/{{ .id }}">Mastodon</a>{{ end }} and your reply shows up here.</p>
-  <ol class="comment-list" aria-live="polite"></ol>
-  <p class="comments-status"></p>
+  <ol class="comment-list"></ol>
+  <p class="comments-status" role="status"></p>
   {{- end }}
 </section>
 {{ partial "site/js.html" "interactions.js" }}

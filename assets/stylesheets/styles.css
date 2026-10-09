@@ -347,3 +347,19 @@ body:not(.content-page) .footer {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* "Skip to content": hidden until focused with the keyboard */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  z-index: 20;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}

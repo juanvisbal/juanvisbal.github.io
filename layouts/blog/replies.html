@@ -8,7 +8,7 @@
         {{- $date := time .date_published }}
         <li>
           <div class="post-body">{{ .content_html | safeHTML }}</div>
-          <p class="post-date"><a href="{{ .url }}"><time datetime="{{ $date.Format "2006-01-02T15:04:05-07:00" }}">→ {{ (time.In "America/Bogota" $date).Format "Jan 2, 2006 · 3:04 PM" }}</time></a></p>
+          <p class="post-date"><a href="{{ .url }}">{{ partial "site/post-date.html" (dict "date" (time.In "America/Bogota" $date)) }}</a></p>
         </li>
         {{- end }}
       </ol>

@@ -5,7 +5,7 @@
     <main id="resume-content" class="e-content">
       <div class="links resume-actions">
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="link-button" title="Download PDF version">
-          <i class="fa-solid fa-download"></i> Download PDF
+          <i class="fa-solid fa-download"></i> Download PDF{{ partial "site/new-tab.html" }}
         </a>
       </div>
 
@@ -47,7 +47,7 @@
       <h2>Portfolio</h2>
       <ul>
         {{- range .Params.portfolio }}
-        <li>{{ .name }}{{ with .url }} — <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ partial "site/bare-url.html" . }}</a>{{ end }}</li>
+        <li>{{ .name }}{{ with .url }} — <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ partial "site/bare-url.html" . }}{{ partial "site/new-tab.html" }}</a>{{ end }}</li>
         {{- end }}
       </ul>
 
@@ -55,7 +55,7 @@
 
       <p class="footnote">
         <strong>Note:</strong> You can download a printable PDF version of this resume at
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf{{ partial "site/new-tab.html" }}</a>.
       </p>
     </main>
 {{ end }}

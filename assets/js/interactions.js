@@ -36,7 +36,10 @@
   const renderHeart = () => {
     heartCount.textContent = count > 0 ? String(count) : "";
     heartButton.setAttribute("aria-pressed", hearted() ? "true" : "false");
-    heartLabel.textContent = hearted() ? "Remove your heart" : "Send a heart";
+    const total = count === 1 ? "1 heart" : `${count} hearts`;
+    // The visible count comes first, so voice control ("tap 3") matches the name.
+    heartButton.setAttribute("aria-label", count > 0 ? `${total}. ${hearted() ? "Remove your heart" : "Send a heart"}` : (hearted() ? "Remove your heart" : "Send a heart"));
+    heartLabel.textContent = "";
     heartButton.hidden = false;
   };
 
@@ -148,7 +151,7 @@
     const { thread } = await r.json();
     const ownerDid = uri.split("/")[2]; // at://<did>/app.bsky.feed.post/<rkey>
     const out = [];
-    const walk = (node, depth) => {
+    const walk = (node, depth, parentName) => {
       for (const reply of node.replies || []) {
         if (reply.$type !== "app.bsky.feed.defs#threadViewPost") continue;
         const p = reply.post;
@@ -156,7 +159,7 @@
         // except the blog's own author.
         const optedOut = (p.author.labels || []).some((l) => l.val === "!no-unauthenticated");
         if (optedOut && p.author.did !== ownerDid) {
-          walk(reply, depth);
+          walk(reply, depth, parentName);
           continue;
         }
         const rkey = p.uri.split("/").pop();
@@ -170,12 +173,13 @@
           date: new Date(p.record.createdAt || p.indexedAt),
           likes: p.likeCount || 0,
           depth,
+          replyTo: depth > 0 ? parentName : null,
           body: blueskyText(p.record.text || "", p.record.facets),
         });
-        walk(reply, depth + 1);
+        walk(reply, depth + 1, p.author.displayName || p.author.handle);
       }
     };
-    walk(thread, 0);
+    walk(thread, 0, null);
     return out;
   };
 
@@ -185,9 +189,11 @@
     const { descendants } = await r.json();
     const rootId = api.split("/").pop();
     const depthOf = new Map([[rootId, -1]]);
+    const nameOf = new Map();
     return descendants.map((s) => {
       const depth = (depthOf.get(s.in_reply_to_id) ?? -1) + 1;
       depthOf.set(s.id, depth);
+      nameOf.set(s.id, s.account.display_name || s.account.username);
       return {
         network: "Mastodon",
         name: s.account.display_name || s.account.username,
@@ -198,6 +204,7 @@
         date: new Date(s.created_at),
         likes: s.favourites_count || 0,
         depth,
+        replyTo: depth > 0 ? nameOf.get(s.in_reply_to_id) : null,
         body: mastodonContent(s.content || ""),
       };
     });
@@ -214,7 +221,8 @@
       link(c.url, when + " on " + c.network),
       c.likes ? " · " + c.likes + (c.likes === 1 ? " like" : " likes") : "",
     );
-    return el("li", { class: "comment", "data-depth": String(Math.min(c.depth, MAX_DEPTH)) }, meta, el("div", { class: "comment-body" }, c.body), footer);
+    const replyNote = c.replyTo ? el("span", { class: "visually-hidden" }, `Reply to ${c.replyTo}: `) : "";
+    return el("li", { class: "comment", "data-depth": String(Math.min(c.depth, MAX_DEPTH)) }, replyNote, meta, el("div", { class: "comment-body" }, c.body), footer);
   };
 
   const sources = [];
