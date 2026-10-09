@@ -1,12 +1,5 @@
 /* /blog/ pages (layouts/blog/*). Colours come from tokens.css. */
-.container.blog-page {
-  max-width: 66ch;
-  text-align: left;
-}
 
-.container.blog-page .profile {
-  margin-bottom: 1.5rem;
-}
 
 .blog-page main {
   line-height: 1.6;
@@ -39,7 +32,7 @@
   border-bottom: 0;
 }
 
-.blog-page .p-name {
+.blog-page main .p-name {
   font-size: 1.15rem;
   margin-bottom: 0.5rem;
 }

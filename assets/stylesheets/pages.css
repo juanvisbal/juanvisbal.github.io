@@ -6,8 +6,15 @@ body.content-page {
   padding: 20px 0;
 }
 
+/* Every content page: same width and header spacing (the home page is its own centred layout). */
 body.content-page .container {
+  max-width: 66ch;
   margin: 0 auto;
+  text-align: left;
+}
+
+body.content-page .container .profile {
+  margin-bottom: 1.5rem;
 }
 
 body.content-page .profile-pic {

@@ -1,13 +1,6 @@
 /* Resume page-specific styles (class-independent) */
 
-.resume-container {
-  max-width: 60ch;
-  text-align: left;
-}
 
-.resume-container .profile {
-  margin-bottom: 1.5rem;
-}
 
 /* Keep resume body text readable while preserving site header/footer/button style */
 #resume-content,
