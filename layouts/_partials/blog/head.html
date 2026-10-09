@@ -1,0 +1,23 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ partial "blog/theme-init.html" . }}
+  <meta content="{{ .Site.Params.author.name }}" name="author">
+
+  <title>
+      {{- block "title" . -}}
+		{{- site.Params.blog.title -}}
+		{{- if and .Title (ne .Title site.Params.blog.title) }}
+		- {{ .Title }}
+		{{- end -}}
+      {{- end -}}
+  </title>
+
+  <link href="{{ "blog/assets/css/style.css" | relURL }}" rel="stylesheet">
+  <link href="{{ "blog/assets/css/highlight.css" | relURL }}" rel="stylesheet">
+  <link href="{{ "blog/assets/css/alpine.css" | relURL }}" rel="stylesheet">
+  <link href="{{ "blog/assets/css/theme.css" | relURL }}" rel="stylesheet">
+  {{ partialCached "blog/alpine.html" . }}
+  {{ partial "blog/microblog_head.html" . }}
+</head>

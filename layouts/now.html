@@ -1,0 +1,29 @@
+{{ define "main" }}
+    <main id="now" class="e-content">
+      <header>
+        <h2>{{ .Title }}</h2>
+        <div class="description">
+          <p class="p-note">What I’m focused on now.</p>
+          <p>
+            This is a <a class="u-url" rel="me" href="https://nownownow.com/about">now page</a>, and if you have your own site, you should make one too.
+          </p>
+        </div>
+      </header>
+
+      <div class="now-grid">
+        {{- range .Params.sections }}
+        <section class="now-section{{ if .wide }} now-section--wide{{ end }}">
+          <h3><i class="fa-solid {{ .icon }}"></i> {{ .title }}</h3>
+          <ul>
+            {{- range .items }}
+            <li>{{ partial "site/now-link.html" . }}{{ with .by }} by
+              {{ range $i, $a := . }}{{ if $i }} and {{ end }}{{ partial "site/now-link.html" (dict "title" $a.name "url" $a.url) }}{{ end }}{{ end }}</li>
+            {{- end }}
+          </ul>
+        </section>
+        {{- end }}
+      </div>
+
+      {{ partial "site/updated.html" . }}
+    </main>
+{{ end }}

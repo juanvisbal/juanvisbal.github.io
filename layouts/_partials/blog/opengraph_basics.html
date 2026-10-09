@@ -1,0 +1,5 @@
+{{ if .Params.images }}
+	{{ with index .Params.images 0 }}
+		<meta property="og:image" content="{{ . | absURL }}">
+	{{ end }}
+{{ end }}

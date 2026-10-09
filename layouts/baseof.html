@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ .Title }} · {{ site.Title }}</title>
+
+  <meta name="author" content="{{ site.Title }}" />
+  <meta name="description" content="{{ .Description }}" />
+  <meta property="og:title" content="{{ .Title }} · {{ site.Title }}" />
+  <meta property="og:description" content="{{ .Description }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="./images/profile.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./images/favicons/favicon-16x16.png">
+  <link rel="shortcut icon" href="./images/favicons/favicon.ico">
+  <link rel="human-json" href="/human.json" />
+  {{- with .OutputFormats.Get "opml" }}
+  <link rel="alternate" type="text/x-opml" title="{{ site.Title }} {{ $.Title }} OPML" href="{{ .RelPermalink }}" />
+  {{- end }}
+  {{- with .OutputFormats.Get "markdown" }}
+  <link rel="alternate" type="text/markdown" title="Markdown version" href="{{ .RelPermalink }}" />
+  {{- end }}
+
+  <link rel="stylesheet" href="./stylesheets/styles.css" />
+  <link rel="stylesheet" href="./stylesheets/pages.css" />
+  {{- with .Params.stylesheet }}
+  <link rel="stylesheet" href="./stylesheets/{{ . }}" />
+  {{- end }}
+</head>
+<body class="content-page">
+  <div class="container {{ .Params.container_class | default (printf "%s-page" .File.ContentBaseName) }} h-card">
+    <div class="profile">
+      {{- if not .Params.hide_photo }}
+      <img src="./images/profile.png" alt="Profile Picture" class="profile-pic u-photo" />
+      {{- end }}
+      {{ partial "site/nav.html" . }}
+      {{- block "profile_note" . }}{{ end }}
+    </div>
+    {{ block "main" . }}{{ end }}
+    {{- if not .Params.hide_separator }}
+    <hr class="section-separator">
+    {{- end }}
+    <div class="links page-actions">
+      <a href="/" class="link-button" title="Back to homepage">
+        <i class="fa-solid fa-house"></i> Back Home
+      </a>
+    </div>
+
+    {{ partial "site/footer.html" . }}
+  </div>
+
+  <script src="./fontawesome/js/all.js" data-auto-replace-svg="nest"></script>
+</body>
+</html>

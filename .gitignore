@@ -27,3 +27,8 @@ build/
 .idea/
 *.swp
 *.swo
+
+# Hugo
+/public/
+/resources/
+.hugo_build.lock

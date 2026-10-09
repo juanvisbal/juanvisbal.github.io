@@ -1,0 +1,23 @@
+{{ define "main" }}
+    <main id="blogroll" class="e-content">
+      <header>
+        <h2>{{ .Title }}</h2>
+        <div class="description">
+          <p class="p-note">A list of blogs, newsletters, and publications I follow.</p>
+          <p>
+            Inspired by old-school blogrolls. You can subscribe to this same list via
+            <a href="{{ (.OutputFormats.Get "opml").RelPermalink }}">OPML export</a>.
+          </p>
+        </div>
+      </header>
+
+      <h3 class="content-roll-title">Roll</h3>
+      <ul class="blogroll-list">
+        {{- range partial "site/blogroll.html" . }}
+        <li><a href="{{ .htmlUrl }}">{{ .title }}</a> <span>· <a href="{{ .xmlUrl }}" title="RSS feed" aria-label="RSS feed"><i class="fa-solid fa-rss" aria-hidden="true"></i></a></span></li>
+        {{- end }}
+      </ul>
+
+      {{ partial "site/updated.html" . }}
+    </main>
+{{ end }}

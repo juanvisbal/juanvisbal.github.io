@@ -1,0 +1,105 @@
+baseURL = "https://juanvisbal.com/"
+title = "Juan Visbal"
+locale = "en"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+disableHugoGeneratorInject = true
+disableKinds = ["taxonomy", "term"]
+rssLimit = 25
+
+[pagination]
+  pagerSize = 25
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Blog posts: content/blog/YYYY/MM/DD/<slug>.md, served at /blog/YYYY/MM/DD/<slug>.html.
+[[cascade]]
+  layout = "post"
+  [cascade.target]
+    path = "{/blog/20[0-9][0-9]/**}"
+
+[mediaTypes."application/json"]
+  suffixes = ["json"]
+[mediaTypes."text/x-opml"]
+  suffixes = ["opml"]
+
+[outputFormats.RSS]
+  baseName = "feed"
+[outputFormats.JSON]
+  baseName = "feed"
+[outputFormats.ArchiveJSON]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+[outputFormats.PhotosJSON]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+# Markdown copy of each main-site page (/now.html -> /now.md)
+[outputFormats.markdown]
+  mediaType = "text/markdown"
+  isPlainText = true
+  rel = "alternate"
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+[outputFormats.opml]
+  mediaType = "text/x-opml"
+  isPlainText = true
+  rel = "alternate"
+
+[outputs]
+  home = ["HTML", "markdown", "llms"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+[menus]
+  [[menus.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menus.main]]
+    name = "Now"
+    url = "/now.html"
+    weight = 2
+  [[menus.main]]
+    name = "Resume"
+    url = "/resume.html"
+    weight = 3
+  [[menus.main]]
+    name = "Blogroll"
+    url = "/blogroll.html"
+    weight = 4
+  [[menus.blog]]
+    name = "About me"
+    url = "/"
+    weight = 1
+
+[params]
+  description = ""
+  paginate_home = false
+  paginate_categories = false
+  alpine_accent_text_color = "#28a942"
+  alpine_accent_background_color = "#ffffff"
+  alpine_hover_background_color = "#e5ffed"
+  # rel="me" links on blog pages (the main site's home page has its own in the layout)
+  me = ["https://juanvisbal.com/", "https://bsky.app/profile/juanvisbal.com", "https://social.lol/@juan"]
+  bluesky_publication = "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/site.standard.publication/3mnijwuss6v2n"
+
+  [params.blog]
+    title = "Juanse's Blog"
+
+  [params.author]
+    name = "Juanse Visbal"
+    avatar = "/blog/avatar.jpg"
+    url = "https://juanvisbal.com/"
+
+# /now.html, /now.md, /blogroll.opml (sections like /blog/ keep index.html)
+[uglyURLs]
+  "" = true
+  blog = false

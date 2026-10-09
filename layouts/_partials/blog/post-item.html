@@ -1,0 +1,27 @@
+<li>
+<article class="h-entry">
+  {{ if .Title }}
+  <section class="post-body">
+  <header>
+	<h2><a href="{{ .Permalink }}" class="p-name">{{ .Title }}</a></h2>
+  </header>
+  <section class="post-body e-content">
+	{{ .Content }}
+  </section>
+  </section>
+  {{ else }}
+	<div class="e-content">{{ .Content }}</div>
+  {{ end }}
+  <a href="{{ .Permalink }}" class="u-url">
+	<aside class="dates">
+	  <time datetime="{{ .Date.Format "2006-01-02 15:04:05 -0700" }}" class="dt-published">→ {{ .Date.Format "3:04 PM, Jan 2" }}</time>
+	</aside>
+  </a>
+
+  {{ if .Params.bluesky }}
+    <a class="u-syndication" {{ printf "href=%q" .Params.bluesky.url | safeHTMLAttr }} style="display: none;">Also on Bluesky</a>
+  {{ end }}
+	
+</article>
+</li>
+<span class="separator"><span class="divider"></span></span>

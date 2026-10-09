@@ -1,0 +1,61 @@
+{{ define "profile_note" }}
+      <p class="description p-note">{{ .Params.note }}</p>
+{{- end }}
+{{ define "main" }}
+    <div class="links resume-actions">
+      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="link-button" title="Download PDF version">
+        <i class="fa-solid fa-download"></i> Download PDF
+      </a>
+    </div>
+
+    <main id="resume-content" class="e-content">
+      <p>
+        {{ .Params.summary }}
+      </p>
+
+      <h2>Work Experience</h2>
+      {{ range .Params.roles }}
+      <article class="role">
+        <p class="role-title">{{ .title }}</p>
+        <ul>
+          {{- range .items }}
+          <li>{{ . }}</li>
+          {{- end }}
+        </ul>
+      </article>
+      {{ end }}
+      <h2>Skills</h2>
+      {{ partial "site/table.html" .Params.skills }}
+
+      <h2>Education & Training</h2>
+      <ul>
+        {{- range .Params.education }}
+        <li>{{ . }}</li>
+        {{- end }}
+      </ul>
+
+      <h2>Languages</h2>
+      <ul>
+        {{- range .Params.languages }}
+        <li>{{ . }}</li>
+        {{- end }}
+      </ul>
+
+      <h2>About</h2>
+      {{ partial "site/table.html" .Params.about }}
+
+      <h2>Portfolio</h2>
+      <ul>
+        {{- range .Params.portfolio }}
+        <li>{{ .name }}{{ with .url }} — <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ partial "site/bare-url.html" . }}</a>{{ end }}</li>
+        {{- end }}
+      </ul>
+
+      <hr class="section-separator">
+
+      <p class="footnote">
+        <strong>Note:</strong> You can download a printable PDF version of this resume at
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf</a>.
+      </p>
+    </main>
+{{ end }}

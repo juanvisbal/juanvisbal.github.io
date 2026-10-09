@@ -1,0 +1,25 @@
+{{- $blog := site.GetPage "/blog" -}}
+# {{ site.Title }}
+
+> Software engineer and Shopify Expert from Colombia with 10+ years of experience. Tech Lead at SLTWTR.
+
+Personal website. Every page has a Markdown version at the same path with a `.md` extension.
+
+## Pages
+
+- [Home]({{ (.OutputFormats.Get "markdown").Permalink }}): Bio and links.
+{{- range site.Menus.main }}{{ with site.GetPage .URL }}{{ if not .IsHome }}
+- [{{ .Title }}]({{ (.OutputFormats.Get "markdown").Permalink }}): {{ .Params.llms }}
+{{- end }}{{ end }}{{ end }}
+
+## Blog
+
+- [{{ site.Params.blog.title }}]({{ $blog.Permalink }})
+- [RSS feed]({{ ($blog.OutputFormats.Get "rss").Permalink }})
+- [JSON Feed]({{ ($blog.OutputFormats.Get "json").Permalink }})
+
+## Optional
+
+- [Resume PDF]({{ "resume.pdf" | absURL }})
+- [Blogroll OPML]({{ ((site.GetPage "/blogroll").OutputFormats.Get "opml").Permalink }})
+- [human.json]({{ "human.json" | absURL }}): Sites I vouch for.

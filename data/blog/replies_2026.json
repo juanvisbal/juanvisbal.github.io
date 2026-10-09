@@ -1,0 +1,228 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Micro.blog - Replies",
+  "home_page_url": "https://micro.blog/",
+  "feed_url": "https://micro.blog/account/export/replies",
+  "_microblog": {
+    "about": "https://micro.blog/about/api",
+    "id": "1886708",
+    "username": "juanvisbal"
+  },
+  "author": {
+    "name": "Juanse Visbal",
+    "url": "https://juanvisbal.com",
+    "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg"
+  },
+  "items": [
+    {
+      "id": "91858028",
+      "content_html": "<p><a href=\"https://micro.blog/manton\">@manton</a> what don’t you like about Anthropic?</p>\n",
+      "url": "https://micro.blog/juanvisbal/91858028",
+      "date_published": "2026-06-09T20:36:03+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91932981",
+      "content_html": "<p><a href=\"https://micro.blog/manton\">@manton</a> I echo your sentiment. Actions speak louder than words and was disappointed when this crackdown happened. But my company decided to switch 100% to Claude, so I’m giving it a go.</p>\n<p>On a funnier note, found this post thought you’d find amusing:<br>\n<a href=\"https://samwilkinson.io/posts/2026-06-09-anthropics-model-naming-extrapolated\">samwilkinson.io/posts/202…</a></p>\n",
+      "url": "https://micro.blog/juanvisbal/91932981",
+      "date_published": "2026-06-10T21:39:13+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94407943",
+      "content_html": "<p><a href=\"http://matt.bsky.social\">@matt.bsky.social</a> <a href=\"http://matt.bsky.social\">@matt.bsky.social</a><br>\nBroke: Anne Hathaway’s speech in Interstellar was misogynistic<br>\nWoke: Hating Anne Hathaway’s speech in Interstellar is misogynistic</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mqt4z262xat6",
+      "date_published": "2026-07-17T06:34:01+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94407942",
+      "content_html": "<p><a href=\"http://waitingforthetrade.bsky.social\">@waitingforthetrade.bsky.social</a> <a href=\"http://waitingforthetrade.bsky.social\">@waitingforthetrade.bsky.social</a> the way this exactly like in the comics is sending me.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mqxv7amrhv3n",
+      "date_published": "2026-07-19T03:57:38+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94483532",
+      "content_html": "<p><a href=\"http://juanvisbal.com\">@juanvisbal.com</a> <a href=\"http://matt.bsky.social\">@matt.bsky.social</a> wow didn’t know, thank you!</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mrb7xhs7fm6j",
+      "date_published": "2026-07-22T21:04:06+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94614626",
+      "content_html": "<p><a href=\"http://noahsryan.bsky.social\">@noahsryan.bsky.social</a> <a href=\"http://noahsryan.bsky.social\">@noahsryan.bsky.social</a> also the low frame rates, looks choppy af</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mrdyfvwuzpuv",
+      "date_published": "2026-07-23T23:27:00+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94614625",
+      "content_html": "<p><a href=\"http://afterdarkalexi.bsky.social\">@afterdarkalexi.bsky.social</a> <a href=\"http://afterdarkalexi.bsky.social\">@afterdarkalexi.bsky.social</a> I wouldn’t go that far, but he does struggle with romance and desire a lot—his movies are very sexless.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mrgdi2rcba7k",
+      "date_published": "2026-07-24T21:50:22+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94614624",
+      "content_html": "<p><a href=\"http://afterdarkalexi.bsky.social\">@afterdarkalexi.bsky.social</a> <a href=\"http://afterdarkalexi.bsky.social\">@afterdarkalexi.bsky.social</a> I was so shocked (and pissed) seeing Catwoman in TDKR.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mrgj7mytryzh",
+      "date_published": "2026-07-24T23:33:02+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94648920",
+      "content_html": "<p><a href=\"http://meakoopa.bsky.social\">@meakoopa.bsky.social</a> <a href=\"http://meakoopa.bsky.social\">@meakoopa.bsky.social</a> alternatively where can I get a brat toast?</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mrie6bkfkmg4",
+      "date_published": "2026-07-25T17:08:07+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "94713491",
+      "content_html": "<p><a href=\"http://waitingforthetrade.bsky.social\">@waitingforthetrade.bsky.social</a> <a href=\"http://waitingforthetrade.bsky.social\">@waitingforthetrade.bsky.social</a><br>\nGollocke</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mrkw3u5a4x3s",
+      "date_published": "2026-07-26T17:34:13+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "95199689",
+      "content_html": "<p><span class=\"h-card\"><a href=\"https://micro.blog/macmanx@social.lol\" class=\"u-url mention\">@macmanx</a></span> definitely! It’ll make a great story for a later season. But I was bewildered that her first official appearance is so brief and then she’s unceremoniously killed off for a Piotr storyline.</p>\n",
+      "url": "https://micro.blog/juanvisbal/95199689",
+      "date_published": "2026-08-04T21:15:36+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "95204015",
+      "content_html": "<p><a href=\"http://juanvisbal.com\">@juanvisbal.com</a> The logo itself is very old and doesn’t fit with the website design; at the minimum, it needs some updates.</p>\n<p>The other two, like I said, are fine for a profile picture but feel generic and impersonal for defining a personal brand.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3msbxq3337m2c",
+      "date_published": "2026-08-04T21:34:38+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "95204014",
+      "content_html": "<p><a href=\"http://theverge.com\">@theverge.com</a> Signal is more akin to WhatsApp than Discord, and is more secure than either of them.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3msc2jassnt24",
+      "date_published": "2026-08-04T22:24:30+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "97884901",
+      "content_html": "<p><a href=\"http://gailsimone.bsky.social\">@gailsimone.bsky.social</a> Gowns, beautiful gowns</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mvuyc64qzx2k",
+      "date_published": "2026-09-19T15:20:54+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "98566635",
+      "content_html": "<p><a href=\"http://twinky-twunk.bsky.social\">@twinky-twunk.bsky.social</a> 🙋🏻</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mwp2fvn6gx2i",
+      "date_published": "2026-09-30T00:08:01+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    }
+  ]
+}

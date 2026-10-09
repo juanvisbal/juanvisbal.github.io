@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+{{ partial "blog/head.html" . }}
+<body>
+  {{ partial "blog/header.html" . }}
+  <section id="wrapper">
+	{{ block "main" . }}{{ end }}
+  </section>
+  {{ partial "blog/footer.html" . }}
+  {{ partial "blog/custom_footer.html" . }}
+  {{ partial "blog/theme-controls-script.html" . }}
+		{{ range .Site.Params.plugins_js }}
+			<script src="{{ . }}"></script>
+		{{ end }}
+</body>
+</html>

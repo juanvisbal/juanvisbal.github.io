@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+<ul id="post-list" class="h-feed">
+
+{{ if or .IsHome .Site.Params.paginate_categories }}
+	{{ $paginator := .Paginate (where site.RegularPages "Layout" "post") }}
+	{{ $list := $paginator.Pages }}
+	{{ range $list  }}
+		{{ partial "blog/post-item.html" . }}
+	{{ end }}
+{{ else }}
+	{{ $list := where site.RegularPages "Layout" "post" }}
+	{{ range $list  }}
+		{{ partial "blog/post-item.html" . }}
+	{{ end }}
+{{ end }}
+
+</ul>
+
+{{ if .IsHome }}
+	{{ if .Site.Params.paginate_home }}
+		{{ partial "blog/pagination" . }}
+	{{ end }}
+{{ else if .Site.Params.paginate_categories }}
+	{{ partial "blog/pagination" . }}
+{{ end }}
+
+{{ end }}

@@ -1,0 +1,28 @@
+{
+	"version": "https://jsonfeed.org/version/1",
+	"title": {{ site.Params.blog.title | jsonify }},
+	"icon": "{{ .Site.Params.author.avatar | absURL }}",
+	"home_page_url": "{{ .Parent.Permalink }}",
+	"feed_url": "{{ .Permalink }}index.json",
+	"items": [
+		{{- $list := where .Site.Pages ".Params.photos" "!=" nil -}}
+		{{- $len := (len $list) -}}
+		{{ range $index, $value := $list }}
+			{
+				"id": "{{ .Permalink }}",
+				"title": {{ .Title | jsonify }},
+				{{- $s := .Content | jsonify -}}
+				{{- $s := replace $s "\\u003c" "<" -}}
+				{{- $s := replace $s "\\u003e" ">" -}}
+				{{- $s := replace $s "\\u0026" "&" }}
+				"content_html": {{ $s }},
+				"date_published": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
+				"url": "{{ .Permalink }}",
+				{{ range first 1 .Params.photos }}
+					"image": "{{ . | absURL }}"
+				{{ end }}
+			}
+			{{- if ne (add $index 1) $len -}},{{- end -}}
+		{{ end }}
+	]
+}

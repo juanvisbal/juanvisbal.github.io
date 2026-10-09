@@ -1,0 +1,172 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Micro.blog - Replies",
+  "home_page_url": "https://micro.blog/",
+  "feed_url": "https://micro.blog/account/export/replies",
+  "_microblog": {
+    "about": "https://micro.blog/about/api",
+    "id": "1886708",
+    "username": "juanvisbal"
+  },
+  "author": {
+    "name": "Juanse Visbal",
+    "url": "https://juanvisbal.com",
+    "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg"
+  },
+  "items": [
+    {
+      "id": "91367876",
+      "content_html": "<p><a href=\"http://timkellogg.me\">@timkellogg.me</a> gemini-2.0-you-can-not-advance</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3lku7xcdpqw2n",
+      "date_published": "2025-03-21T03:02:02+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367875",
+      "content_html": "<p><a href=\"http://camcron.bsky.social\">@camcron.bsky.social</a> That second pic is ingrained in my brain.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3lku7zgz5om2e",
+      "date_published": "2025-03-21T03:03:13+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367874",
+      "content_html": "<p><a href=\"http://minamarkh.am\">@minamarkh.am</a> This is genius!</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3lkym22agvl2h",
+      "date_published": "2025-03-22T20:48:57+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367873",
+      "content_html": "<p><a href=\"http://grgo.bsky.social\">@grgo.bsky.social</a> OMG too early spoilers already!!</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3ll3lp76owc26",
+      "date_published": "2025-03-24T01:20:53+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367872",
+      "content_html": "<p><a href=\"http://juanvisbal.com\">@juanvisbal.com</a> Apparently they’re SSRIs and not necessarily anti-depressants. Week 2 and the meds have helped with anxiety but I’ve been feeling depressed again all week.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3luyeaxtjws2v",
+      "date_published": "2025-07-28T00:41:36+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367871",
+      "content_html": "<p><a href=\"http://juanvisbal.com\">@juanvisbal.com</a> Thanks for the advice!</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3luyec4zg4c2v",
+      "date_published": "2025-07-28T00:42:15+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367870",
+      "content_html": "<p><a href=\"http://highluronicacid.bsky.social\">@highluronicacid.bsky.social</a> 😍😍</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3luyeltmwks2v",
+      "date_published": "2025-07-28T00:47:41+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367869",
+      "content_html": "<p><a href=\"http://waitingforthetrade.bsky.social\">@waitingforthetrade.bsky.social</a> JLI?</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3lw6fmnjamc2l",
+      "date_published": "2025-08-12T03:47:12+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367867",
+      "content_html": "<p><a href=\"http://seldo.com\">@seldo.com</a> I think, at the very least, the basics of programming and the languages are essential to becoming a developer, knowing what you need an LLM to output.</p>\n<p>Vibe coding without strong software knowledge can lead to scandals like the Tea App.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3lx727mnw522a",
+      "date_published": "2025-08-25T03:20:55+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367868",
+      "content_html": "<p><a href=\"http://seldo.com\">@seldo.com</a> The unfortunate reality might just be that people are using LLMs are a way to sidestep learning instead of a learning tool. Seen too many using it to cheat or use the outputted code at face value.</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3lx727m6zl22a",
+      "date_published": "2025-08-25T03:20:55+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    },
+    {
+      "id": "91367866",
+      "content_html": "<p><a href=\"http://gailsimone.bsky.social\">@gailsimone.bsky.social</a> Gambit<br>\nWolverine<br>\nRogue<br>\nNightcrawler<br>\nJubilee</p>\n",
+      "url": "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3lxczko7mks2i",
+      "date_published": "2025-08-26T17:19:51+00:00",
+      "author": {
+        "name": "Juanse Visbal",
+        "url": "https://juanvisbal.com",
+        "avatar": "https://avatars.micro.blog/avatars/2026/10/1886708.jpg",
+        "_microblog": {
+          "username": "juanvisbal"
+        }
+      }
+    }
+  ]
+}
