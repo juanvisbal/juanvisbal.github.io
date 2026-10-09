@@ -1,0 +1,84 @@
+/* Hearts and comments under blog posts (layouts/_partials/blog/interactions.html). */
+.interactions {
+  margin: 2rem 0 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.interactions .heart-button {
+  font: inherit;
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--color-control-border);
+  border-radius: 999px;
+  background: var(--color-control-bg);
+  color: var(--color-control-text);
+  cursor: pointer;
+}
+
+.interactions .heart-button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.interactions .heart-button:disabled {
+  cursor: default;
+  border-color: var(--accent-text);
+}
+
+.interactions .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.interactions .comments-title {
+  margin: 1.5rem 0 0.25rem;
+  color: var(--color-text-strong);
+}
+
+.interactions .comments-reply,
+.interactions .comments-status,
+.interactions .comment-footer,
+.interactions .comment-handle {
+  color: var(--color-text-muted);
+  font-size: 0.9em;
+}
+
+.interactions .comment-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.interactions .comment {
+  margin: 0 0 1.25rem;
+}
+
+.interactions .comment[data-depth="1"] { margin-left: 1.5rem; }
+.interactions .comment[data-depth="2"] { margin-left: 3rem; }
+.interactions .comment[data-depth="3"] { margin-left: 4.5rem; }
+
+.interactions .comment-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.interactions .comment-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.interactions .comment-body p {
+  margin: 0.35rem 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .interactions .comment[data-depth="2"],
+  .interactions .comment[data-depth="3"] { margin-left: 1.5rem; }
+}

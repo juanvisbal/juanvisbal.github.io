@@ -18,6 +18,8 @@
     <a class="u-syndication" {{ printf "href=%q" .Params.bluesky.url | safeHTMLAttr }} style="display: none;">Also on Bluesky</a>
   {{ end }}
 
+  {{ partial "blog/interactions.html" . }}
+
   <section id="post-meta" class="clearfix p-author h-card">
     <a href="/blog/" class="u-url">
   	{{ if .Params.author }}

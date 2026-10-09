@@ -23,3 +23,8 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 - Theme: Minimism (MIT, see `layouts/blog/LICENSE-minimism`), with Micro.blog-only parts removed. Layouts in `layouts/blog/` apply only to `/blog/`; main-site layouts are at the top of `layouts/`.
 - Replies: `data/blog/replies_*.json` (Micro.blog export) at `/blog/replies/`.
 - `tools/import_microblog.py`: the one-off export cleanup.
+
+## Hearts and comments
+
+- Under each post: a ❤️ button and comments merged from the post's Bluesky and Mastodon copies (`layouts/_partials/blog/interactions.html`, `static/blog/assets/js/interactions.js`). Comments load in the browser from the public Bluesky and Mastodon APIs, using the `bluesky`/`mastodon` front matter of each post.
+- Hearts: `functions/openheart/[[path]].js`, a Cloudflare Pages Function implementing [Open Heart](https://openheart.fyi), backed by the D1 database `juanvisbal-hearts` (bound as `HEARTS`; schema in `migrations/`). One heart per visitor per post per day; only a hash of IP + post + day is stored.

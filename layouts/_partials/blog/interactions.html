@@ -1,0 +1,22 @@
+{{- /* Hearts (Open Heart endpoint in functions/openheart/) and replies merged from the post's Bluesky and Mastodon copies. */ -}}
+{{- $bsky := .Params.bluesky -}}
+{{- $masto := .Params.mastodon -}}
+<section id="interactions" class="interactions"
+  data-heart="/openheart{{ .RelPermalink }}"
+  {{- with $bsky }} data-bluesky-post="{{ .url }}" data-bluesky-link="{{ .link }}"{{ end }}
+  {{- with $masto }} data-mastodon-api="https://{{ .hostname }}/api/v1/statuses/{{ .id }}" data-mastodon-link="https://{{ .hostname }}/@{{ .username }}/{{ .id }}"{{ end }}>
+  <button type="button" class="heart-button" aria-pressed="false" hidden>
+    <span aria-hidden="true">❤️</span> <span class="heart-count"></span><span class="visually-hidden"> hearts. Send a heart</span>
+  </button>
+  {{- if or $bsky $masto }}
+  <h3 class="comments-title">Comments</h3>
+  <p class="comments-reply">Reply on
+    {{- with $bsky }} <a href="{{ .link }}">Bluesky</a>{{ end }}
+    {{- if and $bsky $masto }} or{{ end }}
+    {{- with $masto }} <a href="https://{{ .hostname }}/@{{ .username }}/{{ .id }}">Mastodon</a>{{ end }} and your reply shows up here.</p>
+  <ol class="comment-list" aria-live="polite"></ol>
+  <p class="comments-status"></p>
+  {{- end }}
+</section>
+<link rel="stylesheet" href="{{ "blog/assets/css/interactions.css" | relURL }}">
+<script src="{{ "blog/assets/js/interactions.js" | relURL }}" defer></script>
