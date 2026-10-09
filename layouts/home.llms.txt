@@ -1,7 +1,7 @@
 {{- $blog := site.GetPage "/blog" -}}
 # {{ site.Title }}
 
-> Software engineer and Shopify Expert from Colombia with 10+ years of experience. Tech Lead at SLTWTR.
+> Software engineer and Shopify Expert from Colombia with 10+ years of experience. Senior Web Engineer at SLTWTR.
 
 Personal website. Every page has a Markdown version at the same path with a `.md` extension.
 
