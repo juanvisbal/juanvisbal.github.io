@@ -30,7 +30,7 @@
   {{- end }}
 </head>
 <body class="content-page">
-  <div class="container {{ .Params.container_class | default (printf "%s-page" .File.ContentBaseName) }} h-card">
+  <div class="container {{ with .Params.container_class }}{{ . }}{{ else }}{{ with .File }}{{ .ContentBaseName }}-page{{ end }}{{ end }} h-card">
     <div class="profile">
       {{- if not .Params.hide_photo }}
       <img src="./images/profile.png" alt="Profile Picture" class="profile-pic u-photo" />
