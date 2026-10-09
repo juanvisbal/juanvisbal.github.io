@@ -1,6 +1,6 @@
 # juanvisbal.com
 
-Hugo site: the main pages and the blog (`/blog/`, migrated from Micro.blog on 2026-10-08). Built by Cloudflare Pages on every push (production branch `gh-pages`): build command `hugo`, output directory `public`, environment variable `HUGO_VERSION=0.167.0` (the build image default is older than this site needs).
+Hugo site: the main pages and the blog (`/blog/`, migrated from Micro.blog on 2026-10-08). Built by Cloudflare Pages on every push: build command `bash build.sh`, output directory `public`. `build.sh` pins the Hugo version (the build image default is too old for this site).
 
 Preview locally: `hugo server`, then open http://localhost:1313.
 
