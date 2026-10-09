@@ -1,7 +1,7 @@
 {{- $blog := site.GetPage "/blog" -}}
 # {{ site.Title }}
 
-> Software engineer and Shopify Expert from Colombia with 10+ years of experience. Senior Web Engineer at SLTWTR.
+> {{ replaceRE `[^\x{0020}-\x{024F}\x{2010}-\x{205E}]` "" .Params.bio | replaceRE `\s+` " " | replaceRE ` ([,.;:!?])` "$1" | strings.TrimSpace }}
 
 Personal website. Every page has a Markdown version at the same path with a `.md` extension.
 

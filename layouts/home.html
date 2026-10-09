@@ -17,8 +17,8 @@
   <meta property="og:title" content="{{ site.Title }}" />
   <meta name="author" content="{{ site.Title }}" />
   <meta property="og:locale" content="en" />
-  <meta name="description" content="{{ .Description }}" />
-  <meta property="og:description" content="{{ .Description }}" />
+  <meta name="description" content="{{ .Params.bio }}" />
+  <meta property="og:description" content="{{ .Params.bio }}" />
   <meta property="og:site_name" content="{{ site.Title }}" />
   <meta property="og:image" content="{{ partial "site/og-card.html" . }}" />
   <meta property="og:type" content="article" />

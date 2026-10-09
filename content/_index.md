@@ -2,12 +2,10 @@
 title: Juan Visbal
 # Micro.blog's About page (blog.juanvisbal.com/about/ now redirects to /blog/about/)
 aliases: ["/blog/about/"]
-# <meta name="description"> (the visible bio is `bio` below)
-description: "👋 I'm Juan from Colombia 🇨🇴, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR. I'm passionate about sustainable innovation in tech."
 lastmod: 2025-01-23T18:55:47+00:00
+# Your bio: shown on the home page, used as its description (search, link previews, apps like
+# HyperTexting), in llms.txt, and on the link-preview card (as many whole sentences as fit).
 bio: "👋 I'm Juan from Colombia 🇨🇴, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR. I'm passionate about sustainable innovation in tech."
-# Text on the link-preview card (layouts/_partials/site/og-card.html); any page can set card_text.
-card_text: "I'm Juan from Colombia, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR."
 links:
   - name: Blog
     url: /blog/

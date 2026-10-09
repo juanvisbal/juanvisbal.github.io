@@ -7,8 +7,7 @@
 {{- if not $p.IsHome }}{{ $crumb = printf "%s / %s" site.Title (cond $blog "Blog" $p.Title) }}{{ end -}}
 {{- $bold := and $blog $p.Title (not $p.IsSection) (eq $p.Layout "post") -}}
 {{- $text := "" -}}
-{{- if $p.Params.card_text }}{{ $text = $p.Params.card_text -}}
-{{- else if $p.IsHome }}{{ $text = $p.Params.bio -}}
+{{- if $p.IsHome }}{{ $text = $p.Params.bio -}}
 {{- else if eq $p.Layout "post" }}{{ $text = $p.Title | default ($p.Summary | plainify | htmlUnescape) -}}
 {{- else }}{{ $text = $p.Params.note | default $p.Description | default $p.Title }}{{ end -}}
 {{- /* The font has no emoji: keep Latin text and common punctuation only. */ -}}
@@ -24,6 +23,24 @@
   {{- if le (strings.RuneCount $try) $maxChars }}{{ $line = $try }}{{ else }}{{ $lines = $lines | append $line }}{{ $line = . }}{{ end -}}
 {{- end -}}
 {{- if $line }}{{ $lines = $lines | append $line }}{{ end -}}
+{{- /* Too long? Drop whole trailing sentences if the rest still fills 3+ lines; otherwise cut with "…" below. */ -}}
+{{- if gt (len $lines) $maxLines -}}
+  {{- $sentences := findRE `[^.!?]+[.!?]+` $text -}}
+  {{- $n := len $sentences -}}
+  {{- range $i := cond (gt $n 1) (seq (sub $n 1)) slice -}}
+    {{- if gt (len $lines) $maxLines -}}
+      {{- $shorter := delimit (first (sub $n $i) $sentences) "" | strings.TrimSpace -}}
+      {{- $try := slice -}}{{- $l := "" -}}
+      {{- range split $shorter " " -}}
+        {{- $t := cond (eq $l "") . (printf "%s %s" $l .) -}}
+        {{- if le (strings.RuneCount $t) $maxChars }}{{ $l = $t }}{{ else }}{{ $try = $try | append $l }}{{ $l = . }}{{ end -}}
+      {{- end -}}
+      {{- if $l }}{{ $try = $try | append $l }}{{ end -}}
+      {{- /* Use whole sentences only if they still fill most of the card. */ -}}
+      {{- if and (le (len $try) $maxLines) (ge (len $try) (sub $maxLines 1)) }}{{ $lines = $try }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 {{- if gt (len $lines) $maxLines -}}
   {{- $last := index $lines (sub $maxLines 1) -}}
   {{- $last = printf "%s…" (strings.TrimRight " .,;:" (substr $last 0 (sub $maxChars 1))) -}}
