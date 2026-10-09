@@ -27,18 +27,18 @@
 <body class="content-page">
   {{- /* Blog pages carry their own h-entry/h-feed markup; the page-wide h-card is for the main pages. */}}
   <div class="container {{ with .Params.container_class }}{{ . }}{{ else }}{{ with .File }}{{ .ContentBaseName }}-page{{ end }}{{ end }}{{ if not $blog }} h-card{{ end }}">
-    <div class="profile">
+    <header class="profile">
       {{- if not .Params.hide_photo }}
       <img src="/images/profile.png" alt="Profile Picture" class="profile-pic{{ if not $blog }} u-photo{{ end }}" />
       {{- end }}
       {{ partial "site/nav.html" . }}
       {{- block "profile_note" . }}{{ end }}
-    </div>
+    </header>
     {{ block "main" . }}{{ end }}
     {{- if and $blog (not .IsSection) }}
-    <p class="back-link"><a href="/blog/">← All posts</a></p>
+    <nav class="back-link" aria-label="Back"><a href="/blog/">← All posts</a></nav>
     {{- else }}
-    <p class="back-link"><a href="/">← Home</a></p>
+    <nav class="back-link" aria-label="Back"><a href="/">← Home</a></nav>
     {{- end }}
     <hr class="section-separator">
     {{ partial "site/footer.html" . }}

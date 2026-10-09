@@ -96,3 +96,17 @@
 .resume-actions .link-button {
   width: auto;
 }
+
+/* The download button sits inside #resume-content (for the main landmark) but keeps the site's button style. */
+#resume-content .resume-actions,
+#resume-content .resume-actions * {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+}
+
+#resume-content .resume-actions {
+  line-height: normal;
+}
+
+#resume-content .resume-actions a {
+  text-decoration: none;
+}

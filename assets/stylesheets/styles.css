@@ -277,8 +277,13 @@ body:not(.content-page) .footer {
 
 /* Light/dark toggle in the footer (layouts/_partials/site/theme-toggle.html, /theme.js) */
 .theme-toggle {
-  width: 2rem;
-  height: 2rem;
+  /* Same size as the header menu button (.site-nav__menu summary) */
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   border: 0;
   border-radius: 999px;
   background: var(--surface);

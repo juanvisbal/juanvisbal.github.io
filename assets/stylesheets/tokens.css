@@ -7,7 +7,7 @@
   --bg-light: #fbfefc;               --bg-dark: #0b120f;
   --text-light: #000;                --text-dark: #fff;
   --text-muted-light: #555;          --text-muted-dark: #c9d1d9;
-  --text-subtle-light: #777;         --text-subtle-dark: #8b949e;
+  --text-subtle-light: #6b6b6b;      --text-subtle-dark: #8b949e;  /* #777 was 4.41:1 on --bg-light; this is 5.25:1 */
   --surface-light: #f0f0f0;          --surface-dark: #212d2d;
   --surface-hover-light: #e0e0e0;    --surface-hover-dark: #303c3d;
   --border-light: #d9d9d9;           --border-dark: #30363d;

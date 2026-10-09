@@ -36,13 +36,14 @@
 </head>
 <body>
   <div class="container h-card">
+    <main>
     <div class="profile">
       <img src="/images/profile.png" alt="Profile Picture" class="profile-pic u-photo" />
       <h1 class="name p-name">{{ site.Title }}</h1>
       <p class="description p-note">{{ .Params.bio }}</p>
     </div>
 
-    <nav class="links">
+    <nav class="links" aria-label="Pages">
       {{ range .Params.links }}
         {{- if .external }}
         <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="link-button link-button--external" title="{{ .title }}">
@@ -57,7 +58,7 @@
       {{ end }}
     </nav>
 
-    <nav class="button-container">
+    <nav class="button-container" aria-label="Elsewhere">
       <div class="button-group">
         {{ range .Params.elsewhere }}
           {{- if hasPrefix .url "mailto:" }}
@@ -72,6 +73,7 @@
         {{ end }}
       </div>
     </nav>
+    </main>
 
     {{ partial "site/footer.html" . }}
   </div>

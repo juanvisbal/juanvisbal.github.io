@@ -42,6 +42,7 @@
 
 .interactions .comments-title {
   margin: 1.5rem 0 0.25rem;
+  font-size: 1.1rem; /* an h2 for heading order, sized like the old h3 */
   color: var(--text);
 }
 

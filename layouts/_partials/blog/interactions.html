@@ -9,7 +9,7 @@
     <span aria-hidden="true">❤️</span><span class="heart-count"></span><span class="heart-label visually-hidden">Send a heart</span>
   </button>
   {{- if or $bsky $masto }}
-  <h3 class="comments-title">Comments</h3>
+  <h2 class="comments-title">Comments</h2>
   <p class="comments-reply">Reply on
     {{- with $bsky }} <a href="{{ .link }}">Bluesky</a>{{ end }}
     {{- if and $bsky $masto }} or{{ end }}

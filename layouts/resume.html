@@ -2,13 +2,13 @@
       <p class="description p-note">{{ .Params.note }}</p>
 {{- end }}
 {{ define "main" }}
-    <div class="links resume-actions">
-      <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="link-button" title="Download PDF version">
-        <i class="fa-solid fa-download"></i> Download PDF
-      </a>
-    </div>
-
     <main id="resume-content" class="e-content">
+      <div class="links resume-actions">
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="link-button" title="Download PDF version">
+          <i class="fa-solid fa-download"></i> Download PDF
+        </a>
+      </div>
+
       <p>
         {{ .Params.summary }}
       </p>
