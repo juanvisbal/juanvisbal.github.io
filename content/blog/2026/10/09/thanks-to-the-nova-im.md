@@ -5,6 +5,13 @@ mastodon:
   id: "117409551172741268"
   username: "juan"
   hostname: "social.lol"
+bluesky:
+  id: "bafyreifxsscjj3vmo7vmvd4lgptregrnefp7kiygfvb6ivt63vrjlklpva"
+  url: "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/app.bsky.feed.post/3mxgf3saz4m26"
+  link: "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mxgf3saz4m26"
+  handle: "juanvisbal.com"
+  hostname: "bsky.social"
+  did: "did:plc:oe7zju6lj6ggta4rfpqq6mzy"
 ---
 Thanks to the Nova, I’m rediscovering my love of (Pokémon) games.
 
