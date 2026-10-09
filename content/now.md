@@ -41,3 +41,4 @@ wide: [Enjoying]
 - Time with my boyfriend.
 - Learning Japanese.
 - Setting up my workspace.
+- Setting up my home server.
