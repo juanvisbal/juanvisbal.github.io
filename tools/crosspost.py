@@ -37,12 +37,14 @@ BLUESKY_LIMIT = 300
 BLUESKY_IMAGE_MAX = 950_000  # Bluesky's limit is 1,000,000 bytes per image
 MAX_IMAGES = 4
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
+# Cloudflare answers 403 to Python's default User-Agent, so always send our own.
+USER_AGENT = "juanvisbal-crosspost/1.0 (+https://juanvisbal.com/blog/)"
 
 
 # ---------------------------------------------------------------- HTTP helpers
 
 def request(method, url, *, headers=None, data=None, json_body=None, timeout=60):
-    headers = dict(headers or {})
+    headers = {"User-Agent": USER_AGENT, **(headers or {})}
     if json_body is not None:
         data = json.dumps(json_body).encode()
         headers["Content-Type"] = "application/json"
@@ -150,7 +152,19 @@ def to_segments(markdown):
         segments.append((m.group(1), m.group(2)))
         pos = m.end()
     segments.append((s[pos:], None))
-    return [(t, l) for t, l in segments if t]
+    # Bare URLs become links too (Bluesky only makes text clickable via facets).
+    out = []
+    for t, l in segments:
+        if l:
+            out.append((t, l))
+            continue
+        last = 0
+        for m in re.finditer(r"https?://[^\s<>()]+[^\s<>().,;:!?'\"]", t):
+            out.append((t[last:m.start()], None))
+            out.append((m.group(0), m.group(0)))
+            last = m.end()
+        out.append((t[last:], None))
+    return [(t, l) for t, l in out if t]
 
 
 def graphemes(text):
@@ -288,15 +302,21 @@ def shrink(path, max_bytes):
 # ---------------------------------------------------------------- Main
 
 def wait_until_live(url, minutes=10):
+    status = None
     for _ in range(minutes * 4):
+        req = urllib.request.Request(url, method="HEAD", headers={"User-Agent": USER_AGENT})
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=20) as r:
+            with urllib.request.urlopen(req, timeout=20) as r:
                 if r.status == 200:
                     return
-        except urllib.error.HTTPError:
-            pass
+                status = r.status
+        except urllib.error.HTTPError as e:
+            status = e.code
+        except urllib.error.URLError as e:
+            status = str(e.reason)
+        print(f"  waiting for {url} (got {status})")
         time.sleep(15)
-    raise RuntimeError(f"{url} is not live yet")
+    raise RuntimeError(f"{url} is not live yet (last status: {status})")
 
 
 def main():
