@@ -1,0 +1,10 @@
+{{- /* A post's first photo: `photos`/`images` front matter (Micro.blog imports), else the first <img> or ![]() in the post. */ -}}
+{{- $src := "" -}}
+{{- with .Params.photos }}{{ $src = index . 0 }}{{ else }}{{ with .Params.images }}{{ $src = index . 0 }}{{ end }}{{ end -}}
+{{- if not $src -}}
+  {{- with findRESubmatch `<img[^>]*\ssrc="([^"]+)"` .RawContent 1 }}{{ $src = index (index . 0) 1 }}{{ end -}}
+{{- end -}}
+{{- if not $src -}}
+  {{- with findRESubmatch `!\[[^\]]*\]\(([^)\s]+)` .RawContent 1 }}{{ $src = index (index . 0) 1 }}{{ end -}}
+{{- end -}}
+{{- return $src -}}

@@ -5,7 +5,8 @@
 	"home_page_url": "{{ .Parent.Permalink }}",
 	"feed_url": "{{ .Permalink }}index.json",
 	"items": [
-		{{- $list := where .Site.Pages ".Params.photos" "!=" nil -}}
+		{{- $list := slice -}}
+		{{- range where site.RegularPages "Layout" "post" }}{{ if partial "blog/first-image.html" . }}{{ $list = $list | append . }}{{ end }}{{ end -}}
 		{{- $len := (len $list) -}}
 		{{ range $index, $value := $list }}
 			{
@@ -18,9 +19,7 @@
 				"content_html": {{ $s }},
 				"date_published": "{{ .Date.Format "2006-01-02T15:04:05-07:00" }}",
 				"url": "{{ .Permalink }}",
-				{{ range first 1 .Params.photos }}
-					"image": "{{ . | absURL }}"
-				{{ end }}
+				"image": "{{ partial "blog/first-image.html" . | absURL }}"
 			}
 			{{- if ne (add $index 1) $len -}},{{- end -}}
 		{{ end }}

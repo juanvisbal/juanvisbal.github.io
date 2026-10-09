@@ -14,7 +14,8 @@
   <meta property="og:title" content="{{ $title }} · {{ site.Title }}" />
   <meta property="og:description" content="{{ $description }}" />
   <meta property="og:type" content="article" />
-  <meta property="og:image" content="{{ (index (.Params.images | default (slice "/images/profile.png")) 0) | absURL }}" />
+  {{- $ogImage := "/images/profile.png" }}{{ if $blog }}{{ with partial "blog/first-image.html" . }}{{ $ogImage = . }}{{ end }}{{ end }}
+  <meta property="og:image" content="{{ $ogImage | absURL }}" />
   {{- if $blog }}
   {{ partial "blog/head.html" . }}
   {{- end }}

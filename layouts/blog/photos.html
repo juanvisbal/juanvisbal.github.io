@@ -2,9 +2,9 @@
     <main id="blog-photos">
       {{ partial "site/page-header.html" (dict "page" . "subnav" true) }}
       <div class="photo-grid">
-        {{- range where site.RegularPages "Params.photos" "!=" nil }}
+        {{- range where site.RegularPages "Layout" "post" }}
         {{- $p := . }}
-        {{- range first 1 .Params.photos }}
+        {{- with partial "blog/first-image.html" . }}
         <a href="{{ $p.RelPermalink }}"><img src="{{ . }}" alt="{{ $p.Title | default ($p.Summary | plainify | htmlUnescape | truncate 80) }}" loading="lazy" /></a>
         {{- end }}
         {{- end }}

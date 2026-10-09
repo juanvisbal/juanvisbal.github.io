@@ -81,8 +81,18 @@ class Post:
         self.front, self.body = m.group(1), m.group(2)
 
     def field(self, key):
-        m = re.search(rf'^{key}:\s*"?(.*?)"?\s*$', self.front, re.M)
-        return m.group(1) if m else None
+        m = re.search(rf"^{key}:\s*(.*?)\s*$", self.front, re.M)
+        if not m:
+            return None
+        value = m.group(1)
+        if len(value) >= 2 and value[0] == value[-1] == '"':
+            try:  # YAML double-quoted strings use JSON-style escapes (\" and \\)
+                return json.loads(value)
+            except ValueError:
+                return value[1:-1]
+        if len(value) >= 2 and value[0] == value[-1] == "'":
+            return value[1:-1].replace("''", "'")
+        return value
 
     def has_block(self, key):
         return re.search(rf"^{key}:\s*$", self.front, re.M) is not None
