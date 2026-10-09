@@ -1,0 +1,24 @@
+# Juan Visbal
+
+> Software engineer and Shopify Expert from Colombia with 10+ years of experience. Tech Lead at SLTWTR.
+
+Personal website. Every page has a Markdown version at the same path with a `.md` extension.
+
+## Pages
+
+- [Home](https://juanvisbal.com/index.md): Bio and links.
+- [Now](https://juanvisbal.com/now.md): What I'm focused on now.
+- [Resume](https://juanvisbal.com/resume.md): Work experience, skills, and education.
+- [Blogroll](https://juanvisbal.com/blogroll.md): Blogs I follow, with their feeds.
+
+## Blog
+
+- [Juanse's Blog](https://blog.juanvisbal.com/)
+- [RSS feed](https://blog.juanvisbal.com/feed.xml)
+- [JSON Feed](https://blog.juanvisbal.com/feed.json)
+
+## Optional
+
+- [Resume PDF](https://juanvisbal.com/resume.pdf)
+- [Blogroll OPML](https://juanvisbal.com/blogroll.opml)
+- [human.json](https://juanvisbal.com/human.json): Sites I vouch for.
