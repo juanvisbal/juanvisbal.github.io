@@ -6,6 +6,7 @@
           <div class="e-content post-body">
             {{ $p.Content }}
           </div>
+          {{- if $.list }}{{ partial "blog/link-preview.html" $p }}{{ end }}
           <p class="post-date">
             <a class="u-url" href="{{ $p.Permalink }}">{{ partial "site/post-date.html" (dict "date" $p.Date "class" "dt-published") }}</a>
           </p>
