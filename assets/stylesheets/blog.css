@@ -65,7 +65,7 @@
   padding-left: 1.25rem;
 }
 
-/* Link preview card (list page) */
+/* Link preview card (list and single) */
 .link-preview {
   display: flex;
   gap: 0.75rem;
@@ -84,9 +84,12 @@
   background: var(--surface);
 }
 
+/* Square thumbnail: a quarter of the card, 5–8rem. */
 .link-preview img {
   flex: none;
-  width: 5rem;
+  align-self: flex-start;
+  width: clamp(5rem, 25%, 8rem);
+  height: auto;
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 4px;
