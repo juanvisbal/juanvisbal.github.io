@@ -1,0 +1,54 @@
+# HyperTemplates website configuration (https://hypertemplates.net/docs/reference/cms/website/).
+# Everything here is available to layouts as site.* (e.g. site.nav, site.me).
+base_url: https://juanvisbal.com
+title: Juan Visbal
+description: "Juan Visbal: software engineer and Shopify Expert from Colombia."
+byline:
+  name: Juan Visbal
+  href: https://juanvisbal.com/
+  favicon: /images/favicons/favicon-32x32.png
+favicon:
+  href: /images/favicons/favicon-32x32.png
+  size: 32x32
+
+config:
+  content_dir: content
+  data_dir: data
+  static_dir: static
+  plugins_dir: plugins
+  builds_dir: builds
+  # The theme is this repository: layouts/, fragments/, plugins/, types/ and assets/ (CSS, JS).
+  theme: theme.json
+  tidy_mode: true
+  # #hashtags in posts link to auto-generated tag pages (layouts/tag.html).
+  tag_layout: tag
+  tag_path: /tags
+
+# Site menu (fragments/site/nav.html) and the page list in /llms.txt.
+nav:
+  - name: Home
+    url: /
+  - name: Blog
+    url: /blog/
+  - name: Now
+    url: /now.html
+  - name: Resume
+    url: /resume.html
+  - name: Blogroll
+    url: /blogroll.html
+
+# rel="me" links on blog pages (the home page has its own, from content/index.md)
+me:
+  - https://juanvisbal.com/
+  - https://bsky.app/profile/juanvisbal.com
+  - https://social.lol/@juan
+bluesky_publication: "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/site.standard.publication/3mnijwuss6v2n"
+
+blog:
+  # Feed title; the section itself is just "Blog" (content/blog/index.md)
+  title: "Juan Visbal · Blog"
+
+author:
+  name: Juanse Visbal
+  avatar: /blog/avatar.jpg
+  url: https://juanvisbal.com/

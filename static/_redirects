@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects (https://developers.cloudflare.com/pages/configuration/redirects/)
+# Micro.blog's About page (blog.juanvisbal.com/about/ redirects to /blog/about/)
+/blog/about       /  301
+/blog/about/      /  301
+/blog/about.html  /  301

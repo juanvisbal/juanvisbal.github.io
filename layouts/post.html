@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta ht-include="fragments/site/head">
+  <meta ht-include="fragments/site/meta">
+  <meta ht-include="fragments/blog/head">
+  <link ht-apply rel="stylesheet" href="/stylesheets/pages.css?v=${ env.version, build.id }">
+  <link ht-apply rel="stylesheet" href="/stylesheets/blog.css?v=${ env.version, build.id }">
+</head>
+<body class="content-page">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="container blog-page">
+    <header class="profile">
+      <img src="/images/profile.png" alt="" class="profile-pic">
+      <nav ht-include="fragments/site/nav"></nav>
+    </header>
+    <div id="content" tabindex="-1"></div>
+    <main id="post">
+      <article ht-each="post in ${ data.blog.posts }" ht-if="${ post.path } == ${ page.path }" class="h-entry">
+        <h2 ht-apply ht-if="${ post.title }" class="p-name">${ post.title, "" }</h2>
+        <div ht-include="fragments/blog/entry"></div>
+      </article>
+      <section ht-include="fragments/blog/interactions"></section>
+    </main>
+    <nav class="back-link" aria-label="Back"><a href="/blog/">← All posts</a></nav>
+    <hr class="section-separator">
+    <footer ht-include="fragments/site/footer"></footer>
+  </div>
+  <script ht-include="fragments/site/scripts"></script>
+</body>
+</html>

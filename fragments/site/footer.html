@@ -1,0 +1,11 @@
+<footer class="footer">
+  <p ht-apply class="footer__meta">© ${ datefmt(build.date, "yyyy") } <a ht-apply href="${ site.byline.href }" class="u-url" rel="me">${ site.title }</a><span ht-if='${ page.path } == "/"'> · He/They · 🏳️‍🌈 · Bogotá, Colombia</span></p>
+  <p class="footer__actions">
+    <a href="/blog/feed.xml">RSS</a> · <a href="/blog/feed.json">JSON Feed</a>
+    <button type="button" class="theme-toggle" hidden>
+      <span class="theme-toggle__to-dark"><i class="fa-solid fa-moon" aria-hidden="true"></i><span class="visually-hidden">Switch to dark theme</span></span>
+      <span class="theme-toggle__to-light"><i class="fa-solid fa-sun" aria-hidden="true"></i><span class="visually-hidden">Switch to light theme</span></span>
+    </button>
+    <script ht-apply src="/js/theme.js?v=${ env.version, build.id }" defer></script>
+  </p>
+</footer>

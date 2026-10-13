@@ -1,0 +1,18 @@
+# Content type for new blog posts from HyperTemplates apps (HyperTexting) and `hyperctl cms new page`.
+# Posts written by hand go in content/blog/YYYY/MM/DD/<slug>/index.md (see tools/new-post.sh).
+metadata:
+  name: Post
+  description: A blog post. Title optional, like a note.
+  icon: text.bubble
+  action: Post
+spec:
+  layout: post
+  path: /blog/
+  uri_resolver: timestamp
+  format: markdown
+  requires:
+    title: false
+    content: true
+  template:
+    layout: post
+    ugly_url: true

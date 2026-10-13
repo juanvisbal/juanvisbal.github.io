@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  {{ partial "site/head-common.html" . }}
-  <title>{{ site.Title }}</title>
-  <meta name="last-modified" content="{{ .Lastmod.UTC.Format "2006-01-02T15:04:05-0700" }}">
+  <meta charset="UTF-8">
+  <meta ht-include="fragments/site/head">
+  <title ht-apply>${ site.title }</title>
+  <meta ht-apply name="last-modified" content="${ page.updated_at, page.created_at }">
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover">
 
-  <meta property="og:title" content="{{ site.Title }}" />
-  <meta name="author" content="{{ site.Title }}" />
-  <meta property="og:locale" content="en" />
-  <meta name="description" content="{{ .Params.bio }}" />
-  <meta property="og:description" content="{{ .Params.bio }}" />
-  <meta property="og:site_name" content="{{ site.Title }}" />
-  <meta property="og:image" content="{{ "images/home-banner.jpg" | absURL }}" />
-  <meta property="og:type" content="article" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="{{ "images/home-banner.jpg" | absURL }}" />
-  <meta property="twitter:title" content="{{ site.Title }}" />
+  <meta ht-apply property="og:title" content="${ site.title }">
+  <meta ht-apply name="author" content="${ site.title }">
+  <meta property="og:locale" content="en">
+  <meta ht-apply name="description" content="${ page.bio }">
+  <meta ht-apply property="og:description" content="${ page.bio }">
+  <meta ht-apply property="og:site_name" content="${ site.title }">
+  <meta ht-apply property="og:image" content="${ site.base_url }/images/home-banner.jpg">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta ht-apply property="twitter:image" content="${ site.base_url }/images/home-banner.jpg">
+  <meta ht-apply property="twitter:title" content="${ site.title }">
 
   <link rel="manifest" href="/images/favicons/site.webmanifest">
-  <meta name="apple-mobile-web-app-title" content="{{ site.Title }}">
-  <meta name="application-name" content="{{ site.Title }}">
+  <meta ht-apply name="apple-mobile-web-app-title" content="${ site.title }">
+  <meta ht-apply name="application-name" content="${ site.title }">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="msapplication-config" content="/images/favicons/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
@@ -37,46 +34,36 @@
   <a class="skip-link" href="#content">Skip to content</a>
   <div class="container h-card">
     <main id="content" tabindex="-1">
-    <div class="profile">
-      <img src="/images/profile.png" alt="Memoji of Juan Visbal" class="profile-pic u-photo" />
-      <h1 class="name p-name">{{ site.Title }}</h1>
-      <p class="description p-note">{{ .Params.bio }}</p>
-    </div>
-
-    <nav class="links" aria-label="Pages">
-      {{ range .Params.links }}
-        {{- if .external }}
-        <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="link-button link-button--external" title="{{ .title }}">
-          <i class="{{ .icon }}"></i> {{ .name }}
-          <span class="external-link-icon" aria-hidden="true"><i class="fa-solid fa-up-right-from-square"></i></span>{{ partial "site/new-tab.html" }}
-        </a>
-        {{- else }}
-        <a href="{{ .url }}" class="link-button" title="{{ .title }}">
-          <i class="{{ .icon }}"></i> {{ .name }}
-        </a>
-        {{- end }}
-      {{ end }}
-    </nav>
-
-    <nav class="button-container" aria-label="Elsewhere">
-      <div class="button-group">
-        {{ range .Params.elsewhere }}
-          {{- if hasPrefix .url "mailto:" }}
-          <a href="{{ .url }}" title="{{ .title }}" aria-label="{{ .label }}" class="icon-button u-email" rel="{{ .rel | default "me" }}">
-            <i class="{{ .icon }}"></i>
-          </a>
-          {{- else }}
-          <a href="{{ .url }}" title="Juan's {{ .name }}" aria-label="Juan's {{ .name }} (opens in a new tab)" target="_blank" class="icon-button" rel="{{ .rel }} noopener noreferrer">
-            <i class="{{ .icon }}"></i>
-          </a>
-          {{- end }}
-        {{ end }}
+      <div class="profile">
+        <img src="/images/profile.png" alt="Memoji of Juan Visbal" class="profile-pic u-photo">
+        <h1 ht-apply class="name p-name">${ site.title }</h1>
+        <p ht-apply class="description p-note">${ page.bio }</p>
       </div>
-    </nav>
+
+      <nav class="links" aria-label="Pages">
+        <a ht-each="link in ${ page.links }" ht-if="!${ link.external }" href="${ link.url }" class="link-button" title="${ link.title }">
+          <i ht-apply class="${ link.icon }"></i> ${ link.name }
+        </a>
+        <a ht-each="link in ${ page.links }" ht-if="${ link.external }" href="${ link.url }" target="_blank" rel="noopener noreferrer" class="link-button link-button--external" title="${ link.title }">
+          <i ht-apply class="${ link.icon }"></i> ${ link.name }
+          <span class="external-link-icon" aria-hidden="true"><i class="fa-solid fa-up-right-from-square"></i></span><span class="visually-hidden"> (opens in a new tab)</span>
+        </a>
+      </nav>
+
+      <nav class="button-container" aria-label="Elsewhere">
+        <div class="button-group">
+          <a ht-each="item in ${ page.elsewhere }" ht-if='${ item.url } !~ "^mailto:"' href="${ item.url }" title="Juan's ${ item.name }" aria-label="Juan's ${ item.name } (opens in a new tab)" target="_blank" class="icon-button" rel="${ item.rel } noopener noreferrer">
+            <i ht-apply class="${ item.icon }"></i>
+          </a>
+          <a ht-each="item in ${ page.elsewhere }" ht-if='${ item.url } ~= "^mailto:"' href="${ item.url }" title="${ item.title }" aria-label="${ item.label }" class="icon-button u-email" rel='${ item.rel, "me" }'>
+            <i ht-apply class="${ item.icon }"></i>
+          </a>
+        </div>
+      </nav>
     </main>
 
-    {{ partial "site/footer.html" . }}
+    <footer ht-include="fragments/site/footer"></footer>
   </div>
-  {{ partial "site/scripts.html" . }}
+  <script ht-include="fragments/site/scripts"></script>
 </body>
 </html>

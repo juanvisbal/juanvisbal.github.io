@@ -1,0 +1,14 @@
+<nav class="site-nav" aria-label="Site navigation">
+  <h1 class="name p-name site-nav__title">
+    <a ht-apply href="/" class="site-nav__home">${ site.title }</a>
+    <span aria-hidden="true">/</span>
+    <a ht-if='${ page.path } ~= "^/blog/.+"' href="/blog/" class="site-nav__current">Blog</a>
+    <span ht-apply ht-if='${ page.path } !~ "^/blog/.+"' class="site-nav__current">${ page.nav_title, page.title }</span>
+  </h1>
+  <details class="site-nav__menu">
+    <summary aria-label="Open site navigation"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+    <ul>
+      <li ht-each="item in ${ site.nav }"><a ht-apply href="${ item.url }">${ item.name }</a></li>
+    </ul>
+  </details>
+</nav>

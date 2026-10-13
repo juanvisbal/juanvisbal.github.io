@@ -1,0 +1,12 @@
+<title ht-apply ht-if="${ page.title }">${ page.title } · ${ site.title }</title>
+<title ht-apply ht-if="!${ page.title }">${ excerpt(page.summary, page.content, "60") } · ${ site.title }</title>
+<meta ht-apply name="author" content="${ site.title }">
+<meta ht-apply ht-if="${ page.description }" name="description" content="${ page.description }">
+<meta ht-apply ht-if="!${ page.description }" name="description" content='${ excerpt(page.summary, page.content, "160") }'>
+<meta ht-apply ht-if="${ page.title }" property="og:title" content="${ page.title } · ${ site.title }">
+<meta ht-apply ht-if="!${ page.title }" property="og:title" content='${ excerpt(page.summary, page.content, "60") } · ${ site.title }'>
+<meta ht-apply ht-if="${ page.description }" property="og:description" content="${ page.description }">
+<meta ht-apply ht-if="!${ page.description }" property="og:description" content='${ excerpt(page.summary, page.content, "160") }'>
+<meta property="og:type" content="article">
+<meta ht-apply property="og:image" content='${ og_image(data.blog.posts, page.path, site.base_url) }'>
+<meta name="twitter:card" content="summary_large_image">

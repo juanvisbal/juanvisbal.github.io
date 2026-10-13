@@ -1,0 +1,15 @@
+<section ht-apply id="interactions" class="interactions" data-heart="/openheart${ page.path }"
+  data-bluesky-post='${ page.bluesky.url, "" }' data-mastodon-host='${ page.mastodon.hostname, "" }' data-mastodon-id='${ page.mastodon.id, "" }'>
+  <button type="button" class="heart-button" aria-pressed="false" hidden>
+    <span aria-hidden="true">❤️</span><span class="heart-count"></span><span class="heart-label visually-hidden">Send a heart</span>
+  </button>
+  <h2 ht-if="${ page.bluesky.link } OR ${ page.mastodon.id }" class="comments-title">Comments</h2>
+  <p ht-if="${ page.bluesky.link } OR ${ page.mastodon.id }" class="comments-reply">Reply on
+    <a ht-apply ht-if="${ page.bluesky.link }" href="${ page.bluesky.link }">Bluesky</a>
+    <span ht-if="${ page.bluesky.link }" ht-if="${ page.mastodon.id }">or</span>
+    <a ht-apply ht-if="${ page.mastodon.id }" href="https://${ page.mastodon.hostname }/@${ page.mastodon.username }/${ page.mastodon.id }">Mastodon</a>
+    and your reply shows up here.</p>
+  <ol ht-if="${ page.bluesky.link } OR ${ page.mastodon.id }" class="comment-list"></ol>
+  <p ht-if="${ page.bluesky.link } OR ${ page.mastodon.id }" class="comments-status" role="status"></p>
+</section>
+<script ht-apply src="/js/interactions.js?v=${ env.version, build.id }" defer></script>

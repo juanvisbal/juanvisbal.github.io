@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta ht-include="fragments/site/head">
+  <meta ht-include="fragments/site/meta">
+  <meta ht-include="fragments/blog/head">
+  <link ht-apply rel="stylesheet" href="/stylesheets/pages.css?v=${ env.version, build.id }">
+  <link ht-apply rel="stylesheet" href="/stylesheets/blog.css?v=${ env.version, build.id }">
+</head>
+<body class="content-page">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="container blog-page">
+    <header class="profile">
+      <img src="/images/profile.png" alt="" class="profile-pic">
+      <nav ht-include="fragments/site/nav"></nav>
+    </header>
+    <div id="content" tabindex="-1"></div>
+    <main id="blog-archive" class="h-feed">
+      <header>
+        <h2 ht-apply class="p-name">${ page.title }</h2>
+        <div class="description">
+          <p ht-apply ht-if="${ page.note }" class="p-note">${ page.note }</p>
+          <p ht-include="fragments/blog/subnav"></p>
+        </div>
+      </header>
+      <ul class="archive-list">
+        <li ht-each="post in ${ data.blog.posts }" class="h-entry">
+          <a ht-apply href="${ post.path }" class="u-url"><time ht-apply class="dt-published" datetime="${ post.created_at }">${ datefmt(post.created_at, "yyyy-MM-dd") }</time></a>
+          <span ht-apply ht-if="${ post.title }" class="p-name">${ post.title }</span><span ht-apply ht-if="!${ post.title }" class="p-summary">${ excerpt(post.summary, post.body, "100") }</span>
+        </li>
+      </ul>
+    </main>
+    <nav class="back-link" aria-label="Back"><a href="/blog/">← All posts</a></nav>
+    <hr class="section-separator">
+    <footer ht-include="fragments/site/footer"></footer>
+  </div>
+  <script ht-include="fragments/site/scripts"></script>
+</body>
+</html>

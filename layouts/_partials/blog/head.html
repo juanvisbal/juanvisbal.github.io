@@ -1,8 +1,0 @@
-{{- /* Extra <head> tags for /blog/ pages (included by baseof.html). */ -}}
-  {{- range site.Params.me }}
-  <link rel="me" href="{{ . }}" />
-  {{- end }}
-  {{- with site.Params.bluesky_publication }}
-  <link rel="site.standard.publication" href="{{ . | safeURL }}" />
-  {{- end }}
-  {{ partial "site/css.html" "interactions.css" }}

@@ -1,0 +1,3 @@
+<link ht-each="url in ${ site.me }" rel="me" href="${ url }">
+<link ht-apply ht-if="${ site.bluesky_publication }" rel="site.standard.publication" href="${ site.bluesky_publication }">
+<link ht-apply rel="stylesheet" href="/stylesheets/interactions.css?v=${ env.version, build.id }">

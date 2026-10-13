@@ -28,10 +28,11 @@ build/
 *.swp
 *.swo
 
-# Hugo
+# Site build (tools/build.sh)
 /public/
-/resources/
-.hugo_build.lock
+/builds/
+/.bin/
+/data/link_previews.json
 .venv/
 
 # Python

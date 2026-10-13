@@ -1,0 +1,24 @@
+---
+layout: post
+guid: http://juanvisbal.micro.blog/2026/07/30/225726.html
+post_id: 5959535
+created_at: 2026-07-30T22:57:26-05:00
+updated_at: 2026-07-30T22:57:39-05:00
+linkedin:
+  id: "7488805038291656704"
+  activity: "urn:li:activity:7488805038795083776"
+  name: "Juan Visbal"
+mastodon:
+  id: "117012578765439299"
+  username: "juan"
+  hostname: "social.lol"
+bluesky:
+  id: "bafyreibq4akt2tpv3h2gx3ju2s5eaklrmhtjqkbttjvjzi7xgpdpatqsmy"
+  url: "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/app.bsky.feed.post/3mrw2scah652o"
+  link: "https://bsky.app/profile/did:plc:oe7zju6lj6ggta4rfpqq6mzy/post/3mrw2scah652o"
+  handle: "juanvisbal.com"
+  hostname: "bsky.social"
+  did: "did:plc:oe7zju6lj6ggta4rfpqq6mzy"
+ugly_url: true
+---
+Seeing [Spider-Man: Brand New Day](https://www.themoviedb.org/movie/969681-spider-man-brand-new-day) the same week as [The Odyssey](https://www.themoviedb.org/movie/1368337-the-odyssey) gives you a certain kind of whiplash. 🎬

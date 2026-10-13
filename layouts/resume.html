@@ -1,61 +1,80 @@
-{{ define "profile_note" }}
-      <p class="description p-note">{{ .Params.note }}</p>
-{{- end }}
-{{ define "main" }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta ht-include="fragments/site/head">
+  <meta ht-include="fragments/site/meta">
+  <link ht-apply rel="stylesheet" href="/stylesheets/pages.css?v=${ env.version, build.id }">
+  <link ht-apply rel="stylesheet" href="/stylesheets/resume.css?v=${ env.version, build.id }">
+</head>
+<body class="content-page">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="container resume-container h-card">
+    <header class="profile">
+      <nav ht-include="fragments/site/nav"></nav>
+      <p ht-apply class="description p-note">${ page.note }</p>
+    </header>
+    <div id="content" tabindex="-1"></div>
     <main id="resume-content" class="e-content">
       <div class="links resume-actions">
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="link-button" title="Download PDF version">
-          <i class="fa-solid fa-download"></i> Download PDF{{ partial "site/new-tab.html" }}
+          <i class="fa-solid fa-download"></i> Download PDF<span class="visually-hidden"> (opens in a new tab)</span>
         </a>
       </div>
 
-      <p>
-        {{ .Params.summary }}
-      </p>
+      <p ht-apply>${ page.summary }</p>
 
       <h2>Work Experience</h2>
-      {{ range .Params.roles }}
-      <article class="role">
-        <p class="role-title">{{ .title }}</p>
+      <article ht-each="role in ${ page.roles }" class="role">
+        <p ht-apply class="role-title">${ role.title }</p>
         <ul>
-          {{- range .items }}
-          <li>{{ . }}</li>
-          {{- end }}
+          <li ht-each="item in ${ role.items }">${ item }</li>
         </ul>
       </article>
-      {{ end }}
-      <h2>Skills</h2>
-      {{ partial "site/table.html" .Params.skills }}
 
-      <h2>Education & Training</h2>
+      <h2>Skills</h2>
+      <table>
+        <tr ht-each="row in ${ page.skills }">
+          <th ht-apply scope="row">${ row.name }</th>
+          <td ht-apply>${ row.value }</td>
+        </tr>
+      </table>
+
+      <h2>Education &amp; Training</h2>
       <ul>
-        {{- range .Params.education }}
-        <li>{{ . }}</li>
-        {{- end }}
+        <li ht-each="item in ${ page.education }">${ item }</li>
       </ul>
 
       <h2>Languages</h2>
       <ul>
-        {{- range .Params.languages }}
-        <li>{{ . }}</li>
-        {{- end }}
+        <li ht-each="item in ${ page.languages }">${ item }</li>
       </ul>
 
       <h2>About</h2>
-      {{ partial "site/table.html" .Params.about }}
+      <table>
+        <tr ht-each="row in ${ page.about }">
+          <th ht-apply scope="row">${ row.name }</th>
+          <td ht-apply>${ row.value }</td>
+        </tr>
+      </table>
 
       <h2>Portfolio</h2>
       <ul>
-        {{- range .Params.portfolio }}
-        <li>{{ .name }}{{ with .url }} — <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ partial "site/bare-url.html" . }}{{ partial "site/new-tab.html" }}</a>{{ end }}</li>
-        {{- end }}
+        <li ht-each="item in ${ page.portfolio }">${ item.name }<span ht-if="${ item.url }"> — <a ht-apply href="${ item.url }" target="_blank" rel="noopener noreferrer">${ bare_url(item.url) }<span class="visually-hidden"> (opens in a new tab)</span></a></span></li>
       </ul>
 
       <hr class="section-separator">
 
       <p class="footnote">
         <strong>Note:</strong> You can download a printable PDF version of this resume at
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf{{ partial "site/new-tab.html" }}</a>.
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf<span class="visually-hidden"> (opens in a new tab)</span></a>.
       </p>
     </main>
-{{ end }}
+    <nav class="back-link" aria-label="Back"><a href="/">← Home</a></nav>
+    <hr class="section-separator">
+    <footer ht-include="fragments/site/footer"></footer>
+  </div>
+  <script ht-include="fragments/site/scripts"></script>
+</body>
+</html>
