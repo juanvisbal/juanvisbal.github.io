@@ -1,5 +1,7 @@
-# Content type for new blog posts from HyperTemplates apps (HyperTexting) and `hyperctl cms new page`.
-# Posts written by hand go in content/blog/YYYY/MM/DD/<slug>/index.md (see tools/new-post.sh).
+# Content type for new blog posts from the HyperTexting app. Posts written by hand go in
+# content/blog/YYYY/MM/DD/<slug>/index.md (see tools/new-post.sh).
+# `path_resolver` is the app's (newer) format; hyperctl 0.23 builds the site fine but its
+# `hyperctl cms` commands still expect the old `uri_resolver`.
 metadata:
   name: Post
   description: A blog post. Title optional, like a note.
@@ -8,7 +10,7 @@ metadata:
 spec:
   layout: post
   path: /blog/
-  uri_resolver: timestamp
+  path_resolver: timestamp
   format: markdown
   requires:
     title: false
