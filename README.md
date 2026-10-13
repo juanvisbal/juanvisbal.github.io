@@ -8,7 +8,7 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 
 | To change | Edit | Generated |
 |---|---|---|
-| Home links, bio, socials | `content/_index.md` | `/`, `/index.md` |
+| Home links, bio, socials | `content/_index.md` | `/`, `/index.md`, `/.well-known/about.md`, `/.well-known/contact.vcf` |
 | Now | `content/now.md`: plain Markdown, one `## Heading` + list per card (icons in front matter); bump `lastmod` | `/now.html`, `/now.md` |
 | Resume | `content/resume.md` | `/resume.html`, `/resume.md` |
 | Blogroll | Replace `assets/blogroll.opml` with a NetNewsWire export; bump `lastmod` in `content/blogroll.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml` |
@@ -33,6 +33,12 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 ## Cross-posting
 
 `.github/workflows/crosspost.yaml` runs `tools/crosspost.py` after each push to `main` that touches `content/blog/`. New posts (dated 2026-10-01 or later, not drafts, not in the future) go to Bluesky (`juanvisbal.com`) and Mastodon (`@juan@social.lol`); the links to those copies are committed back into the post's front matter, which turns on its comments box. Short posts are posted in full; titled posts as title + link; long posts are shortened on Bluesky (300 characters) with a link. Up to 4 images, with alt text. Secrets: `BLUESKY_APP_PASSWORD`, `MASTODON_TOKEN`. To test the logins without posting: Actions → "Cross-post new blog posts" → Run workflow → tick "Only check".
+
+## About and contact cards
+
+- [AboutSpec](https://aboutspec.org/): `/.well-known/about.md` (`layouts/home.aboutspec.md`), the bio as `summary` front matter, then the same profile as `/index.md` (`layouts/_partials/site/profile.md`), linking to the HTML pages.
+- [ContactSpec](https://contactspec.org/): `/.well-known/contact.vcf` (`layouts/home.contactspec.vcf`), a vCard 4.0 with the name, email (the `mailto:` link in `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles.
+- Both are generated from the home page's front matter (output formats in `hugo.toml`). Their `Content-Type` and CORS headers are set in `static/_headers`.
 
 ## Light/dark theme
 

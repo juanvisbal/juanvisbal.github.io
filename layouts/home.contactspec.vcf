@@ -1,0 +1,41 @@
+{{- /*
+  ContactSpec (https://contactspec.org/): a vCard 4.0 (RFC 6350) at /.well-known/contact.vcf,
+  from content/_index.md: name (site title), email (the mailto: link in elsewhere), home page,
+  photo, and the other elsewhere links as social profiles (RFC 9554).
+  Lines end in CRLF and fold at 75 characters; text values escape \ , ; (RFC 6350 sections 3.2, 3.4).
+*/ -}}
+{{- $esc := `([\\,;])` -}}
+{{- $name := split site.Title " " -}}
+{{- $given := index $name 0 | replaceRE $esc `\${1}` -}}
+{{- $family := delimit (after 1 $name) " " | replaceRE $esc `\${1}` -}}
+{{- $lines := slice
+  "BEGIN:VCARD"
+  "VERSION:4.0"
+  "KIND:individual"
+  (printf "FN:%s" (site.Title | replaceRE $esc `\${1}`))
+  (printf "N:%s;%s;;;" $family $given)
+-}}
+{{- range .Params.elsewhere -}}
+  {{- if hasPrefix .url "mailto:" -}}
+    {{- $lines = $lines | append (printf "EMAIL;PREF=1:%s" (strings.TrimPrefix "mailto:" .url)) -}}
+  {{- end -}}
+{{- end -}}
+{{- $lines = $lines | append (printf "URL:%s" site.BaseURL) (printf "PHOTO:%s" ("images/profile.png" | absURL)) -}}
+{{- range .Params.elsewhere -}}
+  {{- if not (hasPrefix .url "mailto:") -}}
+    {{- $lines = $lines | append (printf "SOCIALPROFILE;SERVICE-TYPE=\"%s\":%s" .name .url) -}}
+  {{- end -}}
+{{- end -}}
+{{- $lines = $lines | append "END:VCARD" -}}
+{{- /* Fold: the first 75 characters, then continuation lines of a space + 74. */ -}}
+{{- $folded := slice -}}
+{{- range $line := $lines -}}
+  {{- $folded = $folded | append (substr $line 0 75) -}}
+  {{- $n := strings.RuneCount $line -}}
+  {{- if gt $n 75 -}}
+    {{- range $i := seq 75 74 (sub $n 1) -}}
+      {{- $folded = $folded | append (printf " %s" (substr $line $i 74)) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- delimit $folded "\r\n" }}{{ "\r\n" -}}
