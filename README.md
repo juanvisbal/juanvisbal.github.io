@@ -14,7 +14,7 @@
 | Layouts | `layouts/<name>.html`, picked by `layout:` in front matter; whole HTML documents using [HyperTemplates directives](https://hypertemplates.net/docs/reference/core/directives/) (`ht-include`, `ht-if`, `ht-each`, `ht-apply`) |
 | Shared pieces | `fragments/site/` (head, title/description/link-preview tags, nav, footer, scripts) and `fragments/blog/` (blog head tags, subnav, one post's body and date, hearts and comments). `fragments/builtin/head_start.html` replaces HyperTemplates' built-in `<head>` tags |
 | Template functions | `plugins/*.js`: `datefmt`, `excerpt` (untitled posts' titles and descriptions), `now_cards`, `og_image`, `bare_url` |
-| Computed data | `data/blog/posts.js` (`data.blog.posts`: every post, newest first, with its `body`, first `image` and link `preview`; used by every blog page and by the feeds), `data/blog/replies.js` (`data.blog.replies`), `data/home.js` (`data.home`: the home page's front matter, for `/about` and `/contact`) |
+| Computed data | `data/blog/posts.js` (`data.blog.posts`: every post, newest first, with its `body`, first `image` and link `preview`; used by every blog page and by the feeds), `data/blog/replies.js` (`data.blog.replies`) |
 | Theme | `theme.json`: this repository is the theme. `assets/` is its static folder, so `assets/stylesheets/x.css` is `/stylesheets/x.css` |
 | Everything else | `tools/build.sh` → `tools/build_extras.py` (below) |
 
@@ -37,7 +37,7 @@ Templating notes, for anyone editing layouts:
 
 | To change | Edit | Generated |
 |---|---|---|
-| Home links, bio, socials | `content/index.md` | `/`, `/index.md`, `/about`, `/contact`, `/.well-known/about.md`, `/.well-known/contact.vcf` |
+| Home links, bio, socials | `content/index.md` | `/`, `/index.md`, `/.well-known/about.md`, `/.well-known/contact.vcf` |
 | Now | `content/now/index.md`: plain Markdown, one `## Heading` + list per card (icons in front matter); bump `updated_at` | `/now.html`, `/now.md` |
 | Resume | `content/resume/index.md` | `/resume.html`, `/resume.md` |
 | Blogroll | Replace `data/blogroll.opml` with a NetNewsWire export (`static/blogroll.opml` is a link to it); bump `updated_at` in `content/blogroll/index.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml` |
@@ -66,13 +66,12 @@ Templating notes, for anyone editing layouts:
 
 It only sees posts committed to this repository. A HyperTemplates app that publishes the built site straight to a host (its `git`/`s3` providers) would skip both this and `tools/build_extras.py`.
 
-## About and contact
+## About and contact cards
 
-- `/about` and `/contact` (`content/about/`, `content/contact/`; `layouts/about.html`, `layouts/contact.html`; `assets/stylesheets/profile.css`): the bio, links and Elsewhere from the home page's front matter (`data.home`, `data/home.js`). Micro.blog's old About and Contact links (`/blog/about/`, `/blog/contact/`) redirect to them (`static/_redirects`).
-- Their machine-readable twins:
-  - [AboutSpec](https://aboutspec.org/): `/.well-known/about.md`, the bio as `summary` front matter, then the same profile as `/index.md`, linking to the HTML pages. `/about` links to it as its Markdown version (`markdown:` in `content/about/index.md`), so it's also in `/llms.txt`.
-  - [ContactSpec](https://contactspec.org/): `/.well-known/contact.vcf`, a vCard 4.0 with the name, nickname (`@juanvisbal.com`), email (the `mailto:` link in `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles. Each profile is written twice: `SOCIALPROFILE` (the vCard 4.0 standard) and `X-SOCIALPROFILE`, the only one Apple's Contacts framework (iOS and macOS apps) reads.
-  - Both are written by `tools/build_extras.py` (`about_spec`, `contact_spec`) from the home page's front matter. Their `Content-Type` and CORS headers are set in `static/_headers`.
+- [AboutSpec](https://aboutspec.org/): `/.well-known/about.md`, the bio as `summary` front matter, then the same profile as `/index.md`, linking to the HTML pages.
+- [ContactSpec](https://contactspec.org/): `/.well-known/contact.vcf`, a vCard 4.0 with the name, nickname (`@juanvisbal.com`), email (the `mailto:` link in `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles. Each profile is written twice: `SOCIALPROFILE` (the vCard 4.0 standard) and `X-SOCIALPROFILE`, the only one Apple's Contacts framework (iOS and macOS apps) reads.
+- Both are written by `tools/build_extras.py` (`about_spec`, `contact_spec`) from the home page's front matter. Their `Content-Type` and CORS headers are set in `static/_headers`.
+- There are no HTML About or Contact pages: the home page is both. Micro.blog's old About and Contact links (`/blog/about/`, `/blog/contact/`) redirect to it (`static/_redirects`).
 
 ## Light/dark theme
 
