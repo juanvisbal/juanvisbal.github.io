@@ -8,8 +8,8 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 
 | To change | Edit | Generated |
 |---|---|---|
-| Home links, bio, socials | `content/_index.md` (front matter) | `/`, `/index.md`, `/.well-known/about.md` (bio), `/.well-known/contact.vcf` |
-| About text | `content/_index.md` (Markdown below the front matter; not shown on `/`) | `/.well-known/about.md` |
+| Home links, bio, socials | `content/_index.md` | `/`, `/index.md`, `/.well-known/about.md` (bio), `/.well-known/contact.vcf` |
+| About | `content/about.md`: plain Markdown, who you are (no link lists) | `/about.html`, `/about.md`, `/.well-known/about.md` |
 | Now | `content/now.md`: plain Markdown, one `## Heading` + list per card (icons in front matter); bump `lastmod` | `/now.html`, `/now.md` |
 | Resume | `content/resume.md` | `/resume.html`, `/resume.md` |
 | Blogroll | Replace `assets/blogroll.opml` with a NetNewsWire export; bump `lastmod` in `content/blogroll.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml`, `/.well-known/following.opml` |
@@ -39,10 +39,10 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 
 The site implements the three [SocialSpec](https://socialspec.org/) APIs, so feed readers and social apps can show a full profile from three `GET` requests:
 
-- [AboutSpec](https://aboutspec.org/): `/.well-known/about.md` (`layouts/home.aboutspec.md`), who you are: the bio as `summary` front matter, then the Markdown body of `content/_index.md`. No link lists or contact details: those belong in `contact.vcf`.
+- [AboutSpec](https://aboutspec.org/): `/.well-known/about.md` (`layouts/home.aboutspec.md`), who you are: the bio as `summary` front matter, then "### About Juan" and the About page's text (`content/about.md`). No link lists or contact details: those belong in `contact.vcf`.
 - [ContactSpec](https://contactspec.org/): `/.well-known/contact.vcf` (`layouts/home.contactspec.vcf`), a vCard 4.0 with the name, nickname (`@juanvisbal.com`), email (the `mailto:` link in `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles. Each profile is written twice: `SOCIALPROFILE` (the vCard 4.0 standard) and `X-SOCIALPROFILE`, the only one Apple's Contacts framework (iOS and macOS apps) reads.
 - [FollowSpec](https://followspec.org/): `/.well-known/following.opml` (`layouts/home.following.opml`), the blogroll as an OPML 2.0 subscription list (`layouts/_partials/site/following.opml`). `/blogroll.opml` is the same file.
-- About and contact are generated from `content/_index.md`, following from `assets/blogroll.opml` (output formats in `hugo.toml`). Their `Content-Type` and CORS headers are set in `static/_headers`.
+- About is generated from `content/about.md` and the bio, contact from `content/_index.md`, following from `assets/blogroll.opml` (output formats in `hugo.toml`). Their `Content-Type` and CORS headers are set in `static/_headers`.
 - SocialSpec starts from a feed: `/feed.xml` and `/feed.json` redirect to the blog's feeds (`static/_redirects`).
 
 ## Light/dark theme

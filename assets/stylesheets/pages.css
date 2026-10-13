@@ -1,4 +1,4 @@
-/* Shared utilities for secondary content pages (/now, /blogroll, /resume) */
+/* Shared utilities for secondary content pages (/about, /now, /blogroll, /resume) */
 body.content-page {
   display: block;
   min-height: auto;

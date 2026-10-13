@@ -1,0 +1,7 @@
+{{ define "main" }}
+    <main id="about" class="e-content">
+      {{ partial "site/page-header.html" (dict "page" . "intro" (printf `Also in Markdown at <a href="%s">/.well-known/about.md</a>, for apps that read <a href="https://aboutspec.org/">AboutSpec</a>.` (site.Home.OutputFormats.Get "aboutspec").RelPermalink | safeHTML)) }}
+
+      {{ .Content }}
+    </main>
+{{ end }}
