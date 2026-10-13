@@ -239,18 +239,25 @@ def about_spec(site, page, by_path):
 
 
 def contact_spec(site, page):
-    """ContactSpec (https://contactspec.org/): a vCard 4.0 (RFC 6350) with the name (site title), email
-    (the mailto: link in `elsewhere`), home page, photo, and the other `elsewhere` links as social
-    profiles (RFC 9554). Lines end in CRLF and fold at 75 characters; text escapes \\ , ; ."""
+    """ContactSpec (https://contactspec.org/): a vCard 4.0 (RFC 6350) with the name (site title),
+    nickname (the byline username, by default @ + the site's domain), email (the mailto: link in
+    `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles (RFC 9554).
+    Each profile also gets an X-SOCIALPROFILE line: Apple's Contacts framework (iOS and macOS apps)
+    ignores SOCIALPROFILE. Lines end in CRLF and fold at 75 characters; text escapes \\ , ; ."""
     def esc(s):
         return re.sub(r"([\\,;])", r"\\\1", s)
     given, _, family = site["title"].partition(" ")
     base = site["base_url"].rstrip("/")
+    username = (site.get("byline") or {}).get("username") or "@" + urllib.parse.urlsplit(base).netloc.removeprefix("www.")
     elsewhere = page.get("elsewhere", [])
-    lines = ["BEGIN:VCARD", "VERSION:4.0", "KIND:individual", f"FN:{esc(site['title'])}", f"N:{esc(family)};{esc(given)};;;"]
+    lines = ["BEGIN:VCARD", "VERSION:4.0", "KIND:individual", f"FN:{esc(site['title'])}", f"N:{esc(family)};{esc(given)};;;",
+             f"NICKNAME:{esc(username)}"]
     lines += [f"EMAIL;PREF=1:{e['url'].removeprefix('mailto:')}" for e in elsewhere if e["url"].startswith("mailto:")]
     lines += [f"URL:{base}/", f"PHOTO:{base}/images/profile.png"]
-    lines += [f'SOCIALPROFILE;SERVICE-TYPE="{e["name"]}":{e["url"]}' for e in elsewhere if not e["url"].startswith("mailto:")]
+    for e in elsewhere:
+        if not e["url"].startswith("mailto:"):
+            lines.append(f'SOCIALPROFILE;SERVICE-TYPE="{e["name"]}":{e["url"]}')
+            lines.append(f"X-SOCIALPROFILE;TYPE={e['name'].lower()}:{e['url']}")
     lines.append("END:VCARD")
     folded = []
     for line in lines:  # the first 75 characters, then continuation lines of a space + 74

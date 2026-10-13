@@ -70,8 +70,8 @@ It only sees posts committed to this repository. A HyperTemplates app that publi
 
 - `/about` and `/contact` (`content/about/`, `content/contact/`; `layouts/about.html`, `layouts/contact.html`; `assets/stylesheets/profile.css`): the bio, links and Elsewhere from the home page's front matter (`data.home`, `data/home.js`). Micro.blog's old About and Contact links (`/blog/about/`, `/blog/contact/`) redirect to them (`static/_redirects`).
 - Their machine-readable twins:
-  - [AboutSpec](https://aboutspec.org/): `/.well-known/about.md`, the bio as `summary` front matter, then the same profile as `/index.md`, linking to the HTML pages.
-  - [ContactSpec](https://contactspec.org/): `/.well-known/contact.vcf`, a vCard 4.0 with the name, email (the `mailto:` link in `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles.
+  - [AboutSpec](https://aboutspec.org/): `/.well-known/about.md`, the bio as `summary` front matter, then the same profile as `/index.md`, linking to the HTML pages. `/about` links to it as its Markdown version (`markdown:` in `content/about/index.md`), so it's also in `/llms.txt`.
+  - [ContactSpec](https://contactspec.org/): `/.well-known/contact.vcf`, a vCard 4.0 with the name, nickname (`@juanvisbal.com`), email (the `mailto:` link in `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles. Each profile is written twice: `SOCIALPROFILE` (the vCard 4.0 standard) and `X-SOCIALPROFILE`, the only one Apple's Contacts framework (iOS and macOS apps) reads.
   - Both are written by `tools/build_extras.py` (`about_spec`, `contact_spec`) from the home page's front matter. Their `Content-Type` and CORS headers are set in `static/_headers`.
 
 ## Light/dark theme
