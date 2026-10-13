@@ -1,10 +1,16 @@
 # Cloudflare Pages redirects (https://developers.cloudflare.com/pages/configuration/redirects/)
 #
-# Micro.blog's About and Contact pages (blog.juanvisbal.com/about/ and /contact/) redirect to
-# /blog/about/ and /blog/contact/: send them to /about and /contact.
-/blog/about         /about    301
-/blog/about/        /about    301
-/blog/about.html    /about    301
-/blog/contact       /contact  301
-/blog/contact/      /contact  301
-/blog/contact.html  /contact  301
+# About and Contact: the home page has the bio, links, socials and email. Micro.blog's pages
+# (blog.juanvisbal.com/about/ and /contact/) redirect to /blog/about/ and /blog/contact/.
+/about              /  301
+/about/             /  301
+/about.html         /  301
+/contact            /  301
+/contact/           /  301
+/contact.html       /  301
+/blog/about         /  301
+/blog/about/        /  301
+/blog/about.html    /  301
+/blog/contact       /  301
+/blog/contact/      /  301
+/blog/contact.html  /  301
