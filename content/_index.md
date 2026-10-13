@@ -1,12 +1,15 @@
 ---
 title: Juan Visbal
-# Micro.blog's About and Contact pages redirect to the home page: static/_redirects
+# Micro.blog's About page redirects to /about, its Contact page to the home page: static/_redirects
 lastmod: 2025-01-23T18:55:47+00:00
 # Your bio: shown on the home page, used as its description (search, link previews, apps like
 # HyperTexting), in llms.txt, and on the link-preview card (as many whole sentences as fit).
 bio: "👋 I'm Juan from Colombia 🇨🇴, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR. I'm passionate about sustainable innovation in tech."
-# The text below the front matter is /.well-known/about.md (not shown on the home page).
 links:
+  - name: About
+    url: /about.html
+    icon: fa-solid fa-user
+    title: About Juan
   - name: Blog
     url: /blog/
     icon: fa-solid fa-comment
@@ -56,14 +59,3 @@ elsewhere:
     title: "Email: me@juanvisbal.com"
     label: Email me
 ---
-### About Juan
-
-I'm Juan (he/they) 🏳️‍🌈, a web engineer from Colombia 🇨🇴, living in Bogotá. I've spent more than ten years building for the web, mostly around Shopify, and I love making great experiences on the web. I care about sustainable innovation in tech.
-
-- **2014** · Graduated in electronics engineering, and started freelancing.
-- **2016–2023** · Built apps for the Shopify App Store at Pasilobus, eventually as Head of Engineering. Mentored interns and took part in conferences and expos.
-- **2023–now** · Senior Web Engineer at SLTWTR, a prominent Shopify Partner, working fully remote. I lead several teams, crafting Shopify Plus stores with bespoke features for our clients.
-
-Along the way, I've worked on improving our developer workflows and helped organize local meetups.
-
-Outside of work, I give back through Rotary International. I'm a homebody at heart: learning Japanese, setting up a home server, playing retro games like Pokémon, and spending time with my loved ones.
