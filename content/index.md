@@ -1,6 +1,7 @@
 ---
 title: Juan Visbal
 layout: home
+# Micro.blog's About and Contact pages redirect to the home page: static/_redirects
 created_at: 2025-01-23T18:55:47+00:00
 updated_at: 2025-01-23T18:55:47+00:00
 # Markdown copy of this page, written by tools/build_extras.py (also listed in /llms.txt)
