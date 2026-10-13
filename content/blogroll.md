@@ -8,5 +8,6 @@ llms: Blogs I follow, with their feeds.
 stylesheet: blogroll.css
 lastmod: 2026-08-04
 # The list itself is assets/blogroll.opml: replace it with a fresh NetNewsWire export
-# (File → Export Subscriptions) and the page, /blogroll.md and /blogroll.opml all update.
+# (File → Export Subscriptions) and the page, /blogroll.md, /blogroll.opml and
+# /.well-known/following.opml (FollowSpec) all update.
 ---

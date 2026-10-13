@@ -1,0 +1,21 @@
+{{- /*
+  The blogroll as an OPML 2.0 subscription list (https://opml.org/spec2.opml#subscriptionLists),
+  for /.well-known/following.opml (FollowSpec, https://followspec.org/) and /blogroll.opml.
+  Feeds: assets/blogroll.opml, via site/blogroll.html; dateModified: the blogroll page's lastmod.
+*/ -}}
+{{- $blogroll := site.GetPage "/blogroll" -}}
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>{{ site.Title | htmlEscape }}'s followed feeds</title>
+    <dateModified>{{ $blogroll.Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</dateModified>
+    <ownerName>{{ site.Title | htmlEscape }}</ownerName>
+    <ownerId>{{ site.BaseURL }}</ownerId>
+    <docs>https://opml.org/spec2.opml</docs>
+  </head>
+  <body>
+{{- range partial "site/blogroll.html" $blogroll }}
+    <outline type="rss" text="{{ .title | htmlEscape }}" title="{{ .title | htmlEscape }}"{{ with .htmlUrl }} htmlUrl="{{ . | htmlEscape }}"{{ end }} xmlUrl="{{ .xmlUrl | htmlEscape }}" />
+{{- end }}
+  </body>
+</opml>

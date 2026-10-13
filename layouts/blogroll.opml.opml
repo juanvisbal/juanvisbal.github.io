@@ -1,1 +1,1 @@
-{{- (resources.Get "blogroll.opml").Content | safeHTML -}}
+{{- partial "site/following.opml" . -}}

@@ -1,10 +1,15 @@
 # Cloudflare Pages response headers (https://developers.cloudflare.com/pages/configuration/headers/).
 
-# AboutSpec and ContactSpec: readable from any site (CORS), with the types the specs name.
+# SocialSpec APIs (AboutSpec, ContactSpec, FollowSpec): readable from any site (CORS), with the
+# types the specs name.
 /.well-known/about.md
   Content-Type: text/markdown; charset=utf-8
   Access-Control-Allow-Origin: *
 
 /.well-known/contact.vcf
   Content-Type: text/vcard; charset=utf-8
+  Access-Control-Allow-Origin: *
+
+/.well-known/following.opml
+  Content-Type: text/x-opml; charset=utf-8
   Access-Control-Allow-Origin: *

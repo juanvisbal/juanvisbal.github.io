@@ -1,6 +1,7 @@
 {{- /*
-  Home profile in Markdown, with absolute links, for /index.md and /.well-known/about.md.
-  (dict "page" <home> "format" "markdown"): site pages link to their copy in that output format (Markdown for /index.md, "html" for people).
+  Home profile in Markdown, with absolute links, for /index.md (/.well-known/about.md is prose instead:
+  home.aboutspec.md). (dict "page" <home> "format" "markdown"): site pages link to their copy in
+  that output format.
 */ -}}
 {{- $format := .format -}}
 {{- with .page -}}

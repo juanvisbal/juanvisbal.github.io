@@ -1,6 +1,10 @@
-{{- /* AboutSpec (https://aboutspec.org/): the home profile at /.well-known/about.md. summary: the bio, as a YAML string. */ -}}
+{{- /*
+  AboutSpec (https://aboutspec.org/): who Juan is, at /.well-known/about.md. summary: the bio, as a
+  YAML string; then the Markdown body of content/_index.md. Links and socials are in contact.vcf.
+*/ -}}
 ---
 summary: {{ .Params.bio | jsonify }}
 ---
 
-{{ partial "site/profile.md" (dict "page" . "format" "html") }}
+{{ .RawContent | strings.TrimSpace }}
+

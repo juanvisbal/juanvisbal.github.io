@@ -14,3 +14,7 @@
 /blog/contact       /  301
 /blog/contact/      /  301
 /blog/contact.html  /  301
+
+# Feeds at the site root, where SocialSpec (socialspec.org) and feed readers look first.
+/feed.xml           /blog/feed.xml   301
+/feed.json          /blog/feed.json  301

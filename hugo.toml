@@ -62,8 +62,10 @@ rssLimit = 25
   mediaType = "text/x-opml"
   isPlainText = true
   rel = "alternate"
+# SocialSpec (socialspec.org) APIs, all on the home page. Headers: static/_headers.
 # AboutSpec (aboutspec.org) and ContactSpec (contactspec.org): /.well-known/about.md and
-# /.well-known/contact.vcf, from the home page's front matter. Headers: static/_headers.
+# /.well-known/contact.vcf, from the home page's front matter. FollowSpec (followspec.org):
+# /.well-known/following.opml, the blogroll (assets/blogroll.opml).
 [outputFormats.aboutspec]
   mediaType = "text/markdown"
   path = ".well-known"
@@ -76,9 +78,15 @@ rssLimit = 25
   baseName = "contact"
   isPlainText = true
   notAlternative = true
+[outputFormats.following]
+  mediaType = "text/x-opml"
+  path = ".well-known"
+  baseName = "following"
+  isPlainText = true
+  notAlternative = true
 
 [outputs]
-  home = ["HTML", "markdown", "llms", "aboutspec", "contactspec"]
+  home = ["HTML", "markdown", "llms", "aboutspec", "contactspec", "following"]
   section = ["HTML"]
   page = ["HTML"]
 
