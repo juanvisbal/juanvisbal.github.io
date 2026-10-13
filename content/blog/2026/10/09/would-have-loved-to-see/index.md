@@ -9,6 +9,10 @@ bluesky:
   did: "did:plc:oe7zju6lj6ggta4rfpqq6mzy"
 layout: post
 ugly_url: true
+mastodon:
+  id: "117435312355409203"
+  username: "juan"
+  hostname: "social.lol"
 ---
 Would have loved to see this exhibition.
 https://www.designboom.com/art/tim-walker-five-decades-queer-activism-portraiture-national-portrait-gallery-london-fairyland/

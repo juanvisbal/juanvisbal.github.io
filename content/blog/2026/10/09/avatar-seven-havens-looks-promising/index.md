@@ -9,5 +9,9 @@ bluesky:
   did: "did:plc:oe7zju6lj6ggta4rfpqq6mzy"
 layout: post
 ugly_url: true
+mastodon:
+  id: "117435312304205488"
+  username: "juan"
+  hostname: "social.lol"
 ---
 Avatar: Seven Havens looks promising so far, story-wise, but that animation is too choppy and stiff. 🥴
