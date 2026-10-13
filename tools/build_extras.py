@@ -9,7 +9,8 @@
       /blog/feed.xml (RSS) and /blog/feed.json, which keep the Micro.blog `guid`s so readers
       don't show old posts again; /blog/archive/index.json and /blog/photos/index.json
       (Micro.blog-style JSON); Markdown copies of the main pages (front matter `markdown:`);
-      /llms.txt; /sitemap.xml; and the 1200x630 link-preview cards (/og/...png) that pages
+      /llms.txt; /sitemap.xml; /.well-known/about.md (AboutSpec) and /.well-known/contact.vcf
+      (ContactSpec) from the home page; and the 1200x630 link-preview cards (/og/...png) that pages
       without a photo point to (plugins/og_image.js).
 
 Page data comes from HyperTemplates itself (`hyperctl cms data inspect`), so posts, dates and
@@ -208,18 +209,63 @@ def bare_url(url):
     return re.sub(r"^https?://", "", url).rstrip("/")
 
 
-def md_home(site, page, by_path):
+def profile(site, page, by_path, markdown_links):
+    """The home page as Markdown (bio, links, elsewhere), for /index.md and /.well-known/about.md.
+    Site pages link to their Markdown copy when markdown_links, else to the HTML page."""
     base = site["base_url"].rstrip("/")
-    lines = [f"# {site['title']}", "", page["bio"], "", "## Links", ""]
+    lines = [page["bio"], "", "## Links", ""]
     for link in page.get("links", []):
         target = by_path.get(link["url"], {})
-        url = base + target["markdown"] if target.get("markdown") else (base + link["url"] if link["url"].startswith("/") else link["url"])
+        if markdown_links and target.get("markdown"):
+            url = base + target["markdown"]
+        else:
+            url = base + link["url"] if link["url"].startswith("/") else link["url"]
         feeds = f" ([RSS]({base}/blog/feed.xml), [JSON Feed]({base}/blog/feed.json))" if link.get("feeds") else ""
         lines.append(f"- [{link['name']}]({url}){feeds}")
     lines += ["", "## Elsewhere", ""]
     lines += [f"- [{e['name']}]({e['url']})" for e in page.get("elsewhere", [])]
     lines += ["", "---", "", "He/They · 🏳️‍🌈 · Bogotá, Colombia", ""]
     return "\n".join(lines)
+
+
+def md_home(site, page, by_path):
+    return f"# {site['title']}\n\n" + profile(site, page, by_path, markdown_links=True)
+
+
+def about_spec(site, page, by_path):
+    """AboutSpec (https://aboutspec.org/): the bio as `summary`, then the profile linking to HTML pages."""
+    summary = json.dumps(page["bio"], ensure_ascii=False)  # a valid YAML double-quoted string
+    return f"---\nsummary: {summary}\n---\n\n" + profile(site, page, by_path, markdown_links=False)
+
+
+def contact_spec(site, page):
+    """ContactSpec (https://contactspec.org/): a vCard 4.0 (RFC 6350) with the name (site title), email
+    (the mailto: link in `elsewhere`), home page, photo, and the other `elsewhere` links as social
+    profiles (RFC 9554). Lines end in CRLF and fold at 75 characters; text escapes \\ , ; ."""
+    def esc(s):
+        return re.sub(r"([\\,;])", r"\\\1", s)
+    given, _, family = site["title"].partition(" ")
+    base = site["base_url"].rstrip("/")
+    elsewhere = page.get("elsewhere", [])
+    lines = ["BEGIN:VCARD", "VERSION:4.0", "KIND:individual", f"FN:{esc(site['title'])}", f"N:{esc(family)};{esc(given)};;;"]
+    lines += [f"EMAIL;PREF=1:{e['url'].removeprefix('mailto:')}" for e in elsewhere if e["url"].startswith("mailto:")]
+    lines += [f"URL:{base}/", f"PHOTO:{base}/images/profile.png"]
+    lines += [f'SOCIALPROFILE;SERVICE-TYPE="{e["name"]}":{e["url"]}' for e in elsewhere if not e["url"].startswith("mailto:")]
+    lines.append("END:VCARD")
+    folded = []
+    for line in lines:  # the first 75 characters, then continuation lines of a space + 74
+        folded.append(line[:75])
+        folded += [" " + line[i:i + 74] for i in range(75, len(line), 74)]
+    return "\r\n".join(folded) + "\r\n"
+
+
+def well_known(root, site, pages):
+    by_path = {p["path"]: p for p in pages}
+    home = by_path["/"]
+    write(root, "/.well-known/about.md", about_spec(site, home, by_path))
+    out = root / ".well-known/contact.vcf"
+    out.write_bytes(contact_spec(site, home).encode("utf-8"))  # keep the CRLFs exactly
+    print(f"wrote {out}")
 
 
 def md_now(site, page):
@@ -387,6 +433,7 @@ def extras(root):
     posts = inspect("data.blog.posts")
     feeds(root, site, posts)
     markdown_copies(root, site, pages)
+    well_known(root, site, pages)
     llms(root, site, pages)
     sitemap(root, site, pages)
     cards(root, site, pages)

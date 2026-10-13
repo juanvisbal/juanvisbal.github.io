@@ -21,7 +21,7 @@
 HyperTemplates only writes HTML pages and Atom feeds. `tools/build_extras.py` adds the rest:
 
 - before the build, `data/link_previews.json` (gitignored): the preview card under each post with an external link, from the linked page's Open Graph tags;
-- after the build, `/blog/feed.xml` (RSS) and `/blog/feed.json`, `/blog/archive/index.json` and `/blog/photos/index.json`, the `.md` copies of the main pages, `/llms.txt`, `/sitemap.xml`, and the link-preview cards.
+- after the build, `/blog/feed.xml` (RSS) and `/blog/feed.json`, `/blog/archive/index.json` and `/blog/photos/index.json`, the `.md` copies of the main pages, `/llms.txt`, `/sitemap.xml`, `/.well-known/about.md` and `/.well-known/contact.vcf`, and the link-preview cards.
 
 It reads page data with `hyperctl cms data inspect`, so it always sees the same posts, dates and HTML as the layouts.
 
@@ -37,13 +37,13 @@ Templating notes, for anyone editing layouts:
 
 | To change | Edit | Generated |
 |---|---|---|
-| Home links, bio, socials | `content/index.md` | `/`, `/index.md` |
+| Home links, bio, socials | `content/index.md` | `/`, `/index.md`, `/.well-known/about.md`, `/.well-known/contact.vcf` |
 | Now | `content/now/index.md`: plain Markdown, one `## Heading` + list per card (icons in front matter); bump `updated_at` | `/now.html`, `/now.md` |
 | Resume | `content/resume/index.md` | `/resume.html`, `/resume.md` |
 | Blogroll | Replace `data/blogroll.opml` with a NetNewsWire export (`static/blogroll.opml` is a link to it); bump `updated_at` in `content/blogroll/index.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml` |
 | Site nav | `nav` in `site.yaml` | nav menus, `/llms.txt` page list |
 | CSS and JS | `assets/stylesheets/`, `assets/js/` | `/stylesheets/`, `/js/`; links carry `?v=<commit>`, so browsers never use a stale copy |
-| Static files (images, PDF, `human.json`, `CNAME`, `_redirects`) | `static/` | copied as-is |
+| Static files (images, PDF, `human.json`, `CNAME`, `_redirects`, `_headers`) | `static/` | copied as-is |
 
 ## Blog
 
@@ -65,6 +65,12 @@ Templating notes, for anyone editing layouts:
 `.github/workflows/crosspost.yaml` runs `tools/crosspost.py` after each push to `main` that touches `content/blog/`. New posts (`created_at` 2026-10-01 or later, not drafts, not unlisted, not in the future) go to Bluesky (`juanvisbal.com`) and Mastodon (`@juan@social.lol`); the links to those copies are committed back into the post's front matter, which turns on its comments box. Short posts are posted in full; titled posts as title + link; long posts are shortened on Bluesky (300 characters) with a link. Up to 4 images (next to the post or in `static/`), with alt text. Secrets: `BLUESKY_APP_PASSWORD`, `MASTODON_TOKEN`. To test the logins without posting: Actions → "Cross-post new blog posts" → Run workflow → tick "Only check". To see what would be posted, locally: `DRY_RUN=1 python3 tools/crosspost.py`.
 
 It only sees posts committed to this repository. A HyperTemplates app that publishes the built site straight to a host (its `git`/`s3` providers) would skip both this and `tools/build_extras.py`.
+
+## About and contact cards
+
+- [AboutSpec](https://aboutspec.org/): `/.well-known/about.md`, the bio as `summary` front matter, then the same profile as `/index.md`, linking to the HTML pages.
+- [ContactSpec](https://contactspec.org/): `/.well-known/contact.vcf`, a vCard 4.0 with the name, email (the `mailto:` link in `elsewhere`), home page, photo, and the other `elsewhere` links as social profiles.
+- Both are written by `tools/build_extras.py` (`about_spec`, `contact_spec`) from the home page's front matter. Their `Content-Type` and CORS headers are set in `static/_headers`.
 
 ## Light/dark theme
 
