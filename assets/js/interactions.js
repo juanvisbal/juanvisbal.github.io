@@ -226,9 +226,8 @@
   };
 
   const sources = [];
-  const { blueskyPost, mastodonHost, mastodonId } = root.dataset;
-  if (blueskyPost) sources.push(blueskyComments(blueskyPost));
-  if (mastodonHost && mastodonId) sources.push(mastodonComments(`https://${mastodonHost}/api/v1/statuses/${mastodonId}`));
+  if (root.dataset.blueskyPost) sources.push(blueskyComments(root.dataset.blueskyPost));
+  if (root.dataset.mastodonApi) sources.push(mastodonComments(root.dataset.mastodonApi));
   if (!sources.length) return;
 
   status.textContent = "Loading comments…";

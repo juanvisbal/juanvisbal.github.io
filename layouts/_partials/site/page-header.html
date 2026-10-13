@@ -1,0 +1,20 @@
+{{- /* Title block at the top of a page's <main>.
+   dict: page (required); note (defaults to page.Params.note); intro (HTML, optional);
+         subnav (blog links, optional); pname (mark the title as p-name, optional). */ -}}
+{{- $note := .note | default .page.Params.note -}}
+<header>
+        <h2{{ if .pname }} class="p-name"{{ end }}>{{ .title | default .page.Title }}</h2>
+        <div class="description">
+          {{- with $note }}
+          <p class="p-note">{{ . }}</p>
+          {{- end }}
+          {{- with .intro }}
+          <p>
+            {{ . }}
+          </p>
+          {{- end }}
+          {{- if .subnav }}
+          {{ partial "blog/subnav.html" .page }}
+          {{- end }}
+        </div>
+      </header>

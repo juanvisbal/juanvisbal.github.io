@@ -1,44 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta ht-include="fragments/site/head">
-  <meta ht-include="fragments/site/meta">
-  <link ht-apply rel="stylesheet" href="/stylesheets/pages.css?v=${ env.version, build.id }">
-  <link ht-apply rel="stylesheet" href="/stylesheets/blogroll.css?v=${ env.version, build.id }">
-</head>
-<body class="content-page">
-  <a class="skip-link" href="#content">Skip to content</a>
-  <div class="container blogroll-page h-card">
-    <header class="profile">
-      <img src="/images/profile.png" alt="" class="profile-pic u-photo">
-      <nav ht-include="fragments/site/nav"></nav>
-    </header>
-    <div id="content" tabindex="-1"></div>
+{{ define "main" }}
     <main id="blogroll" class="e-content">
-      <header>
-        <h2 ht-apply>${ page.title }</h2>
-        <div class="description">
-          <p ht-apply ht-if="${ page.note }" class="p-note">${ page.note }</p>
-          <p ht-apply>
-            Inspired by old-school blogrolls. You can subscribe to this same list via
-            <a ht-apply href="${ page.opml }">OPML export</a>.
-          </p>
-        </div>
-      </header>
+      {{ partial "site/page-header.html" (dict "page" . "intro" (printf `Inspired by old-school blogrolls. You can subscribe to this same list via
+            <a href="%s">OPML export</a>.` (.OutputFormats.Get "opml").RelPermalink | safeHTML)) }}
 
       <h3 class="content-roll-title">Roll</h3>
       <ul class="blogroll-list">
-        <li ht-each="feed in ${ data.blogroll.body.outlines }"><a ht-apply href="${ feed.htmlUrl }">${ feed.title }</a> <span>· <a ht-apply href="${ feed.xmlUrl }" title="RSS feed" aria-label="RSS feed"><i class="fa-solid fa-rss" aria-hidden="true"></i></a></span></li>
+        {{- range partial "site/blogroll.html" . }}
+        <li><a href="{{ .htmlUrl }}">{{ .title }}</a> <span>· <a href="{{ .xmlUrl }}" title="RSS feed" aria-label="RSS feed"><i class="fa-solid fa-rss" aria-hidden="true"></i></a></span></li>
+        {{- end }}
       </ul>
 
-      <p ht-apply class="last-updated content-footnote">Updated ${ datefmt(page.updated_at, "yyyy-MM-dd") }.</p>
+      {{ partial "site/updated.html" . }}
     </main>
-    <nav class="back-link" aria-label="Back"><a href="/">← Home</a></nav>
-    <hr class="section-separator">
-    <footer ht-include="fragments/site/footer"></footer>
-  </div>
-  <script ht-include="fragments/site/scripts"></script>
-</body>
-</html>
+{{ end }}

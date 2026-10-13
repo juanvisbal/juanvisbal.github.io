@@ -1,0 +1,25 @@
+{{- $blog := site.GetPage "/blog" -}}
+# {{ site.Title }}
+
+> {{ replaceRE `[^\x{0020}-\x{024F}\x{2010}-\x{205E}]` "" .Params.bio | replaceRE `\s+` " " | replaceRE ` ([,.;:!?])` "$1" | strings.TrimSpace }}
+
+Personal website. Every page has a Markdown version at the same path with a `.md` extension.
+
+## Pages
+
+- [Home]({{ (.OutputFormats.Get "markdown").Permalink }}): Bio and links.
+{{- range site.Menus.main }}{{ with site.GetPage .URL }}{{ if and (not .IsHome) (.OutputFormats.Get "markdown") }}
+- [{{ .Title }}]({{ (.OutputFormats.Get "markdown").Permalink }}): {{ .Params.llms }}
+{{- end }}{{ end }}{{ end }}
+
+## Blog
+
+- [{{ site.Params.blog.title }}]({{ $blog.Permalink }})
+- [RSS feed]({{ ($blog.OutputFormats.Get "rss").Permalink }})
+- [JSON Feed]({{ ($blog.OutputFormats.Get "json").Permalink }})
+
+## Optional
+
+- [Resume PDF]({{ "resume.pdf" | absURL }})
+- [Blogroll OPML]({{ ((site.GetPage "/blogroll").OutputFormats.Get "opml").Permalink }})
+- [human.json]({{ "human.json" | absURL }}): Sites I vouch for.

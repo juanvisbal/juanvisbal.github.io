@@ -1,0 +1,124 @@
+baseURL = "https://juanvisbal.com/"
+title = "Juan Visbal"
+locale = "en"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+disableHugoGeneratorInject = true
+disableKinds = ["taxonomy", "term"]
+rssLimit = 25
+
+[pagination]
+  pagerSize = 25
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Every /blog/ page: main-site layout plus the blog stylesheet.
+[[cascade]]
+  [cascade.params]
+    stylesheet = "blog.css"
+    container_class = "blog-page"
+  [cascade.target]
+    path = "{/blog,/blog/**}"
+
+# Blog posts: content/blog/YYYY/MM/DD/<slug>.md, served at /blog/YYYY/MM/DD/<slug>.html.
+[[cascade]]
+  layout = "post"
+  [cascade.target]
+    path = "{/blog/20[0-9][0-9]/**}"
+
+[mediaTypes."application/json"]
+  suffixes = ["json"]
+[mediaTypes."text/x-opml"]
+  suffixes = ["opml"]
+[mediaTypes."text/vcard"]
+  suffixes = ["vcf"]
+
+[outputFormats.RSS]
+  baseName = "feed"
+[outputFormats.JSON]
+  baseName = "feed"
+[outputFormats.ArchiveJSON]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+[outputFormats.PhotosJSON]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+# Markdown copy of each main-site page (/now.html -> /now.md)
+[outputFormats.markdown]
+  mediaType = "text/markdown"
+  isPlainText = true
+  rel = "alternate"
+[outputFormats.llms]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+[outputFormats.opml]
+  mediaType = "text/x-opml"
+  isPlainText = true
+  rel = "alternate"
+# AboutSpec (aboutspec.org) and ContactSpec (contactspec.org): /.well-known/about.md and
+# /.well-known/contact.vcf, from the home page's front matter. Headers: static/_headers.
+[outputFormats.aboutspec]
+  mediaType = "text/markdown"
+  path = ".well-known"
+  baseName = "about"
+  isPlainText = true
+  notAlternative = true
+[outputFormats.contactspec]
+  mediaType = "text/vcard"
+  path = ".well-known"
+  baseName = "contact"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["HTML", "markdown", "llms", "aboutspec", "contactspec"]
+  section = ["HTML"]
+  page = ["HTML"]
+
+[menus]
+  [[menus.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menus.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 2
+  [[menus.main]]
+    name = "Now"
+    url = "/now.html"
+    weight = 3
+  [[menus.main]]
+    name = "Resume"
+    url = "/resume.html"
+    weight = 4
+  [[menus.main]]
+    name = "Blogroll"
+    url = "/blogroll.html"
+    weight = 5
+
+[params]
+  # rel="me" links on blog pages (the main site's home page has its own in the layout)
+  me = ["https://juanvisbal.com/", "https://bsky.app/profile/juanvisbal.com", "https://social.lol/@juan"]
+  bluesky_publication = "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/site.standard.publication/3mnijwuss6v2n"
+
+  [params.blog]
+    # Feed title; the section itself is just "Blog" (content/blog/_index.md)
+    title = "Juan Visbal · Blog"
+
+  [params.author]
+    name = "Juanse Visbal"
+    avatar = "/blog/avatar.jpg"
+    url = "https://juanvisbal.com/"
+
+# /now.html, /now.md, /blogroll.opml (sections like /blog/ keep index.html)
+[uglyURLs]
+  "" = true
+  blog = false

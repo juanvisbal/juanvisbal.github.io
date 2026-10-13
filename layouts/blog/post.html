@@ -1,0 +1,8 @@
+{{ define "main" }}
+    <main id="post">
+      <article class="h-entry">
+        {{ partial "blog/entry.html" (dict "page" . "list" false) }}
+      </article>
+      {{ partial "blog/interactions.html" . }}
+    </main>
+{{ end }}

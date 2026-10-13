@@ -1,0 +1,7 @@
+{{- /* Feeds from assets/blogroll.opml (a NetNewsWire export), as a list of outline attribute maps. */ -}}
+{{- $opml := (resources.Get "blogroll.opml").Content | transform.Unmarshal -}}
+{{- $feeds := slice -}}
+{{- range $opml.body.outline -}}
+  {{- $feeds = $feeds | append (dict "title" (index . "-title") "htmlUrl" (index . "-htmlUrl") "xmlUrl" (index . "-xmlUrl")) -}}
+{{- end -}}
+{{- return $feeds -}}

@@ -2,11 +2,9 @@
 """Cross-post new blog posts to Bluesky and Mastodon, then record the copies in front matter.
 
 Run by .github/workflows/crosspost.yaml after a push to main. For each post in
-content/blog/ (a `<slug>/index.md` with `created_at` on or after CROSSPOST_SINCE) that has
-no `bluesky:` (or `mastodon:`) block yet, it posts to that network and writes the block back
-in the same shape Micro.blog used, so the comments box under the post can find its replies.
-Posts are the pages the blog lists: every index.md under content/blog/ except the blog page
-itself, drafts and `unlisted: true` pages (data/blog/posts.js has the same rule).
+content/blog/ dated on or after CROSSPOST_SINCE that has no `bluesky:` (or `mastodon:`)
+block yet, it posts to that network and writes the block back in the same shape
+Micro.blog used, so the comments box under the post can find its replies.
 
 Environment:
   BLUESKY_HANDLE, BLUESKY_APP_PASSWORD   Bluesky account + app password
@@ -117,19 +115,18 @@ class Post:
 
     @property
     def date(self):
-        return dt.datetime.fromisoformat(self.field("created_at").replace("Z", "+00:00"))
+        return dt.datetime.fromisoformat(self.field("date").replace("Z", "+00:00"))
 
     @property
     def title(self):
         return self.field("title") or ""
 
     def permalink(self, site):
-        # content/blog/2026/10/09/<slug>/index.md is /blog/2026/10/09/<slug>.html with `ugly_url: true`
-        # (served as .../<slug> by Cloudflare Pages), else /blog/.../<slug>/.
-        url = "/" + self.path.parent.relative_to("content").as_posix()
-        if self.field("ugly_url") != "true":
-            url += "/"
-        return site.rstrip("/") + url
+        url = self.field("url")
+        if not url:  # same rule as archetypes/blog.md
+            rel = self.path.relative_to("content").with_suffix(".html")
+            url = "/" + rel.as_posix()
+        return site.rstrip("/") + url.removesuffix(".html")
 
     def images(self):
         found = []
@@ -140,12 +137,10 @@ class Post:
             found.append((m.group(2), m.group(1)))
         out = []
         for src, alt in found:
-            if src.startswith(("http:", "https:", "//")):
-                continue
-            # /blog/uploads/... lives in static/; a bare file name is a page asset next to index.md
-            local = STATIC / src.lstrip("/") if src.startswith("/") else self.path.parent / src
-            if local.is_file():
-                out.append((local, alt))
+            if src.startswith("/"):
+                local = STATIC / src.lstrip("/")
+                if local.is_file():
+                    out.append((local, alt))
         return out[:MAX_IMAGES]
 
     def add_block(self, text):
@@ -420,11 +415,9 @@ def main():
         return
     now = dt.datetime.now(dt.timezone.utc)
     pending = []
-    for path in sorted(CONTENT.glob("*/**/index.md")):
+    for path in sorted(CONTENT.glob("[0-9][0-9][0-9][0-9]/**/*.md")):
         post = Post(path)
-        if post.field("draft") == "true" or post.field("unlisted") == "true" or not post.field("created_at"):
-            continue
-        if post.date.date() < CROSSPOST_SINCE or post.date > now:
+        if post.field("draft") == "true" or post.date.date() < CROSSPOST_SINCE or post.date > now:
             continue
         if not post.has_block("bluesky") or not post.has_block("mastodon"):
             pending.append(post)
