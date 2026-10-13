@@ -1,6 +1,6 @@
 ---
 title: Juan Visbal
-# Micro.blog's About and Contact pages redirect to the home page: static/_redirects
+# Micro.blog's About and Contact pages redirect to /about and /contact: static/_redirects
 lastmod: 2025-01-23T18:55:47+00:00
 # Your bio: shown on the home page, used as its description (search, link previews, apps like
 # HyperTexting), in llms.txt, and on the link-preview card (as many whole sentences as fit).

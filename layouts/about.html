@@ -1,0 +1,25 @@
+{{ define "main" }}
+    <main id="about" class="e-content">
+      {{ partial "site/page-header.html" (dict "page" . "intro" (`Also in Markdown at <a href="/.well-known/about.md">/.well-known/about.md</a>, for apps that read <a href="https://aboutspec.org/">AboutSpec</a>.` | safeHTML)) }}
+      {{- with site.Home }}
+
+      <p>{{ .Params.bio }}</p>
+
+      <h3>Links</h3>
+      <ul class="profile-list">
+        {{- range .Params.links }}
+        <li><a href="{{ .url }}">{{ .name }}</a></li>
+        {{- end }}
+      </ul>
+
+      <h3>Elsewhere</h3>
+      <ul class="profile-list">
+        {{- range .Params.elsewhere }}
+        <li><a href="{{ .url }}"{{ if not (hasPrefix .url "mailto:") }} rel="{{ .rel }}"{{ end }}>{{ .name }}</a></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+
+      <p class="content-footnote">He/They · 🏳️‍🌈 · Bogotá, Colombia</p>
+    </main>
+{{ end }}
