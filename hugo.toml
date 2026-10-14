@@ -36,8 +36,10 @@ rssLimit = 25
 
 [outputFormats.RSS]
   baseName = "feed"
+  notAlternative = true
 [outputFormats.JSON]
   baseName = "feed"
+  notAlternative = true
 [outputFormats.ArchiveJSON]
   mediaType = "application/json"
   baseName = "index"
