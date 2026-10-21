@@ -1,0 +1,11 @@
+{{- /* Link(s) to this page in the other language(s); falls back to that language's
+   home page for untranslated pages (e.g. posts). Rendered in the footer, short
+   label (first three letters of the language name, e.g. ESP/ENG), full name for
+   assistive tech. */ -}}
+{{- $current := . }}
+{{- range .Translations }}<a href="{{ .RelPermalink }}" lang="{{ .Language.Locale | default .Language.Lang }}" hreflang="{{ .Language.Locale | default .Language.Lang }}" class="lang-link" title="{{ .Language.Label }}" aria-label="{{ .Language.Label }}">{{ upper (substr .Language.Label 0 3) }}</a>
+{{- else }}
+  {{- range hugo.Sites }}{{ if ne .Language.Lang $current.Language.Lang }}
+  <a href="{{ .Home.RelPermalink }}" lang="{{ .Language.Locale | default .Language.Lang }}" hreflang="{{ .Language.Locale | default .Language.Lang }}" class="lang-link" title="{{ .Language.Label }}" aria-label="{{ .Language.Label }}">{{ upper (substr .Language.Label 0 3) }}</a>
+  {{- end }}{{ end }}
+{{- end }}

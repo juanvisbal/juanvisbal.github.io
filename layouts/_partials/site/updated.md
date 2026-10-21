@@ -1,3 +1,3 @@
 ---
 
-Updated {{ .Lastmod.Format "2006-01-02" }}.
+{{ i18n "updated" (dict "date" (.Lastmod.Format "2006-01-02")) }}

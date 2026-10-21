@@ -1,7 +1,6 @@
 {{ define "main" }}
     <main id="blogroll" class="e-content">
-      {{ partial "site/page-header.html" (dict "page" . "intro" (printf `Inspired by old-school blogrolls. You can subscribe to this same list via
-            <a href="%s">OPML export</a>.` (.OutputFormats.Get "opml").RelPermalink | safeHTML)) }}
+      {{ partial "site/page-header.html" (dict "page" . "intro" (i18n "blogrollIntro" (dict "url" (.OutputFormats.Get "opml").RelPermalink) | safeHTML)) }}
 
       <div class="roll-grid">
         {{- range partial "site/blogroll.html" . }}
@@ -9,7 +8,7 @@
           {{ with .name }}<h3>{{ with index ($.Params.icons | default dict) . }}<i class="fa-solid {{ . }}"></i> {{ end }}{{ . }}</h3>{{ end }}
           <ul class="roll-list">
             {{- range .feeds }}
-            <li><a href="{{ .htmlUrl }}">{{ .title }}</a><span class="roll-separator" aria-hidden="true">·</span><a class="roll-feed" href="{{ .xmlUrl }}" title="RSS feed" aria-label="RSS feed: {{ .title }}"><i class="fa-solid fa-rss" aria-hidden="true"></i></a></li>
+            <li><a href="{{ .htmlUrl }}">{{ .title }}</a><span class="roll-separator" aria-hidden="true">·</span><a class="roll-feed" href="{{ .xmlUrl }}" title="{{ i18n "rssFeed" }}" aria-label="{{ i18n "rssFeedTitle" (dict "title" .title) }}"><i class="fa-solid fa-rss" aria-hidden="true"></i></a></li>
             {{- end }}
           </ul>
         </section>

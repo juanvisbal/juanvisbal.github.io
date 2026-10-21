@@ -1,11 +1,27 @@
 baseURL = "https://juanvisbal.com/"
 title = "Juan Visbal"
-locale = "en"
 defaultContentLanguage = "en"
+# Blog posts and replies stay English-only; Spanish covers the main pages and
+# the site chrome. Untranslated pages simply don't exist on /es/.
+# Root keys must stay above the [languages]/[menus] tables (TOML scoping).
 enableRobotsTXT = true
 disableHugoGeneratorInject = true
 disableKinds = ["taxonomy", "term"]
 rssLimit = 25
+
+[languages.en]
+  locale = "en"
+  label = "English"
+  weight = 1
+  [languages.en.params]
+    resumePdf = "/resume.pdf"
+
+[languages.es]
+  locale = "es-CO"
+  label = "Español"
+  weight = 2
+  [languages.es.params]
+    resumePdf = "/es/resume.pdf"
 
 [pagination]
   pagerSize = 25
@@ -92,28 +108,57 @@ rssLimit = 25
   section = ["HTML"]
   page = ["HTML"]
 
-[menus]
-  [[menus.main]]
+# Menu URLs are language-neutral page paths; nav.html resolves them with site.GetPage,
+# which returns the current language's page (or the English-only pages, which are
+# en-only: the blog, and /about.html on the Spanish site until it is translated).
+[languages.en.menus]
+  [[languages.en.menus.main]]
     name = "Home"
     url = "/"
     weight = 1
-  [[menus.main]]
+  [[languages.en.menus.main]]
     name = "About"
     url = "/about.html"
     weight = 2
-  [[menus.main]]
+  [[languages.en.menus.main]]
     name = "Blog"
     url = "/blog/"
     weight = 3
-  [[menus.main]]
+  [[languages.en.menus.main]]
     name = "Now"
     url = "/now.html"
     weight = 4
-  [[menus.main]]
+  [[languages.en.menus.main]]
     name = "Resume"
     url = "/resume.html"
     weight = 5
-  [[menus.main]]
+  [[languages.en.menus.main]]
+    name = "Blogroll"
+    url = "/blogroll.html"
+    weight = 6
+
+[languages.es.menus]
+  [[languages.es.menus.main]]
+    name = "Inicio"
+    url = "/"
+    weight = 1
+  [[languages.es.menus.main]]
+    name = "Sobre mí"
+    url = "/about.html"
+    weight = 2
+  [[languages.es.menus.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 3
+  [[languages.es.menus.main]]
+    name = "Ahora"
+    url = "/now.html"
+    weight = 4
+  [[languages.es.menus.main]]
+    name = "Currículum"
+    url = "/resume.html"
+    weight = 5
+  [[languages.es.menus.main]]
     name = "Blogroll"
     url = "/blogroll.html"
     weight = 6

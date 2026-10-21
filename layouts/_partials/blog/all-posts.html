@@ -1,0 +1,4 @@
+{{- /* All blog posts, from the English site: posts aren't translated, so the
+   Spanish blog pages list these (with Spanish chrome) and link to them. */ -}}
+{{- $en := index (where hugo.Sites "Language.Lang" "en") 0 -}}
+{{- return where $en.RegularPages "Layout" "post" -}}

@@ -2,16 +2,16 @@
 
 {{ .Params.note }}
 
-Inspired by old-school blogrolls. You can subscribe to this same list via [OPML export]({{ (.OutputFormats.Get "opml").Permalink }}).
+{{ i18n "blogrollIntroMd" (dict "url" (.OutputFormats.Get "opml").Permalink) }}
 
-## Roll
+## {{ i18n "roll" }}
 {{ range partial "site/blogroll.html" . }}
 {{- with .name }}
 
 ### {{ . }}
 {{- end }}
 {{ range .feeds }}
-- [{{ .title }}]({{ .htmlUrl }}) · [feed]({{ .xmlUrl }})
+- [{{ .title }}]({{ .htmlUrl }}) · [{{ i18n "feed" }}]({{ .xmlUrl }})
 {{- end }}
 {{- end }}
 

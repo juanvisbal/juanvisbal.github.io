@@ -2,7 +2,7 @@
 {{- $title := .Title | default (.Summary | plainify | htmlUnescape | truncate 60) -}}
 {{- $description := .Description | default (.Summary | plainify | htmlUnescape | truncate 160) -}}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.Language.Locale | default site.Language.Lang }}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,7 +28,7 @@
   {{- end }}
 </head>
 <body class="content-page">
-  <a class="skip-link" href="#content">Skip to content</a>
+  <a class="skip-link" href="#content">{{ i18n "skipToContent" }}</a>
   {{- /* Blog pages carry their own h-entry/h-feed markup; the page-wide h-card is for the main pages. */}}
   <div class="container {{ with .Params.container_class }}{{ . }}{{ else }}{{ with .File }}{{ .ContentBaseName }}-page{{ end }}{{ end }}{{ if not $blog }} h-card{{ end }}">
     {{- if not .Params.hide_photo }}

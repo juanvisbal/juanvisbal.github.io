@@ -1,25 +1,25 @@
-{{- $blog := site.GetPage "/blog" -}}
+{{- $blog := partial "site/english-page.html" (dict "path" "/blog") -}}
 # {{ site.Title }}
 
 > {{ replaceRE `[^\x{0020}-\x{024F}\x{2010}-\x{205E}]` "" .Params.bio | replaceRE `\s+` " " | replaceRE ` ([,.;:!?])` "$1" | strings.TrimSpace }}
 
-Personal website. Every page has a Markdown version at the same path with a `.md` extension.
+{{ i18n "llmsIntro" }}
 
-## Pages
+## {{ i18n "llmsPages" }}
 
 - [Home]({{ (.OutputFormats.Get "markdown").Permalink }}): Bio and links.
-{{- range site.Menus.main }}{{ with site.GetPage .URL }}{{ if and (not .IsHome) (.OutputFormats.Get "markdown") }}
+{{- range site.Menus.main }}{{ with or (site.GetPage .URL) ((index (where hugo.Sites "Language.Lang" "en") 0).GetPage .URL) }}{{ if and (not .IsHome) (.OutputFormats.Get "markdown") }}
 - [{{ .Title }}]({{ (.OutputFormats.Get "markdown").Permalink }}): {{ .Params.llms }}
 {{- end }}{{ end }}{{ end }}
 
-## Blog
+## {{ i18n "llmsBlog" }}
 
 - [{{ site.Params.blog.title }}]({{ $blog.Permalink }})
-- [RSS feed]({{ ($blog.OutputFormats.Get "rss").Permalink }})
-- [JSON Feed]({{ ($blog.OutputFormats.Get "json").Permalink }})
+- [{{ i18n "llmsRss" }}]({{ ($blog.OutputFormats.Get "rss").Permalink }})
+- [{{ i18n "llmsJson" }}]({{ ($blog.OutputFormats.Get "json").Permalink }})
 
-## Optional
+## {{ i18n "llmsOptional" }}
 
-- [Resume PDF]({{ "resume.pdf" | absURL }})
-- [Blogroll OPML]({{ ((site.GetPage "/blogroll").OutputFormats.Get "opml").Permalink }})
-- [human.json]({{ "human.json" | absURL }}): Sites I vouch for.
+- [{{ i18n "llmsResumePdf" }}]({{ site.Params.resumePdf | absURL }})
+- [{{ i18n "llmsBlogrollOpml" }}]({{ ((site.GetPage "/blogroll").OutputFormats.Get "opml").Permalink }})
+- [human.json]({{ "human.json" | absURL }}): {{ i18n "llmsHumanJson" }}

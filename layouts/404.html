@@ -1,5 +1,5 @@
 {{ define "main" }}
     <main id="not-found" class="e-content">
-      {{ partial "site/page-header.html" (dict "page" . "title" "Page not found" "intro" (`There's nothing at this address. Try the <a href="/">home page</a> or the <a href="/blog/archive/">blog archive</a>.` | safeHTML)) }}
+      {{ partial "site/page-header.html" (dict "page" . "title" (i18n "notFoundTitle") "intro" (i18n "notFoundIntro" (dict "home" (site.Home.RelPermalink)) | safeHTML)) }}
     </main>
 {{ end }}
