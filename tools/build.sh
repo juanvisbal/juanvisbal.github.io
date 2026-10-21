@@ -8,7 +8,7 @@
 set -eu
 cd "$(dirname "$0")/.."
 
-HUGO_VERSION=0.167.0
+HUGO_VERSION=0.168.0
 
 if command -v hugo >/dev/null 2>&1 && hugo version | grep -q "v$HUGO_VERSION"; then
   HUGO=$(command -v hugo)
