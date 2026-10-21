@@ -1,84 +1,11 @@
-// Hearts (Open Heart) and comments merged from a post's Bluesky and Mastodon copies.
+// Open Heart likes and comments merged from a post's Bluesky and Mastodon copies.
 // Everything is built with DOM methods; remote text is never inserted as HTML.
 (() => {
   const root = document.getElementById("interactions");
   if (!root) return;
 
-  const HEART = "❤️";
+  const HEART = "\u2764\uFE0F"; // ❤️, what the Open Heart endpoint counts
   const MAX_DEPTH = 3;
-
-  // ---------- Hearts ----------
-  // Click to heart, click again to unheart. The browser keeps a random visitor id
-  // (localStorage) that the server uses to find this browser's heart when unhearting.
-
-  const heartButton = root.querySelector(".heart-button");
-  const heartCount = root.querySelector(".heart-count");
-  const heartLabel = root.querySelector(".heart-label");
-  const heartUrl = root.dataset.heart;
-  const storageKey = "hearted:" + heartUrl;
-
-  const store = {
-    get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
-    set: (k, v) => { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch { /* private mode */ } },
-  };
-  const visitorId = () => {
-    let id = store.get("openheart-visitor");
-    if (!id) {
-      id = crypto.randomUUID();
-      store.set("openheart-visitor", id);
-    }
-    return id;
-  };
-  const hearted = () => store.get(storageKey) === "1";
-
-  let count = 0;
-  let busy = false;
-  const renderHeart = () => {
-    heartCount.textContent = count > 0 ? String(count) : "";
-    heartButton.setAttribute("aria-pressed", hearted() ? "true" : "false");
-    const total = count === 1 ? "1 heart" : `${count} hearts`;
-    // The visible count comes first, so voice control ("tap 3") matches the name.
-    heartButton.setAttribute("aria-label", count > 0 ? `${total}. ${hearted() ? "Remove your heart" : "Send a heart"}` : (hearted() ? "Remove your heart" : "Send a heart"));
-    heartLabel.textContent = "";
-    heartButton.hidden = false;
-  };
-
-  const send = async (method, body) => {
-    const r = await fetch(heartUrl, { method, body, headers: { "Content-Type": "text/plain;charset=UTF-8" } });
-    const data = await r.json().catch(() => ({}));
-    return { status: r.status, count: Number(data[HEART]) || 0 };
-  };
-
-  if (heartButton && heartUrl) {
-    fetch(heartUrl, { headers: { Accept: "application/json" } })
-      .then((r) => (r.ok ? r.json() : {}))
-      .then((counts) => { count = Number(counts[HEART]) || 0; renderHeart(); })
-      .catch(() => {});
-
-    heartButton.addEventListener("click", async () => {
-      if (busy) return;
-      busy = true;
-      const unheart = hearted();
-      // Optimistic update; corrected by the server's count below.
-      store.set(storageKey, unheart ? null : "1");
-      count = Math.max(count + (unheart ? -1 : 1), 0);
-      renderHeart();
-      try {
-        const r = unheart ? await send("DELETE", visitorId()) : await send("POST", HEART + "\n" + visitorId());
-        // 409 = already hearted from this browser; 429 = daily limit from this network.
-        if (!unheart && r.status === 429) store.set(storageKey, null);
-        count = r.count;
-      } catch { /* offline: keep the optimistic state */ }
-      busy = false;
-      renderHeart();
-    });
-  }
-
-  // ---------- Comments ----------
-
-  const list = root.querySelector(".comment-list");
-  const status = root.querySelector(".comments-status");
-  if (!list) return;
 
   const el = (tag, attrs = {}, ...children) => {
     const node = document.createElement(tag);
@@ -88,6 +15,132 @@
     for (const c of children) node.append(c);
     return node;
   };
+
+  // ---------- Like button (Open Heart) ----------
+  // Click to like, click again to unlike. The browser keeps a random visitor id
+  // (localStorage) that the server uses to find this browser's heart when unliking.
+
+  const likeForm = root.querySelector(".post-like-form");
+  const likeButton = root.querySelector(".post-like-button");
+  const likeHeart = root.querySelector(".post-like-heart");
+  const likeCount = root.querySelector(".post-like-count");
+  const likeMessage = root.querySelector(".post-like-message");
+  const heartUrl = root.dataset.heart;
+  const storageKey = "hearted:" + heartUrl;
+
+  const store = {
+    get: (k) => { try { return localStorage.getItem(k); } catch { return null; } },
+    set: (k, v) => { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch { /* private mode */ } },
+  };
+  let id = store.get("openheart-visitor");
+  const visitorId = () => {
+    if (!id) {
+      id = crypto.randomUUID();
+      store.set("openheart-visitor", id);
+    }
+    return id;
+  };
+  // Keep this session working even when the browser blocks localStorage.
+  let liked = store.get(storageKey) === "1";
+  const setLiked = (value) => {
+    liked = value;
+    store.set(storageKey, value ? "1" : null);
+  };
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+  let count = 0;
+  let busy = false;
+
+  const bounceHeart = () => {
+    if (reducedMotion.matches) return;
+    likeHeart.classList.remove("is-bouncing");
+    void likeHeart.offsetWidth; // restart the animation on the next like
+    likeHeart.classList.add("is-bouncing");
+  };
+
+  const spawnParticles = () => {
+    if (reducedMotion.matches) return;
+    const icon = likeHeart.querySelector("svg");
+    if (!icon) return;
+    for (let i = 0; i < 7; i++) {
+      const particle = el("span", { class: "like-particle", "aria-hidden": "true" }, icon.cloneNode(true));
+      const size = 8 + Math.random() * 6;
+      const drift = (Math.random() - 0.5) * 72; // -36..36 px
+      const duration = 500 + Math.random() * 350;
+      const delay = Math.random() * 80;
+      particle.style.setProperty("--particle-size", size.toFixed(1) + "px");
+      particle.style.setProperty("--drift-x", drift.toFixed(1) + "px");
+      particle.style.setProperty("--duration", Math.round(duration) + "ms");
+      particle.style.setProperty("--delay", Math.round(delay) + "ms");
+      likeForm.append(particle);
+      setTimeout(() => particle.remove(), duration + delay + 150);
+    }
+  };
+
+  const renderLike = () => {
+    likeButton.disabled = busy;
+    likeForm.classList.toggle("is-liked", liked);
+    likeButton.setAttribute("aria-pressed", liked ? "true" : "false");
+    const total = count === 1 ? "1 like" : `${count} likes`;
+    // The visible count comes first, so voice control ("tap 3") matches the name.
+    likeButton.setAttribute("aria-label", count > 0 ? `${total}. ${liked ? "Remove your like" : "Like this post"}` : (liked ? "Remove your like" : "Like this post"));
+    likeCount.textContent = count > 0 ? String(count) : "";
+    likeCount.hidden = count === 0;
+    likeForm.hidden = false;
+  };
+
+  const send = async (method, body) => {
+    const r = await fetch(heartUrl, { method, body, headers: { "Content-Type": "text/plain;charset=UTF-8" } });
+    const data = await r.json();
+    // These responses still carry the authoritative count.
+    const expected = method === "POST" ? [409, 429] : [404];
+    if (!r.ok && !expected.includes(r.status)) throw new Error("Like request failed");
+    return { status: r.status, count: Number(data[HEART]) || 0 };
+  };
+
+  if (likeForm && likeButton && heartUrl) {
+    fetch(heartUrl, { headers: { Accept: "application/json" } })
+      .then((r) => { if (!r.ok) throw new Error("Likes unavailable"); return r.json(); })
+      .then((counts) => { count = Number(counts[HEART]) || 0; renderLike(); })
+      .catch(() => { likeMessage.textContent = "Likes couldn’t be loaded right now."; });
+
+    likeForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (busy) return;
+      busy = true;
+      likeMessage.textContent = "";
+      const unheart = liked;
+      const previousCount = count;
+      // Optimistic update; corrected by the server's count below.
+      setLiked(!unheart);
+      count = Math.max(count + (unheart ? -1 : 1), 0);
+      renderLike();
+      bounceHeart();
+      if (!unheart) spawnParticles();
+      try {
+        const r = unheart ? await send("DELETE", visitorId()) : await send("POST", HEART + "\n" + visitorId());
+        // 429 = daily like limit from this network; revert the optimistic state.
+        if (!unheart && r.status === 429) {
+          setLiked(false);
+          likeMessage.textContent = "Daily like limit reached on this network.";
+        }
+        count = r.count;
+      } catch {
+        setLiked(unheart);
+        count = previousCount;
+        likeMessage.textContent = "Your like couldn’t be saved. Please try again.";
+      }
+      busy = false;
+      renderLike();
+    });
+  }
+
+  // ---------- Comments ----------
+
+  const list = root.querySelector(".comment-list");
+  const title = root.querySelector(".comments-title");
+  const status = root.querySelector(".comments-status");
+  if (!list) return;
 
   const safeHref = (url) => {
     try {
@@ -230,7 +283,6 @@
   if (root.dataset.mastodonApi) sources.push(mastodonComments(root.dataset.mastodonApi));
   if (!sources.length) return;
 
-  status.textContent = "Loading comments…";
   Promise.allSettled(sources).then((results) => {
     const failed = results.filter((r) => r.status === "rejected").length;
     // Each network returns replies depth-first (parent, then its replies). Keep that order
@@ -251,8 +303,10 @@
     }
     threads.sort((a, b) => a.date - b.date);
     for (const t of threads) for (const c of t.items) list.append(render(c));
-    status.textContent = comments
-      ?(failed ? "Some comments couldn’t be loaded." : "")
-      : (failed ? "Comments couldn’t be loaded right now." : "No comments yet.");
+    // Empty discussions need only the reply links in the feedback row.
+    title.hidden = list.hidden = comments === 0;
+    status.textContent = failed
+      ? (comments ? "Some comments couldn’t be loaded." : "Comments couldn’t be loaded right now.")
+      : "";
   });
 })();

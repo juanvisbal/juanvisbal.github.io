@@ -1,6 +1,6 @@
 {{ define "main" }}
     <main id="blog-photos">
-      {{ partial "site/page-header.html" (dict "page" . "subnav" true) }}
+      {{ partial "site/page-header.html" (dict "page" .) }}
       <div class="photo-grid">
         {{- range where site.RegularPages "Layout" "post" }}
         {{- $p := . }}

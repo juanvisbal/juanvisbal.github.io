@@ -1,6 +1,5 @@
 /* /blog/ pages (layouts/blog/*). Colours come from tokens.css. */
 
-
 .blog-page main {
   line-height: 1.6;
 }
@@ -11,7 +10,34 @@
 }
 
 .blog-subnav {
-  color: var(--header-text);
+  margin-block-start: 0.5rem;
+  color: var(--text-subtle);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.blog-subnav ul,
+.blog-subnav li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  list-style: none;
+}
+
+.blog-subnav a {
+  padding-block: 0.2rem;
+}
+
+.blog-subnav a:hover,
+.blog-subnav a[aria-current] {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.blog-subnav a[aria-current] {
+  font-weight: 600;
 }
 
 /* Posts (list and single) */
