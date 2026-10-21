@@ -2,7 +2,7 @@
     <main id="blog" class="h-feed">
       {{ partial "site/page-header.html" (dict "page" . "pname" true) }}
 
-      <ol class="post-list">
+      <ol class="post-list divided-list">
         {{- range where site.RegularPages "Layout" "post" }}
         <li class="h-entry">
           {{ partial "blog/entry.html" (dict "page" . "list" true) }}

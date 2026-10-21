@@ -9,7 +9,6 @@
 }
 
 #now {
-  margin-top: 1rem;
   text-align: left;
   line-height: 1.5;
 }
@@ -22,22 +21,7 @@
 .now-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.8rem 1.1rem;
-  margin-top: 0.6rem;
-}
-
-.now-section {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 0.65rem 0.8rem;
-  background: var(--panel);
-}
-
-
-
-.now-section h3 .fa-solid {
-  margin-right: 0.4rem;
-  font-size: 0.95rem;
+  gap: var(--space-section);
 }
 
 .now-section ul {
@@ -45,12 +29,12 @@
   padding-left: 1.1rem;
 }
 
-.now-section li {
-  margin: 0.45rem 0;
+.now-section li + li {
+  margin-top: var(--space-small);
 }
 
 #now .now-note {
-  margin-top: 0.9rem;
+  margin-top: var(--space-content);
   color: var(--text-subtle);
 }
 

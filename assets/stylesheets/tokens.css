@@ -1,9 +1,14 @@
-/* Colour tokens for the whole site (main pages and /blog/).
+/* Shared spacing and colour tokens (main pages and /blog/).
    Light/dark follows the system, unless the footer toggle stored an override:
-   static/scripts/theme.js sets <meta name="color-scheme"> to "light" or "dark",
+   assets/js/theme.js sets <meta name="color-scheme"> to "light" or "dark",
    and the :has() rules below map that to color-scheme, which light-dark() follows.
    Browsers without light-dark() fall back to the system preference only. */
 :root {
+  /* Vertical rhythm: related details, content groups, and section/divider gaps. */
+  --space-small: 0.5rem;
+  --space-content: 1rem;
+  --space-section: 2rem;
+
   --bg-light: #fbfefc;               --bg-dark: #0b120f;
   --text-light: #000;                --text-dark: #fff;
   --text-muted-light: #555;          --text-muted-dark: #c9d1d9;

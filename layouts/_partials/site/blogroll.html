@@ -1,7 +1,31 @@
-{{- /* Feeds from assets/blogroll.opml (a NetNewsWire export), as a list of outline attribute maps. */ -}}
+{{- /* Feeds from assets/blogroll.opml (a NetNewsWire export), grouped by folder.
+       Returns a slice of {name, feeds}; a flat export comes back as one unnamed group.
+       transform.Unmarshal gives a single child as a map instead of a slice, so normalize. */ -}}
 {{- $opml := (resources.Get "blogroll.opml").Content | transform.Unmarshal -}}
-{{- $feeds := slice -}}
-{{- range $opml.body.outline -}}
-  {{- $feeds = $feeds | append (dict "title" (index . "-title") "htmlUrl" (index . "-htmlUrl") "xmlUrl" (index . "-xmlUrl")) -}}
+{{- $roots := slice -}}
+{{- with $opml.body.outline -}}
+  {{- $roots = cond (reflect.IsSlice .) . (slice .) -}}
 {{- end -}}
-{{- return $feeds -}}
+{{- $loose := slice -}}
+{{- $groups := slice -}}
+{{- range $roots -}}
+  {{- $node := . -}}
+  {{- $name := or (index $node "-title") (index $node "-text") -}}
+  {{- if index $node "-xmlUrl" -}}
+    {{- $loose = $loose | append (dict "title" $name "htmlUrl" (index $node "-htmlUrl") "xmlUrl" (index $node "-xmlUrl")) -}}
+  {{- else -}}
+    {{- $children := slice -}}
+    {{- with index $node "outline" -}}
+      {{- $children = cond (reflect.IsSlice .) . (slice .) -}}
+    {{- end -}}
+    {{- $feeds := slice -}}
+    {{- range $children -}}
+      {{- $feeds = $feeds | append (dict "title" (or (index . "-title") (index . "-text")) "htmlUrl" (index . "-htmlUrl") "xmlUrl" (index . "-xmlUrl")) -}}
+    {{- end -}}
+    {{- $groups = $groups | append (dict "name" $name "feeds" $feeds) -}}
+  {{- end -}}
+{{- end -}}
+{{- if $loose -}}
+  {{- $groups = $groups | append (dict "name" "" "feeds" $loose) -}}
+{{- end -}}
+{{- return $groups -}}

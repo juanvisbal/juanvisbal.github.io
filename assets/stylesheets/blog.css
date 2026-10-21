@@ -40,32 +40,15 @@
   font-weight: 600;
 }
 
-/* Posts (list and single) */
-.post-list {
-  list-style: none;
-}
-
-.post-list > li {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.post-list > li:first-child {
-  padding-top: 0.25rem;
-}
-
-.post-list > li:last-child {
-  border-bottom: 0;
-}
-
+/* Posts (list and single); divided-list spacing comes from pages.css. */
 .blog-page main article .p-name,
 .blog-page .post-list .p-name {
   font-size: 1.15rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--space-small);
 }
 
-.post-body > * + * {
-  margin-top: 0.75rem;
+.post-body > * + :not(.section-separator) {
+  margin-top: var(--space-content);
 }
 
 .post-body img {
@@ -148,7 +131,7 @@
 }
 
 .post-date {
-  margin-top: 0.6rem;
+  margin-top: var(--space-small);
   font-size: 0.875rem;
   color: var(--text-subtle);
 }
@@ -162,19 +145,6 @@
 }
 
 /* Archive */
-.archive-list {
-  list-style: none;
-}
-
-.archive-list li {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.archive-list li:last-child {
-  border-bottom: 0;
-}
-
 .archive-list time {
   color: var(--text-subtle);
   font-size: 0.875rem;

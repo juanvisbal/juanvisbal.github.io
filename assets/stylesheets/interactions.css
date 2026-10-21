@@ -1,9 +1,7 @@
 /* Feedback row and comments under blog posts (layouts/_partials/blog/interactions.html).
    Marcel-inspired styling (marcel.io), using the site's tokens and existing reply links. */
 .interactions {
-  margin: 2rem 0 1.5rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--border);
+  margin: var(--space-section) 0;
 }
 
 /* ---------- Feedback row: like + social replies ---------- */
@@ -167,7 +165,7 @@
 }
 
 .interactions .comments-title {
-  margin: 1.5rem 0 0.25rem;
+  margin: var(--space-section) 0 var(--space-small);
   font-size: 1.1rem;
   color: var(--text);
 }
@@ -182,12 +180,12 @@
 
 .interactions .comment-list {
   list-style: none;
-  margin: 1rem 0 0;
+  margin: var(--space-content) 0 0;
   padding: 0;
 }
 
 .interactions .comment {
-  margin: 0 0 1.25rem;
+  margin: 0 0 var(--space-section);
 }
 
 .interactions .comment[data-depth="1"] { margin-left: 1.5rem; }
@@ -208,7 +206,7 @@
 }
 
 .interactions .comment-body p {
-  margin: 0.35rem 0;
+  margin: var(--space-content) 0;
   overflow-wrap: anywhere;
 }
 

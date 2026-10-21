@@ -1,44 +1,46 @@
 /* /blogroll page-specific styles */
 
-
-
-
 #blogroll {
-  margin-top: 1.5rem;
   text-align: left;
   line-height: 1.65;
 }
 
-#blogroll > * + * {
-  margin-top: 0.9rem;
+#blogroll > * + :not(.section-separator) {
+  margin-top: var(--space-content);
 }
-
-
 
 #blogroll a {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
+/* Feed cards, one per category in assets/blogroll.opml (card chrome: .card in pages.css). */
+.roll-grid {
+  display: grid;
+  gap: var(--space-section);
+}
 
-
-.blogroll-list {
+.roll-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.blogroll-list li {
-  margin: 0;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border);
+.roll-list li + li {
+  margin-top: var(--space-small);
 }
 
-.blogroll-list li:last-child {
-  border-bottom: 0;
-}
-
-.blogroll-list span {
+.roll-separator {
+  margin-inline: 0.35rem;
   color: var(--text-subtle);
-  font-size: 0.875rem;
+}
+
+/* The feed icon repeats the entry's link, so it needs no underline (and outweighs #blogroll a). */
+#blogroll .roll-feed {
+  color: var(--text-subtle);
+  text-decoration: none;
+}
+
+.roll-feed:hover {
+  color: var(--text);
 }
