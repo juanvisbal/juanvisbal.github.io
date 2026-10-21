@@ -144,6 +144,18 @@
   color: var(--text);
 }
 
+/* The network icon follows the date: "→ Aug 4, 2026 · 2:45 PM · 🦋".
+   blog/replies.html and assets/js/replies.js own the markup. */
+
+.replies-status {
+  color: var(--text-subtle);
+  font-size: 0.9em;
+}
+
+.replies-status:not(:empty) {
+  margin-top: var(--space-content);
+}
+
 /* Archive */
 .archive-list time {
   color: var(--text-subtle);
