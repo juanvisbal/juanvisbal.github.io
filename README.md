@@ -38,7 +38,7 @@ For a static-only preview, `hugo server` still works at http://localhost:1313, b
 
 ## Spanish (es)
 
-The site is bilingual: English at the root, Spanish under `/es/` (`defaultContentLanguage = "en"` in `hugo.toml`). Spanish covers the main pages and the site chrome; **blog posts and replies stay English-only** (untranslated pages simply don't exist under `/es/`, and the Spanish nav's Blog link and the footer feeds point at the English blog).
+The site is bilingual: English at the root, Spanish under `/es/` (`defaultContentLanguage = "en"` in `hugo.toml`). Spanish covers the main pages, the site chrome, and the blog UI; **posts and replies keep the language they were written in** (English so far): the Spanish blog pages (`content/blog/*.es.md`) list the English posts (`layouts/_partials/blog/all-posts.html`) and link to them, and the Spanish site has no feeds — the footer's RSS/JSON links point at the English blog's.
 
 | To change | Edit |
 |---|---|
@@ -50,6 +50,7 @@ The site is bilingual: English at the root, Spanish under `/es/` (`defaultConten
 | Blogroll (Spanish) | `content/blogroll.es.md` (list itself is still `assets/blogroll.opml`; keep the `icons` keys matching the OPML folder names) |
 | UI strings (nav, footer, headings, theme toggle, llms.txt) | `i18n/en.toml` and `i18n/es.toml` |
 | Spanish menu labels | `[languages.es.menus]` in `hugo.toml` |
+| Blog UI (Spanish) | `content/blog/_index.es.md`, `archive.es.md`, `photos.es.md`, `replies.es.md` (chrome only; never translate the posts themselves) |
 
 Every page's footer shows a link to the same page in the other language (`layouts/_partials/site/language-switcher.html`); untranslated pages (e.g. posts) fall back to the other language's home page. Menu URLs are language-neutral page paths; `layouts/_partials/site/english-page.html` resolves a page in the current language or falls back to the English copy (the blog and any not-yet-translated page) for the nav, footer feeds, `<head>` alternates, and the `/llms.txt` generators.
 

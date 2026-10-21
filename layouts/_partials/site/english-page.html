@@ -1,3 +1,3 @@
 {{- /* The page at .path in the current language, or the English site's copy
    (posts, replies, and any not-yet-translated page exist only in English). */ -}}
-{{- return or (site.GetPage .path) ((index (where site.Sites "Language.Lang" "en") 0).GetPage .path) -}}
+{{- return or (site.GetPage .path) ((index (where hugo.Sites "Language.Lang" "en") 0).GetPage .path) -}}

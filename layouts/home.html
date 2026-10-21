@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.LanguageCode | default site.Language.Lang }}">
+<html lang="{{ site.Language.Locale | default site.Language.Lang }}">
 <head>
   <meta charset="UTF-8" />
   {{ partial "site/head-common.html" . }}
@@ -16,7 +16,7 @@
 
   <meta property="og:title" content="{{ site.Title }}" />
   <meta name="author" content="{{ site.Title }}" />
-  <meta property="og:locale" content="{{ site.LanguageCode | default site.Language.Lang }}" />
+  <meta property="og:locale" content="{{ site.Language.Locale | default site.Language.Lang }}" />
   <meta name="description" content="{{ .Params.bio }}" />
   <meta property="og:description" content="{{ .Params.bio }}" />
   <meta property="og:site_name" content="{{ site.Title }}" />

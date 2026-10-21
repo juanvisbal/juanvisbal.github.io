@@ -3,7 +3,7 @@
       {{ partial "site/page-header.html" (dict "page" . "pname" true) }}
 
       <ol class="post-list divided-list">
-        {{- range where site.RegularPages "Layout" "post" }}
+        {{- range partial "blog/all-posts.html" . }}
         <li class="h-entry">
           {{ partial "blog/entry.html" (dict "page" . "list" true) }}
         </li>

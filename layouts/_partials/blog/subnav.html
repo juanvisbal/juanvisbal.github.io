@@ -1,5 +1,5 @@
 {{- $current := . -}}
-<nav class="blog-subnav" aria-label="Blog navigation">
+<nav class="blog-subnav" aria-label="{{ i18n "blogNav" }}">
   <ul>
     {{- range $i, $path := slice "/blog" "/blog/archive" "/blog/photos" "/blog/replies" }}
       {{- with site.GetPage $path }}
@@ -7,7 +7,7 @@
         {{- $active := or (eq $current.RelPermalink .RelPermalink) (and $posts (eq $current.Layout "post")) -}}
     <li>
       {{- if $i }}<span aria-hidden="true">·</span>{{ end }}
-      <a href="{{ .RelPermalink }}"{{ if $active }} aria-current="{{ if eq $current.RelPermalink .RelPermalink }}page{{ else }}location{{ end }}"{{ end }}>{{ if $posts }}Posts{{ else }}{{ .Title }}{{ end }}</a>
+      <a href="{{ .RelPermalink }}"{{ if $active }} aria-current="{{ if eq $current.RelPermalink .RelPermalink }}page{{ else }}location{{ end }}"{{ end }}>{{ if $posts }}{{ i18n "postsNav" }}{{ else }}{{ .Title }}{{ end }}</a>
     </li>
       {{- end }}
     {{- end }}

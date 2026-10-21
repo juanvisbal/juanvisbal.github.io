@@ -8,7 +8,7 @@
 ## {{ i18n "llmsPages" }}
 
 - [Home]({{ (.OutputFormats.Get "markdown").Permalink }}): Bio and links.
-{{- range site.Menus.main }}{{ with or (site.GetPage .URL) ((index (where site.Sites "Language.Lang" "en") 0).GetPage .URL) }}{{ if and (not .IsHome) (.OutputFormats.Get "markdown") }}
+{{- range site.Menus.main }}{{ with or (site.GetPage .URL) ((index (where hugo.Sites "Language.Lang" "en") 0).GetPage .URL) }}{{ if and (not .IsHome) (.OutputFormats.Get "markdown") }}
 - [{{ .Title }}]({{ (.OutputFormats.Get "markdown").Permalink }}): {{ .Params.llms }}
 {{- end }}{{ end }}{{ end }}
 

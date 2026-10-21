@@ -3,9 +3,9 @@
    label (first three letters of the language name, e.g. ESP/ENG), full name for
    assistive tech. */ -}}
 {{- $current := . }}
-{{- range .Translations }}<a href="{{ .RelPermalink }}" lang="{{ .Language.LanguageCode | default .Language.Lang }}" hreflang="{{ .Language.LanguageCode | default .Language.Lang }}" class="lang-link" title="{{ .Language.LanguageName }}" aria-label="{{ .Language.LanguageName }}">{{ upper (substr .Language.LanguageName 0 3) }}</a>
+{{- range .Translations }}<a href="{{ .RelPermalink }}" lang="{{ .Language.Locale | default .Language.Lang }}" hreflang="{{ .Language.Locale | default .Language.Lang }}" class="lang-link" title="{{ .Language.Label }}" aria-label="{{ .Language.Label }}">{{ upper (substr .Language.Label 0 3) }}</a>
 {{- else }}
-  {{- range site.Sites }}{{ if ne .Language.Lang $current.Language.Lang }}
-  <a href="{{ .Home.RelPermalink }}" lang="{{ .Language.LanguageCode | default .Language.Lang }}" hreflang="{{ .Language.LanguageCode | default .Language.Lang }}" class="lang-link" title="{{ .Language.LanguageName }}" aria-label="{{ .Language.LanguageName }}">{{ upper (substr .Language.LanguageName 0 3) }}</a>
+  {{- range hugo.Sites }}{{ if ne .Language.Lang $current.Language.Lang }}
+  <a href="{{ .Home.RelPermalink }}" lang="{{ .Language.Locale | default .Language.Lang }}" hreflang="{{ .Language.Locale | default .Language.Lang }}" class="lang-link" title="{{ .Language.Label }}" aria-label="{{ .Language.Label }}">{{ upper (substr .Language.Label 0 3) }}</a>
   {{- end }}{{ end }}
 {{- end }}
