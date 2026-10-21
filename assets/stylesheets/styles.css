@@ -204,7 +204,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem 1.5rem;
-  font-size: 0.875rem;
+  font-size: 0.75rem; /* 12px: fine print, but AA contrast via --text-subtle */
   color: var(--text-subtle);
 }
 
