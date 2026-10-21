@@ -1,0 +1,5 @@
+# Files vendored from juanvisbal/openheart-d1. Written by tools/sync-hearts.py.
+source ac339c9
+ebe8a0a6bbe2b478e506770f375fa89f121635be677173c42bccd72773462f53  functions/openheart/[[path]].js
+5ee23897b68eb999ed87dec1c1b82f3c336b6ba6c818f4a37a244eef09d3bf41  migrations/0001_hearts.sql
+4af46134eaee3132342e617500440c8313a4ea44224ca12287aa758e9e18a49f  migrations/0002_heart_visitors.sql
