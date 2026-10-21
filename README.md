@@ -2,7 +2,21 @@
 
 Hugo site: the main pages and the blog (`/blog/`, migrated from Micro.blog on 2026-10-08). Built by Cloudflare Pages on every push (production branch `main`): build command `sh tools/build.sh`, output directory `public`. `tools/build.sh` runs Hugo 0.167.0, downloading it if the build image's Hugo is a different version. (The site ran on HyperTemplates for a day in October 2026; that version is on the `hypertemplates` branch.)
 
-Preview locally: `hugo server`, then open http://localhost:1313.
+## Local preview
+
+For the full site, including working likes, run:
+
+```sh
+sh tools/preview.sh
+```
+
+Open http://localhost:8788/blog/2026/10/09/thanks-to-the-nova-im.html to test the feedback row. Click the heart to like, reload to check persistence, then click again to unlike.
+
+Requires Hugo, Node.js, and Wrangler 4 (`npm install -g wrangler@4` if needed). The script applies the existing migrations to a **local-only D1 database**, watches Hugo sources, and runs the real Cloudflare Pages Functions. No Cloudflare login is needed and production likes are untouched. Test data and generated files stay in the ignored `.wrangler/` directory; the migration config (`tools/wrangler.local.toml`) is not used for deployment. Social comments still load from the public Bluesky/Mastodon APIs; replying follows the existing links.
+
+Leave the command running while testing; Ctrl+C stops it. Use `PORT=8789 sh tools/preview.sh` if port 8788 is occupied. Source changes rebuild automatically; refresh the browser to see them.
+
+For a static-only preview, `hugo server` still works at http://localhost:1313, but cannot serve the heart endpoint.
 
 ## Editing
 
@@ -28,7 +42,7 @@ Preview locally: `hugo server`, then open http://localhost:1313.
 
 ## Hearts and comments
 
-- Under each post: a ❤️ button and comments merged from the post's Bluesky and Mastodon copies (`layouts/_partials/blog/interactions.html`, `assets/js/interactions.js`). Comments load in the browser from the public Bluesky and Mastodon APIs, using the `bluesky`/`mastodon` front matter of each post. Bluesky accounts that opted out of being shown to logged-out viewers (`!no-unauthenticated`) are skipped, except your own.
+- Under each post: a ❤️ button and links to reply on the post's Bluesky and Mastodon copies (`layouts/_partials/blog/interactions.html`, `assets/js/interactions.js`). Their replies load in the browser from the public APIs, using the `bluesky`/`mastodon` front matter of each post. The Comments heading and list appear only when replies exist; failures still show a status message. Bluesky accounts that opted out of being shown to logged-out viewers (`!no-unauthenticated`) are skipped, except your own.
 - Hearts: `functions/openheart/[[path]].js`, a Cloudflare Pages Function implementing [Open Heart](https://openheart.fyi), backed by the D1 database `juanvisbal-hearts` (bound as `HEARTS`; schema in `migrations/`). One heart per visitor per post per day; only a hash of IP + post + day is stored. Clicking again unhearts: the button sends a random per-browser ID (stored hashed) with the heart, and `DELETE` with that ID removes it (an extension to Open Heart).
 
 ## Cross-posting

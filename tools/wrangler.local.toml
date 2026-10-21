@@ -1,0 +1,9 @@
+# Local migrations only. Not auto-discovered by Pages or used for deployment.
+name = "juanvisbal-local"
+
+[[d1_databases]]
+binding = "HEARTS"
+database_name = "juanvisbal-hearts-local"
+# Matches `wrangler pages dev --d1 HEARTS`: a local storage key, not a remote DB ID.
+database_id = "HEARTS"
+migrations_dir = "../migrations"
