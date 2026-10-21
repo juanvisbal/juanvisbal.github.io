@@ -1,31 +1,37 @@
 #!/usr/bin/env python3
-"""Cross-post new blog posts to Bluesky and Mastodon, then record the copies in front matter.
+"""Cross-post new blog posts to Bluesky, Mastodon and /dev/null; record copies in front matter.
 
-Run by .github/workflows/crosspost.yaml after a push to main. For each post in
-content/blog/ dated on or after CROSSPOST_SINCE that has no `bluesky:` (or `mastodon:`)
-block yet, it posts to that network and writes the block back in the same shape
-Micro.blog used, so the comments box under the post can find its replies.
+Run by .github/workflows/crosspost.yaml after a push to main. Each eligible post
+without a network's front matter block is posted there, then the block is saved.
+Bluesky and Mastodon use Micro.blog's shape so the comments box can find replies.
+/dev/null is opt-in and starts at DEVNULL_SINCE, without backfilling older posts.
 
 Environment:
   BLUESKY_HANDLE, BLUESKY_APP_PASSWORD   Bluesky account + app password
   MASTODON_INSTANCE, MASTODON_TOKEN      e.g. social.lol + access token (write:statuses, write:media)
+  DEVNULL_PUBLIC_KEY                     path to an Ed25519/RSA public key loaded in ssh-agent;
+                                         enables /dev/null (account + key must be on GitHub)
   SITE_URL                               https://juanvisbal.com
-  DRY_RUN=1                              print what would be posted; change nothing
-  CHECK_LOGIN=1                          only log in to both networks and print the accounts
+  DRY_RUN=1                              preview all networks without logging in or writing files
+  CHECK_LOGIN=1                          only check configured logins/signing; post nothing
   BLUESKY_DELETE="at://… at://…"         delete these Bluesky posts (yours only) before posting,
                                          e.g. to re-post them with a link card
 
 Text rules: Mastodon gets the full post (social.lol allows 10,000 characters). Bluesky
 gets the full text if it fits in 300 characters; otherwise a shortened version plus the
-link. Titled posts get "Title + link" on both. Up to 4 images are attached, with alt text.
+link. Titled posts get "Title + link" on all networks. Up to 4 images are attached,
+with alt text. /dev/null gets at most 3 images (its CLI has no alt-text field), and
+text over its 4,000-character limit is shortened with a link.
 """
 import datetime as dt
+import hashlib
 import html
 import io
 import json
 import os
 import pathlib
 import re
+import subprocess
 import sys
 import time
 import unicodedata
@@ -37,6 +43,9 @@ import uuid
 CONTENT = pathlib.Path("content/blog")
 STATIC = pathlib.Path("static")
 CROSSPOST_SINCE = dt.date(2026, 10, 1)  # imported Micro.blog posts (newest: 2026-09-22) were already cross-posted
+DEVNULL_SINCE = dt.date(2026, 10, 21)  # new network: don't backfill the existing blog
+DEVNULL_LIMIT = 4000
+DEVNULL_IMAGE_MAX = 10_240_000
 BLUESKY_LIMIT = 300
 BLUESKY_IMAGE_MAX = 950_000  # Bluesky's limit is 1,000,000 bytes per image
 MAX_IMAGES = 4
@@ -47,19 +56,29 @@ USER_AGENT = "juanvisbal-crosspost/1.0 (+https://juanvisbal.com/blog/)"
 
 # ---------------------------------------------------------------- HTTP helpers
 
-def request(method, url, *, headers=None, data=None, json_body=None, timeout=60):
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
+def request(method, url, *, headers=None, data=None, json_body=None, timeout=60,
+            text_response=False, follow_redirects=True):
     headers = {"User-Agent": USER_AGENT, **(headers or {})}
     if json_body is not None:
         data = json.dumps(json_body).encode()
         headers["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=data, method=method, headers=headers)
+    open_url = urllib.request.urlopen if follow_redirects else urllib.request.build_opener(NoRedirect()).open
     for attempt in range(1, 5):
         try:
-            with urllib.request.urlopen(req, timeout=timeout) as r:
+            with open_url(req, timeout=timeout) as r:
                 body = r.read()
+                if text_response:
+                    return r.status, body.decode("utf-8")
                 return r.status, (json.loads(body) if body else {})
         except urllib.error.HTTPError as e:
-            raise RuntimeError(f"{method} {url} -> {e.code}: {e.read().decode(errors='replace')[:500]}") from None
+            with e:
+                raise RuntimeError(f"{method} {url} -> {e.code}: {e.read().decode(errors='replace')[:500]}") from None
         except urllib.error.URLError as e:
             # Retry only if the connection itself failed (e.g. "Network is unreachable"):
             # the request never reached the server, so retrying can't post twice.
@@ -190,6 +209,13 @@ def to_segments(markdown):
             last = m.end()
         out.append((t[last:], None))
     return [(t, l) for t, l in out if t]
+
+
+def post_text(post, site):
+    """Full plain text with link destinations preserved; titled posts advertise the original."""
+    if post.title:
+        return f"{post.title}\n\n{post.permalink(site)}"
+    return "".join(t if not l or t == l else f"{t} ({l})" for t, l in to_segments(post.body))
 
 
 def graphemes(text):
@@ -356,11 +382,7 @@ class Mastodon:
         return media["id"]
 
     def post(self, post, site):
-        link = post.permalink(site)
-        if post.title:
-            text = f"{post.title}\n\n{link}"
-        else:
-            text = "".join(t if not l or t == l else f"{t} ({l})" for t, l in to_segments(post.body))
+        text = post_text(post, site)
         images = post.images()
         if DRY_RUN:
             print(f"  Mastodon ({len(text)} chars, {len(images)} images):\n    " + text.replace("\n", "\n    "))
@@ -372,17 +394,93 @@ class Mastodon:
         return f'mastodon:\n  id: "{res["id"]}"\n  username: "{self.username}"\n  hostname: "{self.instance}"\n'
 
 
+# ---------------------------------------------------------------- /dev/null
+
+class DevNull:
+    BASE = "https://dev-null.sh"
+
+    def __init__(self, public_key):
+        self.public_key = str(pathlib.Path(public_key).expanduser())
+        parts = pathlib.Path(self.public_key).read_text(encoding="utf-8").split()
+        if len(parts) < 2 or parts[0] not in ("ssh-ed25519", "ssh-rsa"):
+            raise ValueError("DEVNULL_PUBLIC_KEY must point to an Ed25519 or RSA public key, not a private key")
+        key = " ".join(parts[:2])
+        recognized = self.request("/api/cli/key-lookups", data=(key + "\n").encode(),
+                                  headers={"Content-Type": "text/plain; charset=utf-8"})
+        if recognized.strip() != key:
+            raise RuntimeError("/dev/null did not recognize the configured public key")
+        # Check the agent too: CHECK_LOGIN must catch a missing private key without posting.
+        self.signature(b"Cross-post signing check", "devnull-commit")
+
+    def request(self, path, **kwargs):
+        # Unlike the other networks, the CLI returns plain text. Never redirect signed requests.
+        return request("POST", self.BASE + path, text_response=True, follow_redirects=False, **kwargs)[1]
+
+    def signature(self, payload, namespace):
+        result = subprocess.run(
+            ["ssh-keygen", "-Y", "sign", "-n", namespace, "-f", self.public_key],
+            input=payload, capture_output=True, timeout=30,
+            env={**os.environ, "SSH_ASKPASS_REQUIRE": "never"},
+        )
+        if result.returncode:
+            raise RuntimeError("/dev/null signing failed: load the configured key into ssh-agent")
+        signature = b"".join(line for line in result.stdout.splitlines() if not line.startswith(b"-----")).decode("ascii")
+        if not re.fullmatch(r"[A-Za-z0-9+/=]+", signature):
+            raise RuntimeError("ssh-keygen returned an invalid signature")
+        return signature
+
+    def post(self, post, site):
+        link = post.permalink(site)
+        text = post_text(post, site) or link  # CLI requires text even with images
+        if len(text) > DEVNULL_LIMIT:
+            budget = DEVNULL_LIMIT - len(link) - 3  # ellipsis and two newlines
+            if budget <= 0:
+                raise ValueError("post permalink exceeds /dev/null's character limit")
+            text = text[:budget].rstrip() + "…\n\n" + link
+        images = post.images()[:3]
+        if DRY_RUN:
+            print(f"  /dev/null ({len(text)} chars, {len(images)} images):\n    " + text.replace("\n", "\n    "))
+            return None
+
+        # Match https://dev-null.sh/commit byte for byte: timestamp, nonce, empty reply,
+        # optional comma-separated SHA-256 image hashes, then the message (no final newline).
+        files, hashes = {}, []
+        for i, (path, _) in enumerate(images):
+            data, ctype, _ = shrink(path, DEVNULL_IMAGE_MAX, formats=("JPEG", "PNG", "WEBP"))
+            hashes.append(hashlib.sha256(data).hexdigest())
+            files[f"images[{i}]"] = (f"image-{i}", data, ctype)
+        lines = [str(int(time.time())), uuid.uuid4().hex, ""]
+        namespace = "devnull-commit"
+        if images:
+            namespace = "devnull-commit-images"
+            lines.append(",".join(hashes))
+        payload = "\n".join([*lines, text]).encode("utf-8")
+        signature = self.signature(payload, namespace)
+        if images:
+            data, ctype = multipart({}, {"payload": ("commit", payload, "text/plain"), **files})
+        else:
+            data, ctype = payload, "text/plain; charset=utf-8"
+        response = self.request("/api/cli/commits", data=data, timeout=600 if images else 60,
+                                headers={"Content-Type": ctype, "X-SSH-Signature": signature})
+        # A pending-review response has the same URL followed by a parenthesized note.
+        match = re.search(r"^Committed: (https://dev-null\.sh/@[A-Za-z0-9_-]+/commits/[A-Za-z0-9-]+)(?:\s|$)", response)
+        if not match:
+            raise RuntimeError(f"/dev/null returned an unexpected commit response: {response[:500]}")
+        url = match.group(1)
+        return f"devnull:\n  id: {json.dumps(url.rsplit('/', 1)[1])}\n  url: {json.dumps(url)}\n"
+
+
 # ---------------------------------------------------------------- Images
 
-def shrink(path, max_bytes):
-    """Return (bytes, content type, (w, h)), re-encoding as JPEG if the file is too big."""
+def shrink(path, max_bytes, *, formats=("JPEG", "PNG", "GIF", "WEBP")):
+    """Return (bytes, content type, (w, h)); convert oversized/unsupported images to JPEG."""
     from PIL import Image, ImageOps
 
     raw = path.read_bytes()
     with Image.open(path) as im:
         im = ImageOps.exif_transpose(im)
         size = im.size
-        if len(raw) <= max_bytes and im.format in ("JPEG", "PNG", "GIF", "WEBP"):
+        if len(raw) <= max_bytes and im.format in formats:
             return raw, Image.MIME[im.format], size
         im = im.convert("RGB")
         for edge in (2000, 1600, 1200, 1000):
@@ -418,19 +516,29 @@ def wait_until_live(url, minutes=10):
 
 def main():
     site = os.environ.get("SITE_URL", "https://juanvisbal.com")
-    if os.environ.get("CHECK_LOGIN") == "1":
+    devnull_enabled = bool(os.environ.get("DEVNULL_PUBLIC_KEY")) or DRY_RUN
+    if not devnull_enabled:
+        print("/dev/null disabled: configure DEVNULL_PUBLIC_KEY and load its key into ssh-agent.")
+    if os.environ.get("CHECK_LOGIN") == "1" and not DRY_RUN:
         bsky = Bluesky(os.environ["BLUESKY_HANDLE"], os.environ["BLUESKY_APP_PASSWORD"])
         masto = Mastodon(os.environ["MASTODON_INSTANCE"], os.environ["MASTODON_TOKEN"])
         print(f"Bluesky: logged in as {bsky.handle} ({bsky.did}) via {bsky.pds}")
         print(f"Mastodon: logged in as @{masto.username}@{masto.instance}")
+        if devnull_enabled:
+            devnull = DevNull(os.environ["DEVNULL_PUBLIC_KEY"])
+            print(f"/dev/null: GitHub key recognized and agent signing works ({devnull.public_key})")
         return
     now = dt.datetime.now(dt.timezone.utc)
+
+    def needs_devnull(post):
+        return devnull_enabled and post.date.date() >= DEVNULL_SINCE and not post.has_block("devnull")
+
     pending = []
     for path in sorted(CONTENT.glob("[0-9][0-9][0-9][0-9]/**/*.md")):
         post = Post(path)
         if post.field("draft") == "true" or post.date.date() < CROSSPOST_SINCE or post.date > now:
             continue
-        if not post.has_block("bluesky") or not post.has_block("mastodon"):
+        if not post.has_block("bluesky") or not post.has_block("mastodon") or needs_devnull(post):
             pending.append(post)
     pending.sort(key=lambda p: p.date)  # oldest first, so feeds keep the blog's order
     deletions = os.environ.get("BLUESKY_DELETE", "").split()
@@ -443,6 +551,7 @@ def main():
     failures = 0
     needs_bsky = bool(deletions) or any(not p.has_block("bluesky") for p in pending)
     needs_masto = any(not p.has_block("mastodon") for p in pending)
+    needs_null = any(needs_devnull(p) for p in pending)
 
     def login(cls, *env):
         if DRY_RUN:  # no logins; post() prints and returns before using the session
@@ -457,6 +566,7 @@ def main():
 
     bsky = login(Bluesky, "BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD") if needs_bsky else None
     masto = login(Mastodon, "MASTODON_INSTANCE", "MASTODON_TOKEN") if needs_masto else None
+    devnull = login(DevNull, "DEVNULL_PUBLIC_KEY") if needs_null else None
     for at_uri in deletions if bsky else []:
         if DRY_RUN:
             print(f"would delete {at_uri}")
@@ -471,8 +581,8 @@ def main():
         print(f"{post.path} -> {post.permalink(site)}")
         if not DRY_RUN:
             wait_until_live(post.permalink(site))
-        for key, client in (("bluesky", bsky), ("mastodon", masto)):
-            if post.has_block(key) or client is None:
+        for key, client in (("bluesky", bsky), ("mastodon", masto), ("devnull", devnull)):
+            if post.has_block(key) or client is None or (key == "devnull" and not needs_devnull(post)):
                 continue
             try:
                 block = client.post(post, site)

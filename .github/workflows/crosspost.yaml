@@ -1,6 +1,6 @@
-# Cross-posts new blog posts to Bluesky and Mastodon (tools/crosspost.py), then commits
+# Cross-posts new blog posts to Bluesky, Mastodon and /dev/null (tools/crosspost.py), then commits
 # the links to those copies back into the posts' front matter (used by the comments box).
-# Secrets: BLUESKY_APP_PASSWORD, MASTODON_TOKEN.
+# Secrets: BLUESKY_APP_PASSWORD, MASTODON_TOKEN, DEVNULL_SSH_KEY (optional).
 name: Cross-post new blog posts
 on:
   push:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       check_login:
-        description: "Only check that both logins work (posts nothing)"
+        description: "Only check configured logins and /dev/null signing (posts nothing)"
         type: boolean
         default: false
       bluesky_delete:
@@ -33,16 +33,36 @@ jobs:
           python3 -m venv .venv
           .venv/bin/pip install --quiet pillow
 
+      - name: Test cross-posting
+        run: .venv/bin/python -m unittest discover -s tools -p 'test_*.py'
+
       - name: Cross-post
         env:
           BLUESKY_HANDLE: juanvisbal.com
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           MASTODON_INSTANCE: social.lol
           MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+          DEVNULL_SSH_KEY: ${{ secrets.DEVNULL_SSH_KEY }}
           SITE_URL: https://juanvisbal.com
           CHECK_LOGIN: ${{ inputs.check_login && '1' || '0' }}
           BLUESKY_DELETE: ${{ inputs.bluesky_delete }}
-        run: .venv/bin/python tools/crosspost.py
+        run: |
+          # Keep the private key in a dedicated agent, never in the checkout or on disk.
+          if [ -n "$DEVNULL_SSH_KEY" ]; then
+            export DEVNULL_PUBLIC_KEY="$(mktemp "$RUNNER_TEMP/devnull-key.XXXXXX")"
+            unset SSH_AUTH_SOCK SSH_AGENT_PID
+            trap 'if [ -n "${SSH_AGENT_PID:-}" ]; then ssh-agent -k >/dev/null; fi; rm -f -- "$DEVNULL_PUBLIC_KEY"' EXIT
+            if agent="$(ssh-agent -s)"; then
+              eval "$agent" >/dev/null
+              if printf '%s\n' "$DEVNULL_SSH_KEY" | SSH_ASKPASS_REQUIRE=never ssh-add -q -; then
+                ssh-add -L > "$DEVNULL_PUBLIC_KEY"
+              else
+                echo "/dev/null: could not load signing key; other networks will still run" >&2
+              fi
+            fi
+          fi
+          unset DEVNULL_SSH_KEY
+          .venv/bin/python tools/crosspost.py
 
       # Runs even if one network failed, so the successful posts are recorded
       # and not posted again next time.
@@ -52,6 +72,6 @@ jobs:
           git add content/blog
           if git diff --cached --quiet; then exit 0; fi
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
-            commit -m "Record Bluesky/Mastodon copies of new posts"
+            commit -m "Record cross-post copies of new posts"
           git pull --rebase --quiet
           git push

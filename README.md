@@ -51,7 +51,19 @@ For a static-only preview, `hugo server` still works at http://localhost:1313, b
 
 ## Cross-posting
 
-`.github/workflows/crosspost.yaml` runs `tools/crosspost.py` after each push to `main` that touches `content/blog/`. New posts (dated 2026-10-01 or later, not drafts, not in the future) go to Bluesky (`juanvisbal.com`) and Mastodon (`@juan@social.lol`); the links to those copies are committed back into the post's front matter, which turns on its comments box. Short posts are posted in full; titled posts as title + link; long posts are shortened on Bluesky (300 characters) with a link. Up to 4 images, with alt text. Secrets: `BLUESKY_APP_PASSWORD`, `MASTODON_TOKEN`. To test the logins without posting: Actions → "Cross-post new blog posts" → Run workflow → tick "Only check".
+`.github/workflows/crosspost.yaml` runs `tools/crosspost.py` after each push to `main` that touches `content/blog/`. New posts (dated 2026-10-01 or later, not drafts, not in the future) go to Bluesky (`juanvisbal.com`) and Mastodon (`@juan@social.lol`). With /dev/null configured, posts dated 2026-10-21 or later also go there; older posts aren't backfilled. Each successful copy is committed back into the post's front matter (`bluesky`, `mastodon`, `devnull`) and skipped on later runs. A network's failure doesn't prevent posting to the others, and successful copies are saved even if another network fails. The comments box uses the Bluesky and Mastodon copies only.
+
+Short posts are posted in full; titled posts as title + link. Long posts are shortened with a link on Bluesky (300 characters) and /dev/null (4,000 characters). Up to 4 images with alt text on Bluesky/Mastodon; up to 3 on /dev/null, whose CLI doesn't accept alt text. JPEG, PNG and WebP are supported on /dev/null; GIFs are converted to JPEG, as are oversized images.
+
+### Credentials
+
+- Bluesky: repository Actions secret `BLUESKY_APP_PASSWORD`.
+- Mastodon: repository Actions secret `MASTODON_TOKEN` (`write:statuses`, `write:media`).
+- /dev/null (optional): sign in at https://dev-null.sh with GitHub first. Generate a **dedicated, unencrypted Ed25519 key** outside this repository, add its **public** key to that GitHub account under **Settings → SSH and GPG keys → New SSH key** (Authentication Key), and put its **private** key in the repository Actions secret `DEVNULL_SSH_KEY`. Don't reuse a personal login/deploy key or commit either key. The workflow loads the secret into a temporary SSH agent and removes it on exit; only the public key is written to a temporary file. If the secret is absent, /dev/null is skipped without affecting the other networks.
+
+/dev/null uses the SSH-signed CLI protocol at https://dev-null.sh/commit: only the public key, signed payload, signature and attached images are sent. Text and image payloads use their respective signing namespaces. A pending-review copy is recorded too, so it isn't submitted again while moderation is pending.
+
+To test the configured logins and signing without posting: Actions → **Cross-post new blog posts** → **Run workflow** → tick **Only check**. Locally, load the dedicated key into `ssh-agent` and set `DEVNULL_PUBLIC_KEY` to the path of its `.pub` file. `DRY_RUN=1 python3 tools/crosspost.py` previews eligible posts on all three networks without credentials, posting or front-matter changes. Run regression tests with `python3 -m unittest discover -s tools -p 'test_*.py'`.
 
 ## SocialSpec: about, contact, and following
 
