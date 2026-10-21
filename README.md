@@ -41,7 +41,7 @@ For a static-only preview, `hugo server` still works at http://localhost:1313, b
 - Images: `static/blog/uploads/YYYY/`, referenced as `/blog/uploads/...`.
 - Feeds: `/blog/feed.xml` and `/blog/feed.json`. Imported posts keep their Micro.blog `guid`, so readers don't show them again.
 - Design: the blog uses the main site's layout (`layouts/baseof.html`) and stylesheets, plus `assets/stylesheets/blog.css`. Templates in `layouts/blog/` apply only to `/blog/`. The feed templates started from Minimism (MIT, see `layouts/blog/LICENSE-minimism`).
-- Replies: `data/blog/replies_*.json` (Micro.blog export) at `/blog/replies/`.
+- Replies: `data/blog/replies_*.json` (Micro.blog export) at `/blog/replies/`, each row tagged with the network it came from (`layouts/_partials/blog/reply-network.html`); Mastodon replies load live via `assets/js/replies.js` from the `mastodon` account in `content/blog/replies.md`.
 - `tools/import_microblog.py`: the one-off export cleanup.
 
 ## Hearts and comments

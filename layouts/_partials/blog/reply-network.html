@@ -1,0 +1,14 @@
+{{- /* Which network a reply URL points at: dict name/icon, or empty values when unknown.
+       Used by the static Micro.blog export rows and mirrored by assets/js/replies.js. */ -}}
+{{- $url := . -}}
+{{- $name := "" -}}
+{{- $icon := "" -}}
+{{- if in $url "bsky.app" -}}
+  {{- $name = "Bluesky" -}}{{- $icon = "fa-brands fa-bluesky" -}}
+{{- else if in $url "micro.blog" -}}
+  {{- $name = "Micro.blog" -}}{{- $icon = "fa-brands fa-microblog" -}}
+{{- else if findRE "^https?://[^/]+/@[^/?#]" $url -}}
+  {{- /* Any https://host/@user is Mastodon-compatible, including other instances. */ -}}
+  {{- $name = "Mastodon" -}}{{- $icon = "fa-brands fa-mastodon" -}}
+{{- end -}}
+{{- return dict "name" $name "icon" $icon -}}
