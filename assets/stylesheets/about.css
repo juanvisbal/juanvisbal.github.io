@@ -4,8 +4,8 @@
   line-height: 1.65;
 }
 
-#about > * + * {
-  margin-top: 0.9rem;
+#about > * + :not(.section-separator) {
+  margin-top: var(--space-content);
 }
 
 #about ul {
@@ -13,7 +13,7 @@
 }
 
 #about li + li {
-  margin-top: 0.5rem;
+  margin-top: var(--space-small);
 }
 
 #about a {

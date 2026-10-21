@@ -8,7 +8,7 @@
         {{- $lines := split . "\n" }}
         {{- $title := index $lines 0 | strings.TrimSpace }}
         {{- $body := delimit (after 1 $lines) "\n" }}
-        <section class="now-section{{ if in ($.Params.wide | default slice) $title }} now-section--wide{{ end }}">
+        <section class="card now-section{{ if in ($.Params.wide | default slice) $title }} now-section--wide{{ end }}">
           <h3>{{ with index ($.Params.icons | default dict) $title }}<i class="fa-solid {{ . }}"></i> {{ end }}{{ $title }}</h3>
           {{ $.RenderString $body }}
         </section>

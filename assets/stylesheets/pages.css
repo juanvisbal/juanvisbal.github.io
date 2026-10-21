@@ -3,7 +3,7 @@ body.content-page {
   display: block;
   min-height: auto;
   text-align: left;
-  padding: 20px 0;
+  padding: var(--space-section) 0;
 }
 
 /* Every content page: same width and header spacing (the home page is its own centred layout). */
@@ -14,7 +14,7 @@ body.content-page .container {
 }
 
 body.content-page .container .profile {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-section);
 }
 
 /* The portrait is in normal flow, outside the shared sticky navigation. */
@@ -22,7 +22,8 @@ body.content-page .profile-pic {
   display: block;
   width: 96px;
   height: 96px;
-  margin-bottom: 0.75rem;
+  margin-inline: 0;
+  margin-bottom: var(--space-content);
 }
 
 /* Shared by every content page; the base template adds blog subnav conditionally. */
@@ -46,36 +47,69 @@ html:has(> body.content-page) {
 }
 
 body.content-page main > header {
-  margin-bottom: 1.35rem;
+  margin-bottom: var(--space-section);
 }
 
 body.content-page main > header h2 {
   font-size: 1.5rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: var(--space-small);
 }
 
 body.content-page main > .content-footnote {
   color: var(--text-subtle);
   font-size: 0.875rem;
-  margin: 1rem 0 0;
+  margin: var(--space-content) 0 0;
 }
 
 body.content-page main > header .description {
   font-size: 0.98rem;
-  margin-bottom: 0.55rem;
+  margin-bottom: 0;
   color: var(--header-text);
 }
 
 body.content-page main > header .description .p-note {
-  margin-bottom: 10px;
+  margin-bottom: 0;
   color: var(--note);
 }
 
+body.content-page main > header .description > * + * {
+  margin-top: var(--space-small);
+}
+
+/* Grouped content card, shared by the /now sections and the blogroll categories. */
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: var(--space-content);
+  background: var(--panel);
+}
+
 body.content-page main h3 {
-  margin: 0 0 0.75rem;
+  margin: 0 0 var(--space-small);
   font-size: 1.1rem;
 }
 
+/* Divided lists share one rule: equal space on both sides of interior dividers.
+   The surrounding section owns the first/last item's outer spacing. */
+.divided-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.divided-list > li {
+  margin: 0;
+  padding: 0;
+}
+
+.divided-list > li:not(:first-child) {
+  padding-block-start: var(--space-section);
+}
+
+.divided-list > li:not(:last-child) {
+  padding-block-end: var(--space-section);
+  border-block-end: 1px solid var(--border);
+}
 
 @media (max-width: 760px) {
   body.content-page .profile-pic {

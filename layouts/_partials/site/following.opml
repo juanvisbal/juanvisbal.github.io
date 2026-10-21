@@ -14,8 +14,17 @@
     <docs>https://opml.org/spec2.opml</docs>
   </head>
   <body>
-{{- range partial "site/blogroll.html" $blogroll }}
-    <outline type="rss" text="{{ .title | htmlEscape }}" title="{{ .title | htmlEscape }}"{{ with .htmlUrl }} htmlUrl="{{ . | htmlEscape }}"{{ end }} xmlUrl="{{ .xmlUrl | htmlEscape }}" />
+{{- range partial "site/blogroll.html" . -}}
+{{- $name := .name -}}
+{{- if $name }}
+    <outline text="{{ $name | htmlEscape }}" title="{{ $name | htmlEscape }}">
+{{- end }}
+{{- range .feeds }}
+      <outline type="rss" text="{{ .title | htmlEscape }}" title="{{ .title | htmlEscape }}"{{ with .htmlUrl }} htmlUrl="{{ . | htmlEscape }}"{{ end }} xmlUrl="{{ .xmlUrl | htmlEscape }}" />
+{{- end }}
+{{- if $name }}
+    </outline>
+{{- end }}
 {{- end }}
   </body>
 </opml>

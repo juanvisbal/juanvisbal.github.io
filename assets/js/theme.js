@@ -1,29 +1,46 @@
-// Light/dark toggle (footer). Two states: follow the system, or the opposite of the system.
-// The stored override lives in localStorage "color-scheme" and is mirrored to
-// <meta name="color-scheme">, which tokens.css maps to the CSS color-scheme property.
+// Footer theme cycle: System → Light → Dark → System.
+// The meta element is the current preference; tokens.css maps it to color-scheme.
+// Only explicit light/dark choices are persisted. System removes the override.
 (() => {
   const meta = document.querySelector('meta[name="color-scheme"]');
   const button = document.querySelector(".theme-toggle");
   if (!meta || !button) return;
 
   const systemDark = matchMedia("(prefers-color-scheme: dark)");
-  const read = () => { try { return localStorage.getItem("color-scheme"); } catch { return null; } };
-  const write = (value) => {
-    try { value ? localStorage.setItem("color-scheme", value) : localStorage.removeItem("color-scheme"); } catch { /* not persisted */ }
-    meta.content = value || "light dark";
+  const modes = ["system", "light", "dark"];
+  const actions = {
+    system: "Use system theme",
+    light: "Switch to light theme",
+    dark: "Switch to dark theme",
+  };
+  const preference = () => meta.content === "light" || meta.content === "dark" ? meta.content : "system";
+  const nextMode = () => modes[(modes.indexOf(preference()) + 1) % modes.length];
+  const render = () => {
+    const current = preference();
+    const name = current === "system" ? `System (${systemDark.matches ? "dark" : "light"})` : current === "light" ? "Light" : "Dark";
+    const label = `Theme: ${name}. ${actions[nextMode()]}.`;
+    button.setAttribute("aria-label", label);
+    button.title = label;
+    button.hidden = false;
+  };
+  const apply = (value) => {
+    meta.content = value === "light" || value === "dark" ? value : "light dark";
+    render();
   };
 
-  button.hidden = false;
+  apply(meta.content);
   button.addEventListener("click", () => {
-    const system = systemDark.matches ? "dark" : "light";
-    const rendered = read() || (meta.content === "light" || meta.content === "dark" ? meta.content : system);
-    const target = rendered === "dark" ? "light" : "dark";
-    // Matching the system means undoing the override: don't pin it.
-    write(target === system ? null : target);
+    const next = nextMode();
+    try {
+      if (next === "system") localStorage.removeItem("color-scheme");
+      else localStorage.setItem("color-scheme", next);
+    } catch { /* Theme still changes in this tab when storage is blocked. */ }
+    apply(next);
   });
 
-  // Keep other open tabs in sync.
+  // CSS follows OS changes automatically; update the System label as well.
+  systemDark.addEventListener("change", render);
   addEventListener("storage", (e) => {
-    if (e.key === "color-scheme") meta.content = e.newValue || "light dark";
+    if (e.key === "color-scheme" || e.key === null) apply(e.newValue);
   });
 })();

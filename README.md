@@ -26,10 +26,14 @@ For a static-only preview, `hugo server` still works at http://localhost:1313, b
 | About | `content/about.md`: plain Markdown, who you are (no link lists) | `/about.html`, `/about.md`, `/.well-known/about.md` |
 | Now | `content/now.md`: plain Markdown, one `## Heading` + list per card (icons in front matter); bump `lastmod` | `/now.html`, `/now.md` |
 | Resume | `content/resume.md` | `/resume.html`, `/resume.md` |
-| Blogroll | Replace `assets/blogroll.opml` with a NetNewsWire export; bump `lastmod` in `content/blogroll.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml`, `/.well-known/following.opml` |
+| Blogroll | Replace `assets/blogroll.opml` with a NetNewsWire export; folders become category cards; bump `lastmod` in `content/blogroll.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml`, `/.well-known/following.opml` |
 | Site nav | `[[menus.main]]` in `hugo.toml` | nav menus, `/llms.txt` page list |
 | CSS and JS | `assets/stylesheets/`, `assets/js/` | fingerprinted URLs (`layouts/_partials/site/css.html`, `js.html`), so browsers never use a stale copy |
 | Static files (images, PDF, `human.json`, `CNAME`) | `static/` | copied as-is |
+
+## Spacing
+
+`assets/stylesheets/tokens.css` defines the shared vertical rhythm: `--space-small` (0.5rem) for related details, `--space-content` (1rem) for content groups, and `--space-section` (2rem) for sections and dividers. Post, archive, and replies lists share `.divided-list` in `pages.css`: equal padding around interior dividers, with outer spacing owned by the surrounding section instead of doubled at list edges. `.card` (also in `pages.css`) is the shared panel behind the `/now` sections and the blogroll categories.
 
 ## Blog
 
@@ -61,7 +65,9 @@ The site implements the three [SocialSpec](https://socialspec.org/) APIs, so fee
 
 ## Light/dark theme
 
-Colours are tokens in `assets/stylesheets/tokens.css` (`light-dark()`, with a system-preference fallback). The footer button (`layouts/_partials/site/theme-toggle.html`, `assets/js/theme.js`) toggles between following the system and the opposite theme, stored in `localStorage`; an inline script in `<head>` applies it before the page renders.
+Colours are tokens in `assets/stylesheets/tokens.css` (`light-dark()`, with a system-preference fallback). The footer button (`layouts/_partials/site/theme-toggle.html`, `assets/js/theme.js`) cycles **System → Light → Dark → System**. Light and Dark are saved in `localStorage`; System removes the override and follows OS changes automatically. The button's tooltip and accessible name describe the current preference and next action. An inline script in `<head>` applies a saved override before the page renders; other open tabs stay in sync.
+
+Theme regression tests: `node --test tools/theme.test.cjs` (no extra dependencies).
 
 ## Shared layout pieces
 

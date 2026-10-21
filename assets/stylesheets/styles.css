@@ -16,7 +16,7 @@ body {
   min-height: 100vh;
   cursor: default;
   text-align: center;
-  padding: 20px 0 20px 0;
+  padding: var(--space-section) 0;
 }
 
 a {
@@ -132,23 +132,24 @@ a {
 }
 
 .profile-pic {
+  display: block;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px;
+  margin: 0 auto var(--space-content);
   border: 2px solid var(--text);
 }
 
 .name {
   font-size: 1.75rem;
   font-weight: bold;
-  margin: 10px 0;
+  margin: var(--space-small) 0;
 }
 
 .description {
   font-size: 1rem;
-  margin-bottom: 30px;
+  margin-bottom: var(--space-section);
   line-height: 1.6;
   color: var(--text-muted);
 }
@@ -156,8 +157,8 @@ a {
 .links {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 10px;
+  gap: var(--space-content);
+  margin-top: var(--space-content);
 }
 
 .link-button {
@@ -210,7 +211,7 @@ a {
 /* Home page: centred under the social icons */
 body:not(.content-page) .footer {
   justify-content: center;
-  margin-top: 40px;
+  margin-top: var(--space-section);
 }
 
 .footer__actions {
@@ -235,8 +236,8 @@ body:not(.content-page) .footer {
 
 .button-group {
   display: flex;
-  gap: 15px;
-  margin-top: 25px;
+  gap: var(--space-content);
+  margin-top: var(--space-section);
 }
 
 .icon-button {
@@ -273,7 +274,7 @@ body:not(.content-page) .footer {
 .section-separator {
   border: 0;
   border-top: 1px solid var(--border);
-  margin: 1.5rem 0 1rem;
+  margin: var(--space-section) 0;
 }
 
 @media (max-width: 760px) {
@@ -282,7 +283,7 @@ body:not(.content-page) .footer {
   }
 }
 
-/* Light/dark toggle in the footer (layouts/_partials/site/theme-toggle.html, /theme.js) */
+/* System/light/dark cycle in the footer (layouts/_partials/site/theme-toggle.html). */
 .theme-toggle {
   /* Same size as the header menu button (.site-nav__menu summary) */
   width: 1.75rem;
@@ -304,26 +305,17 @@ body:not(.content-page) .footer {
   color: var(--text);
 }
 
-.theme-toggle__to-light {
+/* Keep a non-functional control hidden if JS is disabled. */
+.theme-toggle[hidden],
+.theme-toggle > span {
   display: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .theme-toggle__to-light {
-    display: inline;
-  }
-
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) .theme-toggle__to-dark {
-    display: none;
-  }
-}
-
-:root:has(> head > meta[name="color-scheme"][content="dark"]) .theme-toggle__to-light {
+/* Show the next action in the fixed cycle, independent of the current OS theme. */
+:root:has(> head > meta[name="color-scheme"][content="light dark"]) .theme-toggle__to-light,
+:root:has(> head > meta[name="color-scheme"][content="light"]) .theme-toggle__to-dark,
+:root:has(> head > meta[name="color-scheme"][content="dark"]) .theme-toggle__to-system {
   display: inline;
-}
-
-:root:has(> head > meta[name="color-scheme"][content="dark"]) .theme-toggle__to-dark {
-  display: none;
 }
 
 .visually-hidden {
