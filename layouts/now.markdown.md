@@ -2,7 +2,7 @@
 
 {{ .Params.note }}
 
-This is a [now page](https://nownownow.com/about), and if you have your own site, you should make one too.
+{{ i18n "nowIntroMd" }}
 
 {{ .RawContent | strings.TrimSpace }}
 

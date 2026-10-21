@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.LanguageCode | default site.Language.Lang }}">
 <head>
   <meta charset="UTF-8" />
   {{ partial "site/head-common.html" . }}
@@ -16,7 +16,7 @@
 
   <meta property="og:title" content="{{ site.Title }}" />
   <meta name="author" content="{{ site.Title }}" />
-  <meta property="og:locale" content="en" />
+  <meta property="og:locale" content="{{ site.LanguageCode | default site.Language.Lang }}" />
   <meta name="description" content="{{ .Params.bio }}" />
   <meta property="og:description" content="{{ .Params.bio }}" />
   <meta property="og:site_name" content="{{ site.Title }}" />
@@ -34,16 +34,16 @@
   <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
+  <a class="skip-link" href="#content">{{ i18n "skipToContent" }}</a>
   <div class="container h-card">
     <main id="content" tabindex="-1">
     <div class="profile">
-      <img src="/images/profile.png" alt="Memoji of Juan Visbal" class="profile-pic u-photo" />
+      <img src="/images/profile.png" alt="{{ i18n "memojiAlt" }}" class="profile-pic u-photo" />
       <h1 class="name p-name">{{ site.Title }}</h1>
       <p class="description p-note">{{ .Params.bio }}</p>
     </div>
 
-    <nav class="links" aria-label="Pages">
+    <nav class="links" aria-label="{{ i18n "pagesNav" }}">
       {{ range .Params.links }}
         {{- if .external }}
         <a href="{{ .url }}" target="_blank" rel="noopener noreferrer" class="link-button link-button--external" title="{{ .title }}">
@@ -58,7 +58,7 @@
       {{ end }}
     </nav>
 
-    <nav class="button-container" aria-label="Elsewhere">
+    <nav class="button-container" aria-label="{{ i18n "elsewhereNav" }}">
       <div class="button-group">
         {{ range .Params.elsewhere }}
           {{- if hasPrefix .url "mailto:" }}
@@ -66,7 +66,7 @@
             <i class="{{ .icon }}"></i>
           </a>
           {{- else }}
-          <a href="{{ .url }}" title="Juan's {{ .name }}" aria-label="Juan's {{ .name }} (opens in a new tab)" target="_blank" class="icon-button" rel="{{ .rel }} noopener noreferrer">
+          <a href="{{ .url }}" title="{{ i18n "juans" (dict "name" .name) }}" aria-label="{{ i18n "juans" (dict "name" .name) }} ({{ i18n "newTab" }})" target="_blank" class="icon-button" rel="{{ .rel }} noopener noreferrer">
             <i class="{{ .icon }}"></i>
           </a>
           {{- end }}

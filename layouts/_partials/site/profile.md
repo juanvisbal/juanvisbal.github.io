@@ -5,15 +5,15 @@
 */ -}}
 {{- $format := .format -}}
 {{- with .page -}}
-{{- $blog := site.GetPage "/blog" -}}
+{{- $blog := partial "site/english-page.html" (dict "path" "/blog") -}}
 {{ .Params.bio }}
 
-## Links
+## {{ i18n "linksHeading" }}
 {{ range .Params.links }}
 - [{{ .name }}]({{ with site.GetPage .url }}{{ with .OutputFormats.Get $format }}{{ .Permalink }}{{ else }}{{ .Permalink }}{{ end }}{{ else }}{{ .url | absURL }}{{ end }}){{ if .feeds }} ([RSS]({{ ($blog.OutputFormats.Get "rss").Permalink }}), [JSON Feed]({{ ($blog.OutputFormats.Get "json").Permalink }})){{ end }}
 {{- end }}
 
-## Elsewhere
+## {{ i18n "elsewhereHeading" }}
 {{ range .Params.elsewhere }}
 - [{{ .name }}]({{ .url }})
 {{- end }}

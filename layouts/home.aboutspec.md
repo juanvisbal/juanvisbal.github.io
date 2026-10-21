@@ -6,7 +6,7 @@
 summary: {{ .Params.bio | jsonify }}
 ---
 
-### About {{ index (split site.Title " ") 0 }}
+### {{ i18n "aboutHeading" (dict "name" (index (split site.Title " ") 0)) }}
 
-{{ (site.GetPage "/about").RawContent | strings.TrimSpace }}
+{{ (partial "site/english-page.html" (dict "path" "/about")).RawContent | strings.TrimSpace }}
 

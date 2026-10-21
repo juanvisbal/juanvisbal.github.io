@@ -1,6 +1,6 @@
 {{ define "main" }}
     <main id="now" class="e-content">
-      {{ partial "site/page-header.html" (dict "page" . "intro" (`This is a <a class="u-url" rel="me" href="https://nownownow.com/about">now page</a>, and if you have your own site, you should make one too.` | safeHTML)) }}
+      {{ partial "site/page-header.html" (dict "page" . "intro" (i18n "nowIntro" | safeHTML)) }}
 
       <div class="now-grid">
         {{- /* Each "## Heading" in content/now.md becomes a card. */}}

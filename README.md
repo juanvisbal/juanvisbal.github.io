@@ -26,14 +26,32 @@ For a static-only preview, `hugo server` still works at http://localhost:1313, b
 | About | `content/about.md`: plain Markdown, who you are (no link lists) | `/about.html`, `/about.md`, `/.well-known/about.md` |
 | Now | `content/now.md`: plain Markdown, one `## Heading` + list per card (icons in front matter); bump `lastmod` | `/now.html`, `/now.md` |
 | Resume | `content/resume.md` | `/resume.html`, `/resume.md` |
+| Resume PDF | The English `static/resume.pdf` is exported by hand from the Pages document; regenerate the Spanish one with `tools/resume_pdf_es.py` | `/resume.pdf`, `/es/resume.pdf` |
 | Blogroll | Replace `assets/blogroll.opml` with a NetNewsWire export; folders become category cards; bump `lastmod` in `content/blogroll.md` | `/blogroll.html`, `/blogroll.md`, `/blogroll.opml`, `/.well-known/following.opml` |
-| Site nav | `[[menus.main]]` in `hugo.toml` | nav menus, `/llms.txt` page list |
+| Site nav | `[[languages.en.menus.main]]` in `hugo.toml` (Spanish under `languages.es.menus`) | nav menus, `/llms.txt` page list |
 | CSS and JS | `assets/stylesheets/`, `assets/js/` | fingerprinted URLs (`layouts/_partials/site/css.html`, `js.html`), so browsers never use a stale copy |
 | Static files (images, PDF, `human.json`, `CNAME`) | `static/` | copied as-is |
 
 ## Spacing
 
 `assets/stylesheets/tokens.css` defines the shared vertical rhythm: `--space-small` (0.5rem) for related details, `--space-content` (1rem) for content groups, and `--space-section` (2rem) for sections and dividers. Post, archive, and replies lists share `.divided-list` in `pages.css`: equal padding around interior dividers, with outer spacing owned by the surrounding section instead of doubled at list edges. `.card` (also in `pages.css`) is the shared panel behind the `/now` sections and the blogroll categories.
+
+## Spanish (es)
+
+The site is bilingual: English at the root, Spanish under `/es/` (`defaultContentLanguage = "en"` in `hugo.toml`). Spanish covers the main pages and the site chrome; **blog posts and replies stay English-only** (untranslated pages simply don't exist under `/es/`, and the Spanish nav's Blog link and the footer feeds point at the English blog).
+
+| To change | Edit |
+|---|---|
+| Home bio, links, socials (Spanish) | `content/_index.es.md` |
+| About (Spanish) | `content/about.es.md` (same structure as `content/about.md`) |
+| Now (Spanish) | `content/now.es.md` (same structure: one `## Heading` per card; icon keys must match the Spanish headings) |
+| Resume (Spanish) | `content/resume.es.md` |
+| Resume PDF (Spanish) | `tools/resume_pdf_es.py` (`CONTENT` at the top), then `.venv/bin/python tools/resume_pdf_es.py` — keep it in sync with the English PDF |
+| Blogroll (Spanish) | `content/blogroll.es.md` (list itself is still `assets/blogroll.opml`; keep the `icons` keys matching the OPML folder names) |
+| UI strings (nav, footer, headings, theme toggle, llms.txt) | `i18n/en.toml` and `i18n/es.toml` |
+| Spanish menu labels | `[languages.es.menus]` in `hugo.toml` |
+
+Every page's footer shows a link to the same page in the other language (`layouts/_partials/site/language-switcher.html`); untranslated pages (e.g. posts) fall back to the other language's home page. Menu URLs are language-neutral page paths; `layouts/_partials/site/english-page.html` resolves a page in the current language or falls back to the English copy (the blog and any not-yet-translated page) for the nav, footer feeds, `<head>` alternates, and the `/llms.txt` generators.
 
 ## Blog
 

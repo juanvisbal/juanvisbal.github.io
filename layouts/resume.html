@@ -4,8 +4,8 @@
 {{ define "main" }}
     <main id="resume-content" class="e-content">
       <div class="links resume-actions">
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="link-button" title="Download PDF version">
-          <i class="fa-solid fa-download"></i> Download PDF{{ partial "site/new-tab.html" }}
+        <a href="{{ site.Params.resumePdf }}" target="_blank" rel="noopener noreferrer" class="link-button" title="{{ i18n "resumeDownloadTitle" }}">
+          <i class="fa-solid fa-download"></i> {{ i18n "resumeDownload" }}{{ partial "site/new-tab.html" }}
         </a>
       </div>
 
@@ -13,7 +13,7 @@
         {{ .Params.summary }}
       </p>
 
-      <h2>Work Experience</h2>
+      <h2>{{ i18n "resumeWork" }}</h2>
       {{ range .Params.roles }}
       <article class="role">
         <p class="role-title">{{ .title }}</p>
@@ -24,27 +24,27 @@
         </ul>
       </article>
       {{ end }}
-      <h2>Skills</h2>
+      <h2>{{ i18n "resumeSkills" }}</h2>
       {{ partial "site/table.html" .Params.skills }}
 
-      <h2>Education & Training</h2>
+      <h2>{{ i18n "resumeEducation" }}</h2>
       <ul>
         {{- range .Params.education }}
         <li>{{ . }}</li>
         {{- end }}
       </ul>
 
-      <h2>Languages</h2>
+      <h2>{{ i18n "resumeLanguages" }}</h2>
       <ul>
         {{- range .Params.languages }}
         <li>{{ . }}</li>
         {{- end }}
       </ul>
 
-      <h2>About</h2>
+      <h2>{{ i18n "resumeAbout" }}</h2>
       {{ partial "site/table.html" .Params.about }}
 
-      <h2>Portfolio</h2>
+      <h2>{{ i18n "resumePortfolio" }}</h2>
       <ul>
         {{- range .Params.portfolio }}
         <li>{{ .name }}{{ with .url }} — <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ partial "site/bare-url.html" . }}{{ partial "site/new-tab.html" }}</a>{{ end }}</li>
@@ -54,8 +54,7 @@
       <hr class="section-separator">
 
       <p class="footnote">
-        <strong>Note:</strong> You can download a printable PDF version of this resume at
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">/resume.pdf{{ partial "site/new-tab.html" }}</a>.
+        {{ i18n "resumeNotePre" | safeHTML }}<a href="{{ site.Params.resumePdf }}" target="_blank" rel="noopener noreferrer">{{ site.Params.resumePdf }}{{ partial "site/new-tab.html" }}</a>.
       </p>
     </main>
 {{ end }}

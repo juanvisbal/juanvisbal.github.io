@@ -220,8 +220,10 @@ body:not(.content-page) .footer {
   gap: 0.5rem;
 }
 
-.footer__actions .theme-toggle {
-  margin-left: 0.5rem;
+/* Language switcher in the footer (layouts/_partials/site/language-switcher.html) */
+.footer__lang {
+  display: inline-flex;
+  align-items: center;
 }
 
 .footer a:hover {

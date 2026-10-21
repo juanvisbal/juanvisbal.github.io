@@ -4,16 +4,16 @@
 
 {{ .Params.summary }}
 
-[Download PDF]({{ "resume.pdf" | absURL }})
+[{{ i18n "resumeDownload" }}]({{ site.Params.resumePdf | absURL }})
 
-## Work Experience
+## {{ i18n "resumeWork" }}
 {{ range .Params.roles }}
 ### {{ .title }}
 {{ range .items }}
 - {{ . }}
 {{- end }}
 {{ end }}
-## Skills
+## {{ i18n "resumeSkills" }}
 
 | | |
 |---|---|
@@ -21,17 +21,17 @@
 | {{ .name }} | {{ .value }} |
 {{- end }}
 
-## Education & Training
+## {{ i18n "resumeEducation" }}
 {{ range .Params.education }}
 - {{ . }}
 {{- end }}
 
-## Languages
+## {{ i18n "resumeLanguages" }}
 {{ range .Params.languages }}
 - {{ . }}
 {{- end }}
 
-## About
+## {{ i18n "resumeAbout" }}
 
 | | |
 |---|---|
@@ -39,7 +39,7 @@
 | {{ .name }} | {{ .value }} |
 {{- end }}
 
-## Portfolio
+## {{ i18n "resumePortfolio" }}
 {{ range .Params.portfolio }}
 - {{ .name }}{{ with .url }} — [{{ partial "site/bare-url.html" . }}]({{ . }}){{ end }}
 {{- end }}
