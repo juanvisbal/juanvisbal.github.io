@@ -53,9 +53,12 @@ export async function onRequest({ request, env, params }) {
     const { emoji, visitorId } = parseMessage(await request.text());
     if (!emoji) return json({ error: "unsupported emoji" }, 400);
 
-    // Only real posts: ask the static site whether the page exists.
+    // Only real posts: ask the static site whether the page exists. Pages answers 308
+    // for an existing .html page and 404 for a missing one, so refuse any error status
+    // rather than keying off 404 alone -- a host that answers differently would
+    // otherwise turn this check off silently.
     const page = await env.ASSETS.fetch(new URL(path, request.url), { redirect: "manual" });
-    if (page.status === 404) return json({ error: "not a blog post" }, 404);
+    if (page.status >= 400) return json({ error: "not a blog post" }, 404);
 
     const visitor = visitorId && (await sha256(visitorId));
     if (visitor) {
