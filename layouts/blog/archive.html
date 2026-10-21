@@ -1,6 +1,6 @@
 {{ define "main" }}
     <main id="blog-archive" class="h-feed">
-      {{ partial "site/page-header.html" (dict "page" . "subnav" true "pname" true) }}
+      {{ partial "site/page-header.html" (dict "page" . "pname" true) }}
       <ul class="archive-list">
         {{- range where site.RegularPages "Layout" "post" }}
         <li class="h-entry">

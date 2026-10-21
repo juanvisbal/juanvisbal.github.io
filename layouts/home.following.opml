@@ -1,0 +1,2 @@
+{{- /* FollowSpec (https://followspec.org/): the blogroll at /.well-known/following.opml. */ -}}
+{{- partial "site/following.opml" . -}}

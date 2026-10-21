@@ -31,20 +31,18 @@
   <a class="skip-link" href="#content">Skip to content</a>
   {{- /* Blog pages carry their own h-entry/h-feed markup; the page-wide h-card is for the main pages. */}}
   <div class="container {{ with .Params.container_class }}{{ . }}{{ else }}{{ with .File }}{{ .ContentBaseName }}-page{{ end }}{{ end }}{{ if not $blog }} h-card{{ end }}">
-    <header class="profile">
-      {{- if not .Params.hide_photo }}
-      <img src="/images/profile.png" alt="" class="profile-pic{{ if not $blog }} u-photo{{ end }}" />
-      {{- end }}
+    {{- if not .Params.hide_photo }}
+    <img src="/images/profile.png" alt="" class="profile-pic{{ if not $blog }} u-photo{{ end }}" />
+    {{- end }}
+    <header class="profile site-header">
       {{ partial "site/nav.html" . }}
-      {{- block "profile_note" . }}{{ end }}
+      {{- if $blog }}
+      {{ partial "blog/subnav.html" . }}
+      {{- end }}
     </header>
+    {{- block "profile_note" . }}{{ end }}
     <div id="content" tabindex="-1"></div>
     {{ block "main" . }}{{ end }}
-    {{- if and $blog (not .IsSection) }}
-    <nav class="back-link" aria-label="Back"><a href="/blog/">← All posts</a></nav>
-    {{- else }}
-    <nav class="back-link" aria-label="Back"><a href="/">← Home</a></nav>
-    {{- end }}
     <hr class="section-separator">
     {{ partial "site/footer.html" . }}
   </div>

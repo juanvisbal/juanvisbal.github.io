@@ -1,6 +1,5 @@
 /* /blog/ pages (layouts/blog/*). Colours come from tokens.css. */
 
-
 .blog-page main {
   line-height: 1.6;
 }
@@ -11,7 +10,34 @@
 }
 
 .blog-subnav {
-  color: var(--header-text);
+  margin-block-start: 0.5rem;
+  color: var(--text-subtle);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.blog-subnav ul,
+.blog-subnav li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+  list-style: none;
+}
+
+.blog-subnav a {
+  padding-block: 0.2rem;
+}
+
+.blog-subnav a:hover,
+.blog-subnav a[aria-current] {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.blog-subnav a[aria-current] {
+  font-weight: 600;
 }
 
 /* Posts (list and single) */
@@ -49,6 +75,11 @@
   border-radius: 8px;
 }
 
+/* Long link text wraps instead of overflowing narrow screens. */
+.post-body a {
+  overflow-wrap: anywhere;
+}
+
 .post-body blockquote {
   padding-left: 1rem;
   border-left: 3px solid var(--border);
@@ -58,6 +89,62 @@
 .post-body ul,
 .post-body ol {
   padding-left: 1.25rem;
+}
+
+/* Link preview card (list and single) */
+.link-preview {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: inherit;
+}
+
+.blog-page main a.link-preview {
+  text-decoration: none;
+}
+
+.link-preview:hover {
+  background: var(--surface);
+}
+
+/* Square thumbnail: a quarter of the card, 5–8rem. */
+.link-preview img {
+  flex: none;
+  align-self: flex-start;
+  width: clamp(5rem, 25%, 8rem);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.link-preview-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.link-preview-host {
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+}
+
+.link-preview-title,
+.link-preview-desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.link-preview-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
 }
 
 .post-date {

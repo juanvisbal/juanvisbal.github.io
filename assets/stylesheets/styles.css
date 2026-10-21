@@ -227,19 +227,6 @@ body:not(.content-page) .footer {
   color: var(--text);
 }
 
-.back-link {
-  margin-top: 2rem;
-  font-size: 0.9rem;
-}
-
-.back-link a {
-  color: var(--text-subtle);
-}
-
-.back-link a:hover {
-  color: var(--text);
-}
-
 .button-container {
   display: flex;
   align-items: center;

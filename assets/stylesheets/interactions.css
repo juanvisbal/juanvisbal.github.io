@@ -1,48 +1,174 @@
-/* Hearts and comments under blog posts (layouts/_partials/blog/interactions.html). */
+/* Feedback row and comments under blog posts (layouts/_partials/blog/interactions.html).
+   Marcel-inspired styling (marcel.io), using the site's tokens and existing reply links. */
 .interactions {
   margin: 2rem 0 1.5rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border);
 }
 
-.interactions .heart-button {
-  display: inline-flex;
+/* ---------- Feedback row: like + social replies ---------- */
+
+.feedback-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.post-like-form {
+  position: relative;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  min-width: 2.5rem;
-  height: 2.5rem;
-  padding: 0 0.8rem;
-  font: inherit;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--text);
-  cursor: pointer;
+  flex-shrink: 0;
 }
 
-/* No count yet: a circle, not a pill. */
-.interactions .heart-button:has(.heart-count:empty) {
-  width: 2.5rem;
-  padding: 0;
-}
-
-/* Otherwise the empty count still takes a flex gap and pushes the heart off-centre. */
-.interactions .heart-count:empty {
+/* The form is server-rendered hidden; display:flex would otherwise beat the hidden attr. */
+.post-like-form[hidden] {
   display: none;
 }
 
-.interactions .heart-button:hover {
-  background: var(--surface-hover);
+.post-like-button {
+  appearance: none;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  margin: 0;
+  height: 3rem;
+  min-width: 3rem;
+  padding: 0 0.9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-subtle);
+  cursor: pointer;
+  font: inherit;
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
 }
 
-.interactions .heart-button[aria-pressed="true"] {
-  border-color: var(--text-subtle);
+.post-like-button:hover:not(:disabled) {
+  background: var(--surface);
+  color: var(--text-muted);
+}
+
+.post-like-button:disabled {
+  cursor: default;
+}
+
+.post-like-heart {
+  display: inline-flex;
+  transform-origin: center;
+}
+
+.post-like-heart.is-bouncing {
+  animation: like-heart-bounce 420ms cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.post-like-count {
+  font-size: 0.8rem;
+  line-height: 1;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-like-count[hidden] {
+  display: none;
+}
+
+/* Liked: red chrome, like Marcel. */
+.post-like-form.is-liked .post-like-button {
+  color: #d53a52;
+  border-color: rgba(213, 58, 82, 0.2);
+  background: rgba(213, 58, 82, 0.08);
+}
+
+.post-like-message {
+  font-size: 0.8rem;
+  color: var(--text-subtle);
+  overflow-wrap: anywhere;
+}
+
+.post-like-message:not(:empty) {
+  margin-top: 0.5rem;
+}
+
+/* Little hearts that float up on a like. */
+.like-particle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--particle-size);
+  height: var(--particle-size);
+  margin-left: calc(var(--particle-size) * -0.5);
+  margin-top: calc(var(--particle-size) * -0.5);
+  pointer-events: none;
+  opacity: 0;
+  color: #d53a52;
+  animation: like-particle-float var(--duration) ease-out var(--delay) forwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+}
+
+.like-particle svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes like-heart-bounce {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.32); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes like-particle-float {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.4) rotate(0deg);
+  }
+
+  15% {
+    opacity: 0.95;
+    transform: translate3d(calc(var(--drift-x) * 0.2), -10px, 0) scale(1) rotate(-8deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift-x), -64px, 0) scale(0.85) rotate(12deg);
+  }
+}
+
+/* These are navigation links to the existing social posts, not a comment input. */
+.feedback-row .comments-reply {
+  flex: 1;
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 1.5rem;
+}
+
+.post-like-button:focus-visible,
+.comments-reply a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
 }
 
 .interactions .comments-title {
   margin: 1.5rem 0 0.25rem;
-  font-size: 1.1rem; /* an h2 for heading order, sized like the old h3 */
+  font-size: 1.1rem;
   color: var(--text);
 }
 
@@ -84,6 +210,17 @@
 .interactions .comment-body p {
   margin: 0.35rem 0;
   overflow-wrap: anywhere;
+}
+
+@media (max-width: 380px) {
+  /* Keep the row together on phones; wrap only when the reply links would be cramped. */
+  .feedback-row {
+    flex-wrap: wrap;
+  }
+
+  .feedback-row .comments-reply {
+    flex-basis: 100%;
+  }
 }
 
 @media (max-width: 600px) {

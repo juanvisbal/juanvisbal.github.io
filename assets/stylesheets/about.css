@@ -1,0 +1,22 @@
+/* /about page-specific styles */
+#about {
+  text-align: left;
+  line-height: 1.65;
+}
+
+#about > * + * {
+  margin-top: 0.9rem;
+}
+
+#about ul {
+  padding-left: 1.25rem;
+}
+
+#about li + li {
+  margin-top: 0.5rem;
+}
+
+#about a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

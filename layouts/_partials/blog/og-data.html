@@ -1,0 +1,36 @@
+{{- /*
+  OpenGraph data for a URL, fetched at build time.
+  Returns dict url, host, title, description, image; empty dict when the page can't be fetched or has no title.
+  Call with partialCached so each URL is fetched once per build.
+*/ -}}
+{{- $url := . -}}
+{{- $data := dict -}}
+
+{{- $html := "" -}}
+{{- with try (resources.GetRemote $url) -}}
+  {{- with .Err -}}
+    {{- warnf "link preview: %s" . -}}
+  {{- else with .Value -}}
+    {{- if eq .MediaType.SubType "html" }}{{ $html = .Content }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- with $html -}}
+  {{- $docTitle := "" -}}
+  {{- with findRESubmatch `(?is)<title[^>]*>(.*?)</title>` $html 1 }}{{ $docTitle = strings.TrimSpace (htmlUnescape (index (index . 0) 1)) }}{{ end -}}
+
+  {{- $meta := dict "html" $html -}}
+  {{- $title := or (partial "blog/meta-content.html" (merge $meta (dict "name" "og:title"))) (partial "blog/meta-content.html" (merge $meta (dict "name" "twitter:title"))) $docTitle -}}
+  {{- $desc := or (partial "blog/meta-content.html" (merge $meta (dict "name" "og:description"))) (partial "blog/meta-content.html" (merge $meta (dict "name" "description"))) -}}
+  {{- $image := or (partial "blog/meta-content.html" (merge $meta (dict "name" "og:image"))) (partial "blog/meta-content.html" (merge $meta (dict "name" "twitter:image"))) -}}
+
+  {{- /* Relative or protocol-relative image paths: resolve against the page URL. */ -}}
+  {{- $u := urls.Parse $url -}}
+  {{- with $image }}{{ $image = ($u.ResolveReference (urls.Parse .)).String }}{{ end -}}
+
+  {{- if $title -}}
+    {{- $data = dict "url" $url "host" (strings.TrimPrefix "www." $u.Host) "title" $title "description" $desc "image" $image -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $data -}}

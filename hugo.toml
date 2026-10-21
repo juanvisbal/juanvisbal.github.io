@@ -31,11 +31,15 @@ rssLimit = 25
   suffixes = ["json"]
 [mediaTypes."text/x-opml"]
   suffixes = ["opml"]
+[mediaTypes."text/vcard"]
+  suffixes = ["vcf"]
 
 [outputFormats.RSS]
   baseName = "feed"
+  notAlternative = true
 [outputFormats.JSON]
   baseName = "feed"
+  notAlternative = true
 [outputFormats.ArchiveJSON]
   mediaType = "application/json"
   baseName = "index"
@@ -60,9 +64,31 @@ rssLimit = 25
   mediaType = "text/x-opml"
   isPlainText = true
   rel = "alternate"
+# SocialSpec (socialspec.org) APIs, all on the home page. Headers: static/_headers.
+# AboutSpec (aboutspec.org) and ContactSpec (contactspec.org): /.well-known/about.md and
+# /.well-known/contact.vcf, from the home page's front matter. FollowSpec (followspec.org):
+# /.well-known/following.opml, the blogroll (assets/blogroll.opml).
+[outputFormats.aboutspec]
+  mediaType = "text/markdown"
+  path = ".well-known"
+  baseName = "about"
+  isPlainText = true
+  notAlternative = true
+[outputFormats.contactspec]
+  mediaType = "text/vcard"
+  path = ".well-known"
+  baseName = "contact"
+  isPlainText = true
+  notAlternative = true
+[outputFormats.following]
+  mediaType = "text/x-opml"
+  path = ".well-known"
+  baseName = "following"
+  isPlainText = true
+  notAlternative = true
 
 [outputs]
-  home = ["HTML", "markdown", "llms"]
+  home = ["HTML", "markdown", "llms", "aboutspec", "contactspec", "following"]
   section = ["HTML"]
   page = ["HTML"]
 
@@ -72,21 +98,25 @@ rssLimit = 25
     url = "/"
     weight = 1
   [[menus.main]]
+    name = "About"
+    url = "/about.html"
+    weight = 2
+  [[menus.main]]
     name = "Blog"
     url = "/blog/"
-    weight = 2
+    weight = 3
   [[menus.main]]
     name = "Now"
     url = "/now.html"
-    weight = 3
+    weight = 4
   [[menus.main]]
     name = "Resume"
     url = "/resume.html"
-    weight = 4
+    weight = 5
   [[menus.main]]
     name = "Blogroll"
     url = "/blogroll.html"
-    weight = 5
+    weight = 6
 
 [params]
   # rel="me" links on blog pages (the main site's home page has its own in the layout)

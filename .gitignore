@@ -32,6 +32,7 @@ build/
 /public/
 /resources/
 .hugo_build.lock
+/.bin/
 .venv/
 
 # Python

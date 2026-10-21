@@ -132,9 +132,20 @@ class Post:
     def has_block(self, key):
         return re.search(rf"^{key}:\s*$", self.front, re.M) is not None
 
+    @staticmethod
+    def normalize_datetime(value):
+        value = (value or "").strip()
+        if not value:
+            raise ValueError("empty datetime")
+        value = value.replace("Z", "+00:00")
+        # Some older posts use ±HHMM (for example -0500); Python's fromisoformat
+        # accepts ±HH:MM but not the compact offset form on some interpreters.
+        value = re.sub(r"([+-]\d{2})(\d{2})$", r"\1:\2", value)
+        return dt.datetime.fromisoformat(value)
+
     @property
     def date(self):
-        return dt.datetime.fromisoformat(self.field("date").replace("Z", "+00:00"))
+        return self.normalize_datetime(self.field("date"))
 
     @property
     def title(self):

@@ -1,12 +1,15 @@
 ---
 title: Juan Visbal
-# Micro.blog's About page (blog.juanvisbal.com/about/ now redirects to /blog/about/)
-aliases: ["/blog/about/"]
+# Micro.blog's About page redirects to /about, its Contact page to the home page: static/_redirects
 lastmod: 2025-01-23T18:55:47+00:00
 # Your bio: shown on the home page, used as its description (search, link previews, apps like
 # HyperTexting), in llms.txt, and on the link-preview card (as many whole sentences as fit).
 bio: "👋 I'm Juan from Colombia 🇨🇴, with 10+ years of experience as a software engineer and Shopify Expert. I'm currently a Senior Web Engineer at SLTWTR. I'm passionate about sustainable innovation in tech."
 links:
+  - name: About
+    url: /about.html
+    icon: fa-solid fa-user
+    title: About Juan
   - name: Blog
     url: /blog/
     icon: fa-solid fa-comment

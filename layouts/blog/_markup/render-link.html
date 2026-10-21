@@ -1,0 +1,37 @@
+{{- /*
+  Blog links.
+  - URL-as-text links show a short bare URL, full URL on hover:
+      [https://www.theverge.com/entertainment/953596/google-...](…) -> www.theverge.com/entertainment/953596/go…
+  - The first external, non-@mention link is stored for the post's preview card (blog/link-preview.html).
+*/ -}}
+{{- $maxChars := 40 -}}
+{{- $dest := .Destination -}}
+{{- $text := .Text -}}
+{{- $title := .Title -}}
+
+{{- /* Link text is the URL itself, possibly cut by Micro.blog: "friendo.monster/posts/the…" */ -}}
+{{- $bareDest := partial "site/bare-url.html" $dest -}}
+{{- $bareText := partial "site/bare-url.html" (replaceRE `(\.\.\.|…|&hellip;)$` "" .PlainText) -}}
+{{- $isURL := and $bareText (strings.HasPrefix $bareDest $bareText) -}}
+
+{{- if $isURL -}}
+  {{- $text = $bareDest -}}
+  {{- if gt (strings.RuneCount $text) $maxChars -}}
+    {{- $text = printf "%s…" (substr $text 0 $maxChars) -}}
+  {{- end -}}
+  {{- if not $title -}}
+    {{- $title = $dest -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Preview candidate: external, not a mention, not this site. */ -}}
+{{- $host := strings.TrimPrefix "www." (urls.Parse $dest).Host -}}
+{{- $siteHost := strings.TrimPrefix "www." (urls.Parse site.BaseURL).Host -}}
+{{- $isExternal := and (strings.HasPrefix $dest "http") (ne $host $siteHost) -}}
+{{- $isMention := strings.HasPrefix .PlainText "@" -}}
+{{- if and $isExternal (not $isMention) (not (.Page.Store.Get "previewURL")) -}}
+  {{- .Page.Store.Set "previewURL" $dest -}}
+{{- end -}}
+
+<a href="{{ $dest | safeURL }}"{{ with $title }} title="{{ . }}"{{ end }}>{{ $text }}</a>
+{{- /* Trim trailing newline so links don't gain a space. */ -}}
