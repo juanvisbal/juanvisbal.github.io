@@ -1,4 +1,4 @@
--- Open Heart counts for blog posts (functions/openheart/[[path]].js).
+-- Open Heart counts, one row per (page path, emoji).
 CREATE TABLE IF NOT EXISTS hearts (
   path  TEXT NOT NULL,
   emoji TEXT NOT NULL,
