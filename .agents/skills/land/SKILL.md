@@ -31,8 +31,10 @@ here, and when you stop, say plainly that the changes have **not** landed and wh
   work on both sides (for example a bot commit recording cross-post links next to an unrelated
   edit). Stop and report if the right result is ambiguous, or if the build fails after resolving.
 
-Use non-interactive commands only: pass `-m`/`-F` for messages and prefix merges with
-`GIT_EDITOR=true`.
+Use non-interactive commands only: prefix `git commit` and `git merge` with `GIT_EDITOR=true` so a
+message can never open an editor. For messages, `git commit` takes `-m "<text>"` or `-F -` (reads
+stdin); **`git merge` takes only `-m`, never `-F`** — it errors with `could not read file '-'` and
+does not merge. Repeat `-m` to add paragraphs.
 
 ## 1. Preflight
 
@@ -112,12 +114,12 @@ successful deploy. If the check is missing after the timeout, pending, or anythi
 ```sh
 git switch main
 git merge --ff-only origin/main
-GIT_EDITOR=true git merge --no-ff hugo -F - <<'EOF'
-Merge the hugo branch (<short summary>) into main
-
-- <what changed>
-EOF
+GIT_EDITOR=true git merge --no-ff hugo \
+  -m "Merge the hugo branch (<short summary>) into main" \
+  -m "- <what changed>"
 ```
+
+The first `-m` is the subject, later ones become body paragraphs separated by blank lines.
 
 If local `main` has commits that are not on `origin/main` and were not moved to `hugo` in step 3,
 stop and ask. If the merge brings in nothing new (`main` already contains `hugo`), report that the
