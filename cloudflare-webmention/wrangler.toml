@@ -1,0 +1,14 @@
+name = "juanvisbal-webmention"
+main = "src/index.js"
+compatibility_date = "2026-07-28"
+
+# Bind this worker to your domain route in Cloudflare dashboard:
+# Route: juanvisbal.com/webmention*
+
+[[kv_namespaces]]
+binding = "WEBMENTIONS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+# Comma-separated list of origins this endpoint is allowed to accept as target URLs.
+ALLOWED_TARGET_ORIGINS = "https://juanvisbal.com,https://www.juanvisbal.com"
