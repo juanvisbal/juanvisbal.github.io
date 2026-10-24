@@ -164,8 +164,16 @@ rssLimit = 25
     weight = 6
 
 [params]
-  # rel="me" links on blog pages (the main site's home page has its own in the layout)
+  # rel="me" links on every page (identity for IndieAuth, RelMeAuth, webmention.io, the webring)
   me = ["https://juanvisbal.com/", "https://bsky.app/profile/juanvisbal.com", "https://social.lol/@juan"]
+  # Webmention receiver (sign in at https://webmention.io with juanvisbal.com first)
+  webmention = "https://webmention.io/juanvisbal.com/webmention"
+  # IndieWeb Webring (https://xn--sr8hvo.ws/): uncomment and paste the links from your dashboard
+  # after joining.
+  # [params.webring]
+  #   previous = "https://xn--sr8hvo.ws/<id>/previous"
+  #   home = "https://xn--sr8hvo.ws/<id>"
+  #   next = "https://xn--sr8hvo.ws/<id>/next"
   bluesky_publication = "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/site.standard.publication/3mnijwuss6v2n"
 
   [params.blog]

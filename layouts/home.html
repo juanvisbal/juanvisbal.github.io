@@ -40,6 +40,7 @@
     <div class="profile">
       <img src="/images/profile.png" alt="{{ i18n "memojiAlt" }}" class="profile-pic u-photo" />
       <h1 class="name p-name">{{ site.Title }}</h1>
+      <a class="u-url u-uid" href="{{ site.BaseURL }}" rel="me" hidden>{{ site.Title }}</a>
       <p class="description p-note">{{ .Params.bio }}</p>
     </div>
 

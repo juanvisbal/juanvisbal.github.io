@@ -10,7 +10,7 @@
           <p class="post-date">
             <a class="u-url" href="{{ $p.RelPermalink }}">{{ partial "site/post-date.html" (dict "date" $p.Date "class" "dt-published") }}</a>
           </p>
-          <a class="p-author h-card" href="{{ site.Params.author.url }}" hidden>{{ site.Title }}</a>
+          <span class="p-author h-card" hidden><a class="u-url p-name" href="{{ site.Params.author.url }}">{{ site.Params.author.name }}</a></span>
           {{- with $p.Params.bluesky }}
           <a class="u-syndication" href="{{ .link }}" hidden>Bluesky</a>
           {{- end }}

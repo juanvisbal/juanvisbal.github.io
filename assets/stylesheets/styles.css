@@ -230,6 +230,17 @@ body:not(.content-page) .footer {
   color: var(--text);
 }
 
+/* IndieWeb Webring links (rendered only when [params.webring] is set) */
+.footer__webring {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer__webring a:hover {
+  color: var(--text);
+}
+
 .button-container {
   display: flex;
   align-items: center;
