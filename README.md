@@ -107,3 +107,10 @@ Theme regression tests: `node --test tools/theme.test.cjs` (no extra dependencie
 ## Link preview cards
 
 Pages and posts without a photo get a generated 1200×630 card (`layouts/_partials/site/og-card.html`): `assets/og/base.png` (background + Memoji) with the page title or post text in JetBrains Mono (`assets/fonts/`, SIL Open Font License). Posts with a photo use the photo.
+
+## IndieWeb
+
+- Every page advertises `rel="me"` links from `[params] me` in `hugo.toml` (identity for IndieAuth/RelMeAuth, webmention.io and the webring).
+- Webmentions: `<link rel="webmention">` and `<link rel="pingback">` point at `[params] webmention` (webmention.io; sign in there with the domain first).
+- Microformats2: the home page is the representative `h-card`; `/blog/` is an `h-feed` of `h-entry` posts with `p-author h-card`, `dt-published`, `u-url` and `u-syndication`.
+- IndieWeb Webring: after joining at <https://xn--sr8hvo.ws/>, uncomment `[params.webring]` in `hugo.toml` and paste the links from the dashboard; the footer renders them on every page.

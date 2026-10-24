@@ -5,6 +5,15 @@
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="human-json" href="/human.json" />
+  {{- /* IndieWeb identity: rel="me" from any page (IndieAuth, webmention.io, the webring). */}}
+  {{- range site.Params.me }}
+  <link rel="me" href="{{ . }}" />
+  {{- end }}
+  {{- /* Webmention/Pingback receiver (webmention.io); set in [params] in hugo.toml. */}}
+  {{- with site.Params.webmention }}
+  <link rel="webmention" href="{{ . }}" />
+  <link rel="pingback" href="{{ strings.TrimSuffix "/webmention" . }}/xmlrpc" />
+  {{- end }}
   {{- if or .IsHome (eq .RelPermalink "/blog/") -}}
   {{- with partial "site/english-page.html" (dict "path" "/blog") }}
   {{- with .OutputFormats.Get "rss" }}
