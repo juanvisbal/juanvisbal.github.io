@@ -168,12 +168,11 @@ rssLimit = 25
   me = ["https://juanvisbal.com/", "https://bsky.app/profile/juanvisbal.com", "https://social.lol/@juan"]
   # Webmention receiver (sign in at https://webmention.io with juanvisbal.com first)
   webmention = "https://webmention.io/juanvisbal.com/webmention"
-  # IndieWeb Webring (https://xn--sr8hvo.ws/): uncomment and paste the links from your dashboard
-  # after joining.
-  # [params.webring]
-  #   previous = "https://xn--sr8hvo.ws/<id>/previous"
-  #   home = "https://xn--sr8hvo.ws/<id>"
-  #   next = "https://xn--sr8hvo.ws/<id>/next"
+  # IndieWeb Webring (https://xn--sr8hvo.ws/) links, as shown in the webring dashboard.
+  [params.webring]
+    previous = "https://xn--sr8hvo.ws/previous"
+    home = "https://xn--sr8hvo.ws"
+    next = "https://xn--sr8hvo.ws/next"
   bluesky_publication = "at://did:plc:oe7zju6lj6ggta4rfpqq6mzy/site.standard.publication/3mnijwuss6v2n"
 
   [params.blog]
